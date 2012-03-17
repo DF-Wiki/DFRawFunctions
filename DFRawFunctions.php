@@ -218,7 +218,7 @@ class DFRawFunctions
 			for ($i = 0; $i < $numcaps; $i++)
 			{
 				$parm = func_get_arg($i + 4);
-				list($gettype, $getoffset, $checkoffset, $checkval) = explode(':', $parm);
+				@list($gettype, $getoffset, $checkoffset, $checkval) = explode(':', $parm);
 				// permit fetching material state descriptors from here
 				if (($gettype == 'STATE') && (in_array($getoffset, array('NAME', 'ADJ'))))
 				{
