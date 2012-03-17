@@ -15,7 +15,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'name'           => 'DFRawFunctions',
 	'author'         => 'Quietust',
 	'url'            => 'http://df.magmawiki.com/index.php/User:Quietust',
-	'version'        => '1.0',
+	'version'        => '1.1',
 	'description'    => 'Dwarf Fortress Raw parser functions',
 );
 
@@ -193,7 +193,7 @@ class DFRawFunctions
 
 	// Iterates across all objects in the specified raw file and extracts specific tokens
 	// Token extraction parameters are formatted TYPE:OFFSET:CHECKOFFSET:CHECKVALUE
-	// If CHECKOFFSET is -1, then CHECKVALUE is ignored
+	// If CHECKOFFSET is -1, then CHECKVALUE is ignored; -2 permits the token to be missing altogether
 	// If TYPE is "STATE" and OFFSET is "NAME" or "ADJ", then OFFSET and CHECKOFFSET will be fed into statedesc() to return the material's state descriptor
 	// Objects which fail to match *any* of the checks will be skipped
 	public static function makelist (&$parser, $data = '', $object = '', $string = '')
@@ -223,8 +223,7 @@ class DFRawFunctions
 				if (($gettype == 'STATE') && (in_array($getoffset, array('NAME', 'ADJ'))))
 				{
 					$val = self::statedesc($parser, substr($data, $start, $end - $start), $getoffset, $checkoffset);
-					if (strlen($val))
-						$rep_out[$i] = $val;
+					$rep_out[$i] = $val;
 					continue;
 				} 
 				foreach ($tags as $tag)
@@ -237,6 +236,8 @@ class DFRawFunctions
 						break;
 					}
 				}
+				if (($checkoffset == -2) && !isset($rep_out[$i]))
+					$rep_out[$i] = '';
 			}
 			if (count($rep_in) == count($rep_out))
 				$out .= str_replace($rep_in, $rep_out, $string);
@@ -253,32 +254,32 @@ class DFRawFunctions
 		{
 			if (in_array($tag[0], array('STATE_NAME', 'STATE_NAME_ADJ')))
 			{
-				if (in_array($tag[1], array('SOLID', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID')))
 					$names['NAME']['SOLID'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_POWDER', 'POWDER', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_POWDER', 'POWDER')))
 					$names['NAME']['POWDER'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_PASTE', 'PASTE', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_PASTE', 'PASTE')))
 					$names['NAME']['PASTE'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_PRESSED', 'PRESSED', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_PRESSED', 'PRESSED')))
 					$names['NAME']['PRESSED'] = $tag[2];
-				if ($tag[1] == 'LIQUID')
+				if (in_array($tag[1], array('ALL', 'LIQUID')))
 					$names['NAME']['LIQUID'] = $tag[2];
-				if ($tag[1] == 'GAS')
+				if (in_array($tag[1], array('ALL', 'GAS')))
 					$names['NAME']['GAS'] = $tag[2];
 			}
 			if (in_array($tag[0], array('STATE_ADJ', 'STATE_NAME_ADJ')))
 			{
-				if (in_array($tag[1], array('SOLID', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID')))
 					$names['ADJ']['SOLID'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_POWDER', 'POWDER', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_POWDER', 'POWDER')))
 					$names['ADJ']['POWDER'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_PASTE', 'PASTE', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_PASTE', 'PASTE')))
 					$names['ADJ']['PASTE'] = $tag[2];
-				if (in_array($tag[1], array('SOLID_PRESSED', 'PRESSED', 'ALL_SOLID')))
+				if (in_array($tag[1], array('ALL', 'ALL_SOLID', 'SOLID_PRESSED', 'PRESSED')))
 					$names['ADJ']['PRESSED'] = $tag[2];
-				if ($tag[1] == 'LIQUID')
+				if (in_array($tag[1], array('ALL', 'LIQUID')))
 					$names['ADJ']['LIQUID'] = $tag[2];
-				if ($tag[1] == 'GAS')
+				if (in_array($tag[1], array('ALL', 'GAS')))
 					$names['ADJ']['GAS'] = $tag[2];
 			}
 		}
