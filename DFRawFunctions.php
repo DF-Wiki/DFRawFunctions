@@ -15,7 +15,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'name'           => 'DFRawFunctions',
 	'author'         => 'Quietust',
 	'url'            => 'http://df.magmawiki.com/index.php/User:Quietust',
-	'version'        => '1.1',
+	'version'        => '1.2',
 	'description'    => 'Dwarf Fortress Raw parser functions',
 );
 
@@ -32,6 +32,7 @@ function efDFRawFunctions_Setup (&$parser)
 	$parser->setFunctionHook('df_foreachtoken',	'DFRawFunctions::foreachtoken');
 	$parser->setFunctionHook('df_makelist',		'DFRawFunctions::makelist');
 	$parser->setFunctionHook('df_statedesc',	'DFRawFunctions::statedesc');
+	$parser->setFunctionHook('df_cvariation',	'DFRawFunctions::cvariation');
 	$parser->setFunctionHook('mreplace',		'DFRawFunctions::mreplace');
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
@@ -48,6 +49,7 @@ function efDFRawFunctions_Magic (&$magicWords, $langCode)
 	$magicWords['df_foreachtoken']	= array(0, 'df_foreachtoken');
 	$magicWords['df_makelist']	= array(0, 'df_makelist');
 	$magicWords['df_statedesc']	= array(0, 'df_statedesc');
+	$magicWords['df_cvariation']	= array(0, 'df_cvariation');
 	$magicWords['mreplace']		= array(0, 'mreplace');
 	$magicWords['delay']		= array(0, 'delay');
 	$magicWords['eval']		= array(0, 'eval');
@@ -58,10 +60,11 @@ class DFRawFunctions
 {
 	// Takes some raws and returns a 2-dimensional token array
 	// If 2nd parameter is specified, then only tags of the specified type will be returned
-	private static function getTags ($data, $type = '')
+	private static function getTags ($data, $type = '', &$padding = array())
 	{
 		$raws = array();
 		$off = 0;
+		$pad = '';
 		while (1)
 		{
 			$start = strpos($data, '[', $off);
@@ -70,10 +73,15 @@ class DFRawFunctions
 			$end = strpos($data, ']', $start);
 			if ($end === FALSE)
 				break;
-			$off = $end + 1;
+			if ($off < $start)
+				$pad = array_pop(explode("\n", trim(substr($data, $off, $start - $off), "\r\n")));
 			$tag = explode(':', substr($data, $start + 1, $end - $start - 1));
 			if (($type == '') || ($tag[0] == $type))
+			{
+				$padding[] = $pad;
 				$raws[] = $tag;
+			}
+			$off = $end + 1;
 		}
 		return $raws;
 	}
@@ -107,16 +115,26 @@ class DFRawFunctions
 	}
 
 	// Locates a tag matching certain criteria and returns the tag at the specified offset
+	// Num indicates which instance of the tag should be returned - a negative value counts from the end
 	// Match condition parameters are formatted CHECKOFFSET:CHECKVALUE
 	// If offset is of format MIN:MAX, then all tokens within the range will be returned, colon-separated
-	public static function tagentry (&$parser, $data = '', $type = '', $offset = 0, $notfound = 'not found')
+	public static function tagentry (&$parser, $data = '', $type = '', $num = 0, $offset = 0, $notfound = 'not found')
 	{
-		$numcaps = func_num_args() - 5;
+		$numcaps = func_num_args() - 6;
 		$tags = self::getTags($data, $type);
+		if ($num < 0)
+			$num += count($tags);
+		if (($num < 0) || ($num >= count($tags)))
+			return $notfound;
 		foreach ($tags as $tag)
 		{
 			if ($offset >= count($tag))
 				continue;
+			if ($num)
+			{
+				$num--;
+				continue;
+			}
 			$match = true;
 			for ($i = 0; $i < $numcaps; $i++)
 			{
@@ -288,6 +306,176 @@ class DFRawFunctions
 		if (!isset($names[$type][$state]))
 			return '';
 		return $names[$type][$state];
+	}
+
+	// Internal function used by cvariation, inserts new tags into the list at a particular offset
+	private static function cvariation_merge (&$output, &$out_pad, &$insert, &$insert_pad, $insert_offset)
+	{
+		if ($insert_offset == -1)
+		{
+			// splice can't actually append to the end of the array
+			$output = array_merge($output, $insert);
+			$out_pad = array_merge($out_pad, $insert_pad);
+		}
+		else
+		{
+			array_splice($output, $insert_offset, 0, $insert);
+			array_splice($out_pad, $insert_offset, 0, $insert_pad);
+		}
+		$insert = array();
+		$insert_pad = array();
+	}
+
+	// Parses a creature variation to produce composite raws
+	public static function cvariation (&$parser, $data = '', $base = '', $variation = '')
+	{
+		$insert_offset = -1;
+		$insert_pad = array();
+		$insert = array();
+
+		$var_pad = array();
+		$vardata = array();
+
+		$out_pad = array();
+		$output = array();
+
+		$in_pad = array();
+		$input = self::getTags($data, '', $in_pad);
+
+		// remove object header tag so new tags don't get inserted in front of it
+		$start = array_shift($input);
+		$start_pad = array_shift($in_pad);
+
+		foreach ($input as $x => $tag)
+		{
+			$padding = $in_pad[$x];
+			switch ($tag[0])
+			{
+			case 'COPY_TAGS_FROM':
+				$base_pad = array();
+				$basedata = self::getTags(self::raw($parser, $base, 'CREATURE', $tag[1]), '', $base_pad);
+				// discard the object definition
+				array_shift($basedata);
+				array_shift($base_pad);
+				$output = array_merge($output, $basedata);
+				$out_pad = array_merge($out_pad, $base_pad);
+				break;
+			case 'APPLY_CREATURE_VARIATION':
+				// append specified creature variation data
+				$vardata = array_merge($vardata, self::getTags(self::raw($parser, $variation, 'CREATURE_VARIATION', $tag[1]), '', $var_pad));
+				break;
+			case 'APPLY_CURRENT_CREATURE_VARIATION':
+				// parse the creature variation and apply it to the output so far
+				foreach ($vardata as $y => $vartag)
+				{
+					$varpad = $var_pad[$y];
+					$cv_tag = array_shift($vartag);
+					$varlen = count($vartag);
+					switch ($cv_tag)
+					{
+					case 'CV_NEW_TAG':
+					case 'CV_ADD_TAG':
+						$insert[] = $vartag;
+						$insert_pad[] = $varpad;
+						break;
+					case 'CV_REMOVE_TAG':
+						$adjust = 0;
+						foreach ($output as $z => $outtag)
+						{
+							if (array_slice($outtag, 0, $varlen) == $vartag)
+							{
+								if ($z < $insert_offset)
+									$adjust++;
+								unset($output[$z]);
+								unset($out_pad[$z]);
+							}
+						}
+						// reset indices
+						$output = array_merge($output);
+						$out_pad = array_merge($out_pad);
+						$insert_offset -= $adjust;
+						break;
+					case 'CV_CONVERT_TAG':
+						$conv = array();
+						break;
+					case 'CVCT_MASTER':
+						foreach ($output as $z => $outtag)
+						{
+							if ($outtag[0] == $vartag[0])
+							{
+								$conv[] = $z;
+								break;
+							}
+						}
+						break;
+					case 'CVCT_TARGET':
+						$conv_from = ':'. implode(':', $vartag) .':';
+						break;
+					case 'CVCT_REPLACEMENT':
+						$conv_to = ':'. implode(':', $vartag) .':';
+						foreach ($conv as $z)
+						{
+							$conv_data = str_replace($conv_from, $conv_to, implode(':', $output[$z]) .':');
+							$output[$z] = explode(':', trim($conv_data, ':'));
+						}
+						break;
+					}
+				}
+				self::cvariation_merge($output, $out_pad, $insert, $insert_pad, $insert_offset);
+				// then clear the variation buffer
+				$var_pad = array();
+				$vardata = array();
+				// reset to inserting at the end
+				$insert_offset = -1;
+				break;
+			case 'GO_TO_START':
+				self::cvariation_merge($output, $out_pad, $insert, $insert_pad, $insert_offset);
+				$insert_offset = 0;
+				break;
+			case 'GO_TO_END':
+				self::cvariation_merge($output, $out_pad, $insert, $insert_pad, $insert_offset);
+				$insert_offset = -1;
+				break;
+			case 'GO_TO_TAG':
+				self::cvariation_merge($output, $out_pad, $insert, $insert_pad, $insert_offset);
+				// if we don't actually find the tag, then insert at the end
+				$insert_offset = -1;
+				$taglen = count($tag) - 1;
+				foreach ($output as $z => $outtag)
+				{
+					if ($outtag == array_slice($tag, 1, $taglen))
+					{
+						$insert_offset = $z;
+						break;
+					}
+				}
+				break;
+			case 'CV_NEW_TAG':
+			case 'CV_ADD_TAG':
+			case 'CV_REMOVE_TAG':
+			case 'CV_CONVERT_TAG':
+			case 'CVCT_MASTER':
+			case 'CVCT_TARGET':
+			case 'CVCT_REPLACEMENT':
+				$vardata[] = $tag;
+				$var_pad[] = $padding;
+				break;
+			default:
+				$insert[] = $tag;
+				$insert_pad[] = $padding;
+				break;
+			}
+		}
+		// Merge any remaining tags
+		self::cvariation_merge($output, $out_pad, $insert, $insert_pad, $insert_offset);
+
+		// prepend object header tag
+		array_unshift($output, $start);
+		array_unshift($out_pad, $start_pad);
+
+		foreach ($output as $x => &$data)
+			$data = $out_pad[$x] .'['. implode(':', $data) .']';
+		return implode("\n", $output);
 	}
 
 	// Performs multiple string replacements
