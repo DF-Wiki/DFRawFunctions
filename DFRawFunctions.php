@@ -15,7 +15,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'name'           => 'DFRawFunctions',
 	'author'         => 'Quietust',
 	'url'            => 'http://df.magmawiki.com/index.php/User:Quietust',
-	'version'        => '1.2',
+	'version'        => '1.3',
 	'description'    => 'Dwarf Fortress Raw parser functions',
 );
 
@@ -86,9 +86,32 @@ class DFRawFunctions
 		return $raws;
 	}
 
+	// Checks if the specified string is a namespace:filename - if it is, then load and return its contents
+	private static function loadFile ($data)
+	{
+		$rawdir = dirname(__FILE__) .'/raws';
+		if (!is_dir($rawdir))
+			return $data;
+
+		$filename = explode(':', $data, 2);
+		$wantdir = $rawdir .'/'. $filename[0];
+		$wantfile = $rawdir .'/'. $filename[0] .'/'. $filename[1];
+
+		$rawdirs = glob($rawdir .'/*', GLOB_ONLYDIR);
+		if (!in_array($wantdir, $rawdirs))
+			return $data;
+
+		$rawfiles = glob($wantdir .'/*.txt');
+		if (!in_array($wantfile, $rawfiles))
+			return $data;
+
+		return file_get_contents($wantfile);
+	}
+
 	// Take an entire raw file and extract one entity
 	public static function raw (&$parser, $data = '', $object = '', $id = '', $notfound = '')
 	{
+		$data = self::loadFile($data);
 		$start = strpos($data, '['. $object .':'. $id .']');
 		if ($start === FALSE)
 			return $notfound;
@@ -216,6 +239,8 @@ class DFRawFunctions
 	// Objects which fail to match *any* of the checks will be skipped
 	public static function makelist (&$parser, $data = '', $object = '', $string = '')
 	{
+		$data = self::loadFile($data);
+
 		$numcaps = func_num_args() - 4;
 		$rep_in = array();
 		for ($i = 0; $i < $numcaps; $i++)
