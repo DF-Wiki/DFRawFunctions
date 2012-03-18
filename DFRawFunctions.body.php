@@ -46,7 +46,7 @@ class DFRawFunctions
 		$filename = explode(':', $data, 2);
 		if (count($filename) != 2)
 			return $data;
-		$filename = str_replace(array('/', '\\'), '', $filename)
+		$filename = str_replace(array('/', '\\'), '', $filename);
 
 		$wantfile = $wgDFRawPath .'/'. $filename[0] .'/'. $filename[1];
 
