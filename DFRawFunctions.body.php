@@ -44,15 +44,13 @@ class DFRawFunctions
 			return $data;
 
 		$filename = explode(':', $data, 2);
-
-		$rawdirs = glob($wgDFRawPath .'/*', GLOB_ONLYDIR);
-		$wantdir = $wgDFRawPath .'/'. $filename[0];
-		if (!in_array($wantdir, $rawdirs))
+		if (count($filename) != 2)
 			return $data;
+		$filename = str_replace(array('/', '\\'), '', $filename)
 
-		$rawfiles = glob($wantdir .'/*.txt');
-		$wantfile = $wantdir .'/'. $filename[1];
-		if (!in_array($wantfile, $rawfiles))
+		$wantfile = $wgDFRawPath .'/'. $filename[0] .'/'. $filename[1];
+
+		if (!is_file($wantfile))
 			return $data;
 
 		return file_get_contents($wantfile);
