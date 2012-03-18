@@ -334,9 +334,8 @@ class DFRawFunctions
 				$out_pad = array_merge($out_pad, $base_pad);
 				break;
 			case 'APPLY_CREATURE_VARIATION':
-				// append specified creature variation data
+				// if any CV_* tags were entered already, append this to them
 				$vardata = array_merge($vardata, self::getTags(self::raw($parser, $variation, 'CREATURE_VARIATION', $tag[1]), '', $var_pad));
-				break;
 			case 'APPLY_CURRENT_CREATURE_VARIATION':
 				// parse the creature variation and apply it to the output so far
 				foreach ($vardata as $y => $vartag)
