@@ -31,7 +31,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'author'         => 'Quietust',
 	'url'            => 'http://df.magmawiki.com/index.php/User:Quietust',
 	'description'    => 'Dwarf Fortress Raw parser functions',
-	'version'        => '1.3',
+	'version'        => '1.4',
 );
 
 $wgAutoloadClasses['DFRawFunctions'] = dirname(__FILE__) . '/DFRawFunctions.body.php';

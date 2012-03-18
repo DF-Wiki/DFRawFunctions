@@ -60,6 +60,8 @@ class DFRawFunctions
 	public static function raw (&$parser, $data = '', $object = '', $id = '', $notfound = '')
 	{
 		$data = self::loadFile($data);
+		if (!$object)
+			return $data;
 		$start = strpos($data, '['. $object .':'. $id .']');
 		if ($start === FALSE)
 			return $notfound;
