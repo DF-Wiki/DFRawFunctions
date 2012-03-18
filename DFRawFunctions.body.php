@@ -95,6 +95,8 @@ class DFRawFunctions
 	{
 		$numcaps = func_num_args() - 6;
 		$tags = self::getTags($data, $type);
+		if (count($tags) == 0)
+			return $notfound;
 		if ($num < 0)
 			$num += count($tags);
 		if (($num < 0) || ($num >= count($tags)))
@@ -103,11 +105,6 @@ class DFRawFunctions
 		{
 			if ($offset >= count($tag))
 				continue;
-			if ($num)
-			{
-				$num--;
-				continue;
-			}
 			$match = true;
 			for ($i = 0; $i < $numcaps; $i++)
 			{
@@ -119,30 +116,39 @@ class DFRawFunctions
 					break;
 				}
 			}
-			if ($match)
+			if (!$match)
+				continue;
+			if ($num)
 			{
-				$range = explode(':', $offset);
-				if (count($range) == 1)
-					return $tag[$offset];
-				else
-				{
-					$out = array();
-					for ($i = $range[0]; $i <= $range[1]; $i++)
-						$out[] = $tag[$i];
-					return implode(':', $out);
-				}
+				$num--;
+				continue;
+			}
+			$range = explode(':', $offset);
+			if (count($range) == 1)
+				return $tag[$offset];
+			else
+			{
+				$out = array();
+				for ($i = $range[0]; $i <= $range[1]; $i++)
+					$out[] = $tag[$i];
+				return implode(':', $out);
 			}
 		}
 		return $notfound;
 	}
 
 	// Locates a tag and returns all of its tokens as a colon-separated string
-	public static function tagvalue (&$parser, $data = '', $type = '', $notfound = 'not found')
+	public static function tagvalue (&$parser, $data = '', $type = '', $num = 0, $notfound = 'not found')
 	{
 		$tags = self::getTags($data, $type);
 		if (count($tags) == 0)
 			return $notfound;
-		$tag = $tags[0];
+		if ($num < 0)
+			$num += count($tags);
+		if (($num < 0) || ($num >= count($tags)))
+			return $notfound;
+
+		$tag = $tags[$num];
 		array_shift($tag);
 		return implode(':', $tag);
 	}

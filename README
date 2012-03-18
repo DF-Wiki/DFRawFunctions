@@ -1,0 +1,202 @@
+This repository contains extensions and patches used for the Dwarf
+Fortress Wiki.
+
+DFRawFunctions
+==============
+
+DFRawFunctions is a MediaWiki extension designed for parsing Dwarf
+Fortress raws.
+
+df_raw
+------
+Searches through a raw file and returns raws for a specific object. If
+only "data" is specified, the entire contents of the raw file are
+returned.
+
+Usage: {{#df_raw:data|object|id|notfound}}
+Parameters:
+* data
+- Either a filename (of the format "namespace:raw_file.txt") or its
+  contents.
+* object
+- The object type to search for.
+* id
+- The ID of the object you are searching for. Objects begin with
+  "[object:id]" (e.g. [INORGANIC:SANDSTONE] or [CREATURE:DWARF])
+* notfound
+- The string to be returned if the specified entity could not be located.
+ 
+df_tag
+------
+Checks if a particular tag exists, optionally with a specific token at
+a specific offset. Returns 1 if found, otherwise returns nothing.
+
+Usage: {{#df_tag:data|type|offset|entry}}
+Parameters:
+* data
+- The raws for a single object.
+* type
+- The tag type you are searching for.
+* offset
+- Optional, specifies an offset to check for a specific value.
+* entry
+- Optional, specifies the actual value to look for at the above offset.
+
+df_tagentry
+-----------
+Finds the Nth tag of the specified type, with any number of specific
+tokens at specific offsets, and returns the token at the specified
+offset.
+
+Usage: {{#df_tagentry:data|type|num|offset|notfound|matches...}}
+Parameters:
+* data
+- The raws for a single object.
+* type
+- The tag type you are searching for.
+* num
+- The instance of the tag you want to fetch. Specify a negative number
+  to count from the end.
+* offset
+- The offset of the token to be returned. Specify a pair of numbers
+  separated by colons in order to return multiple tokens (also
+  separated by colons).
+* notfound
+- The string to be returned if the specified entity could not be
+  located.
+* matches
+- Zero or more match conditions. Match conditions are of the format
+  "offset:value". Only the Nth tag which satisfies all match conditions
+  will be returned.
+
+df_tagvalue
+-----------
+Finds the Nth tag of the specified type and returns all of its values,
+separated by colons.
+
+Usage: {{#df_tagvalue:data|type|num|notfound}}
+Parameters:
+* data
+- The raws for a single object.
+* type
+- The tag type you are searching for.
+* num
+- The instance of the tag you want to fetch. Specify a negative number
+  to count from the end.
+* notfound
+- The string to be returned if the specified entity could not be
+  located.
+
+df_foreachtag
+-------------
+Iterates across all tags of the specified type and outputs a formatted
+string for each one.
+
+Usage: {{#df_foreachtag:data|type|string}}
+Parameters:
+* data
+- The raws for a single object.
+* type
+- The tag type you are searching for.
+* string
+- A format string into which token values can be substituted using \1,
+  \2, ..., \9. The first parameter is the tag name itself. Currently
+  does not support more than 9 parameters.
+
+df_foreachtoken
+---------------
+Iterates across a set of tokens in specific groups and outputs a
+formatted string for each one.
+
+Usage: {{#df_foreachtoken:data|offset|group|string}}
+Parameters:
+* data
+- A colon-separated list of values, usually the output from
+  df_tagvalue.
+* offset
+- How many tokens to ignore from the beginning of the list.
+* group
+- How many tokens should be parsed at once.
+* string
+- A format string into which token values can be substituted using \1,
+  \2, ..., \9. Currently does not support more than 9 parameters.
+
+df_makelist
+-----------
+Iterates across all objects in a single raw file and outputs a string
+for each one.
+
+Usage: {{#df_makelist:data|object|string|extracts...}}
+Parameters:
+* data
+- Either a filename (of the format "namespace:raw_file.txt") or its
+  contents.
+* object
+- The object type to iterate across.
+* string
+- A format string into which values can be substituted using \1, \2,
+  ..., \9. Currently does not support more than 9 parameters.
+* extracts
+- Zero or more token extraction parameters. Extraction parameters are
+  of the format "type:offset:checkoffset:checkvalue", where the first
+  matching tag of "type" will return the token at "offset" if the token
+  at "checkoffset" has the value "checkvalue". If "checkoffset" is set
+  to -1, the checkvalue is ignored.
+- For material definitions, the format "STATE:type:state" can also be
+  used, where "type" and "state" are fed into df_statedesc below.
+- The order in which the extraction parameters are defined will
+  determine the substitution values used - the first will use \1, the
+  second will use \2, etc.
+
+df_statedesc
+------------
+Parses a material definition and returns its name for a particular
+state.
+
+Usage: {{#df_statedesc:data|type|state}}
+Parameters:
+* data
+- The raws for a single material.
+* type
+- Either NAME or ADJ, to specify whether the noun or adjective form
+  should be returned.
+* state
+- The state type whose name should be returned. Valid values are SOLID,
+  POWDER, PASTE, PRESSED, LIQUID, and GAS.
+
+df_cvariation
+-------------
+Parses a creature entry and decodes variation information.
+
+Usage: {{#df_cvariation:data|base|variation}}
+Parameters:
+* data
+- The raws for a single creature.
+* base
+- The raw file which contains the "base" creature - either a filename
+  (of the format "namespace:raw_file.txt") or its contents.
+* variation
+- The raw file which contains the creature variation used - either a
+  filename (of the format "namespace:raw_file.txt") or its contents.
+
+mreplace
+--------
+Performs multiple simple string replacements on the data specified.
+
+Usage: {{#mreplace:data|from|to|from|to|...}}
+
+delay
+-----
+Returns "{{parm1|parm2|parm3|...}}", intended for delayed evaluation of
+templates and parser functions when used with df_foreachtag,
+df_foreachtoken, and df_makelist.
+
+Usage: {{#delay:parm1|parm2|parm3|...}}
+
+eval
+----
+Evaluates all parser functions and template calls in the specified
+data. Intended for usage with df_foreachtag, df_foreachtoken, and
+df_makelist.
+
+Usage: {{#eval:data}}
