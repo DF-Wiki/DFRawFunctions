@@ -25,7 +25,6 @@ $wgDFRawPath = dirname(__FILE__) .'/raws';
  * Extension Logic - do not change anything below this line
  */
 
-$wgExtensionFunctions[] = 'efDFRawFunctionsSetup';
 $wgExtensionCredits['parserhook'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'DFRawFunctions',
@@ -37,13 +36,8 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $wgAutoloadClasses['DFRawFunctions'] = dirname(__FILE__) . '/DFRawFunctions.body.php';
 
-function efDFRawFunctionsSetup ()
-{
-	global $wgHooks;
-
-	$wgHooks['ParserFirstCallInit'][] = 'efDFRawFunctions_Initialize';
-	$wgHooks['LanguageGetMagic'][] = 'efDFRawFunctions_RegisterMagicWords';
-}
+$wgHooks['ParserFirstCallInit'][] = 'efDFRawFunctions_Initialize';
+$wgHooks['LanguageGetMagic'][] = 'efDFRawFunctions_RegisterMagicWords';
 
 function efDFRawFunctions_Initialize (&$parser)
 {
