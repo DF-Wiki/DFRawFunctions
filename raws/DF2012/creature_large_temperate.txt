@@ -1530,7 +1530,7 @@ Moose were sponsored by the generous contributions of the Bay 12 community.
 
 	Silophant - "one of these once bit my sister"
 	"Beware the room with a moose."
-	A møøse once bit my sister. / Mynd you, møøse bites kan be pretty nasti...
+	A moose once bit my sister. / Mynd you, moose bites kan be pretty nasti...
 
 [CREATURE:MOOSE]
 	[DESCRIPTION:A large mammal with great antlers and a large nose. It lives in temperate forests.]
