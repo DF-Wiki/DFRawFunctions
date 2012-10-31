@@ -25,7 +25,10 @@ Parameters:
   "[object:id]" (e.g. [INORGANIC:SANDSTONE] or [CREATURE:DWARF])
 * notfound
 - The string to be returned if the specified entity could not be located.
- 
+
+Example: {{#df_raw:DF2012:creature_standard.txt|CREATURE|DWARF|Not found!}}
+
+
 df_tag
 ------
 Checks if a particular tag exists, optionally with a specific token at
@@ -41,6 +44,9 @@ Parameters:
 - Optional, specifies an offset to check for a specific value.
 * entry
 - Optional, specifies the actual value to look for at the above offset.
+
+Example: {{#df_tag:[dwarf raws]|PERSONALITY|1|IMMODERATION}}
+
 
 df_tagentry
 -----------
@@ -59,7 +65,7 @@ Parameters:
   to count from the end.
 * offset
 - The offset of the token to be returned. Specify a pair of numbers
-  separated by colons in order to return multiple tokens (also
+  separated by colons in order to return a range of tokens (also
   separated by colons).
 * notfound
 - The string to be returned if the specified entity could not be
@@ -68,6 +74,9 @@ Parameters:
 - Zero or more match conditions. Match conditions are of the format
   "offset:value". Only the Nth tag which satisfies all match conditions
   will be returned.
+
+Example: {{#df_tagentry:[dwarf raws]|PERSONALITY|0|2:4|Unknown!|1:IMMODERATION}}
+
 
 df_tagvalue
 -----------
@@ -87,6 +96,9 @@ Parameters:
 - The string to be returned if the specified entity could not be
   located.
 
+Example: {{#df_tagentry:[dwarf raws]|BODY_SIZE|0|Unknown!}}
+
+
 df_foreachtag
 -------------
 Iterates across all tags of the specified type and outputs a formatted
@@ -102,6 +114,9 @@ Parameters:
 - A format string into which token values can be substituted using \1,
   \2, ..., \9. The first parameter is the tag name itself. Currently
   does not support more than 9 parameters.
+
+Example: {{#df_foreachtag:[stone raws]|ENVIRONMENT_SPEC|"\2"}}
+
 
 df_foreachtoken
 ---------------
@@ -120,6 +135,11 @@ Parameters:
 * string
 - A format string into which token values can be substituted using \1,
   \2, ..., \9. Currently does not support more than 9 parameters.
+
+Example: {{#df_foreachtoken:
+           {{#df_tagvalue:[dwarf raws]|TL_COLOR_MODIFIER|0}}
+         |0|2|"\1"}}
+
 
 df_makelist
 -----------
@@ -148,6 +168,10 @@ Parameters:
   determine the substitution values used - the first will use \1, the
   second will use \2, etc.
 
+Example: {{#df_makelist:[all stone raws]|INORGANIC|"\2 \1"|
+           ENVIRONMENT_SPEC:2:1:MAGNETITE|STATE:NAME:SOLID}}
+
+
 df_statedesc
 ------------
 Parses a material definition and returns its name for a particular
@@ -164,6 +188,9 @@ Parameters:
 - The state type whose name should be returned. Valid values are SOLID,
   POWDER, PASTE, PRESSED, LIQUID, and GAS.
 
+Example: {{#df_statedesc:[stone raw]|NAME|SPOLID}}
+
+
 df_cvariation
 -------------
 Parses a creature entry and decodes variation information.
@@ -178,6 +205,13 @@ Parameters:
 * variation
 - The raw file which contains the creature variation used - either a
   filename (of the format "namespace:raw_file.txt") or its contents.
+
+Example: {{#df_cvariation:
+           {{#df_raw:DF2012:creature_large_temperate.txt|
+             CREATURE|BADGER, GIANT}}|
+           DF2012:creature_large_temperate.txt|
+           DF2012:cvariation_default.txt}}
+
 
 mreplace
 --------
