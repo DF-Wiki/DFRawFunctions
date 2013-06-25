@@ -70,7 +70,16 @@ class DFRawFunctions
 		if ($end === FALSE)
 			$end = strlen($data);
 
-		return substr($data, $start, $end - $start);
+		// include any plaintext before the beginning
+		$tmp = self::rstrpos($data, ']', $start);
+		if ($tmp !== FALSE)
+			$start = $tmp;
+		// and remove any plaintext after the end
+		$tmp = self::rstrpos($data, ']', $end);
+		if ($tmp !== FALSE)
+			$end = $tmp;
+
+		return trim(substr($data, $start, $end - $start));
 	}
 
 	// Same as raw(), but allows specifying multiple files and uses the first one it finds
@@ -86,7 +95,16 @@ class DFRawFunctions
 			if ($end === FALSE)
 				$end = strlen($data);
 
-			return substr($data, $start, $end - $start);
+			// include any plaintext before the beginning
+			$tmp = self::rstrpos($data, ']', $start);
+			if ($tmp !== FALSE)
+				$start = $tmp;
+			// and remove any plaintext after the end
+			$tmp = self::rstrpos($data, ']', $end);
+			if ($tmp !== FALSE)
+				$end = $tmp;
+
+			return trim(substr($data, $start, $end - $start));
 		}
 		return $notfound;
 	}
@@ -511,5 +529,15 @@ class DFRawFunctions
 	public static function evaluate (&$parser, $data = '')
 	{
 		return $parser->replaceVariables($data);
+	}
+
+	// equivalent of lastIndexOf, search backwards for needle in haystack and return its position
+	private static function rstrpos ($haystack, $needle, $offset)
+	{
+		$size = strlen($haystack);
+		$pos = strpos(strrev($haystack), $needle, $size - $offset);
+		if ($pos === false)
+			return false;
+		return $size - $pos;
 	}
 }
