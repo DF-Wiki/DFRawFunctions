@@ -19,7 +19,10 @@ class DFRawFunctions
 			if ($end === FALSE)
 				break;
 			if ($off < $start)
-				$pad = array_pop(explode("\n", trim(substr($data, $off, $start - $off), "\r\n")));
+			{
+				$tmp = explode("\n", trim(substr($data, $off, $start - $off), "\r\n"));
+				$pad = end($tmp);
+			}
 			$tag = explode(':', substr($data, $start + 1, $end - $start - 1));
 			if (($type == '') || ($tag[0] == $type))
 			{
