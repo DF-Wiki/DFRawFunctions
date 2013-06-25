@@ -195,16 +195,16 @@ df_cvariation
 -------------
 Parses a creature entry and decodes variation information.
 
-Usage: {{#df_cvariation:data|base|variation}}
+Usage: {{#df_cvariation:data|base|variation...}}
 Parameters:
 * data
 - The raws for a single creature.
 * base
 - The raw file which contains the "base" creature - either a filename
   (of the format "namespace:raw_file.txt") or its contents.
-* variation
-- The raw file which contains the creature variation used - either a
-  filename (of the format "namespace:raw_file.txt") or its contents.
+* variation...
+- One or more raw files which contain creature variation data - either
+  filenames (of the format "namespace:raw_file.txt") or their contents.
 
 Example: {{#df_cvariation:
            {{#df_raw:DF2012:creature_large_temperate.txt|
