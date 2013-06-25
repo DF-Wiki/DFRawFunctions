@@ -57,6 +57,7 @@ class DFRawFunctions
 	}
 
 	// Take an entire raw file and extract one entity
+	// If 'object' is not specified, returns the entire file
 	public static function raw (&$parser, $data = '', $object = '', $id = '', $notfound = '')
 	{
 		$data = self::loadFile($data);
@@ -67,8 +68,27 @@ class DFRawFunctions
 			return $notfound;
 		$end = strpos($data, '['. $object .':', $start + 1);
 		if ($end === FALSE)
-			return substr($data, $start);
+			$end = strlen($data);
+
 		return substr($data, $start, $end - $start);
+	}
+
+	// Same as raw(), but allows specifying multiple files and uses the first one it finds
+	public static function raw_mult (&$parser, $datas = array(), $object = '', $id = '', $notfound = '')
+	{
+		foreach ($datas as $data)
+		{
+			$data = self::loadFile($data);
+			$start = strpos($data, '['. $object .':'. $id .']');
+			if ($start === FALSE)
+				continue;
+			$end = strpos($data, '['. $object .':', $start + 1);
+			if ($end === FALSE)
+				$end = strlen($data);
+
+			return substr($data, $start, $end - $start);
+		}
+		return $notfound;
 	}
 
 	// Checks if a tag is present, optionally with a particular token at a specific offset
@@ -91,7 +111,7 @@ class DFRawFunctions
 	// Num indicates which instance of the tag should be returned - a negative value counts from the end
 	// Match condition parameters are formatted CHECKOFFSET:CHECKVALUE
 	// If offset is of format MIN:MAX, then all tokens within the range will be returned, colon-separated
-	public static function tagentry (&$parser, $data = '', $type = '', $num = 0, $offset = 0, $notfound = 'not found')
+	public static function tagentry (&$parser, $data = '', $type = '', $num = 0, $offset = 0, $notfound = 'not found'/*, ...*/)
 	{
 		$numcaps = func_num_args() - 6;
 		$tags = self::getTags($data, $type);
@@ -193,7 +213,7 @@ class DFRawFunctions
 	// If CHECKOFFSET is -1, then CHECKVALUE is ignored; -2 permits the token to be missing altogether
 	// If TYPE is "STATE" and OFFSET is "NAME" or "ADJ", then OFFSET and CHECKOFFSET will be fed into statedesc() to return the material's state descriptor
 	// Objects which fail to match *any* of the checks will be skipped
-	public static function makelist (&$parser, $data = '', $object = '', $string = '')
+	public static function makelist (&$parser, $data = '', $object = '', $string = ''/*, ...*/)
 	{
 		$data = self::loadFile($data);
 
@@ -308,8 +328,12 @@ class DFRawFunctions
 	}
 
 	// Parses a creature variation to produce composite raws
-	public static function cvariation (&$parser, $data = '', $base = '', $variation = '')
+	public static function cvariation (&$parser, $data = '', $base = ''/*, ...*/)
 	{
+		$variations = array();
+		for ($i = 3; $i < func_num_args(); $i++)
+			$variations[] = func_get_arg($i);
+
 		$insert_offset = -1;
 		$insert_pad = array();
 		$insert = array();
@@ -343,7 +367,7 @@ class DFRawFunctions
 				break;
 			case 'APPLY_CREATURE_VARIATION':
 				// if any CV_* tags were entered already, append this to them
-				$vardata = array_merge($vardata, self::getTags(self::raw($parser, $variation, 'CREATURE_VARIATION', $tag[1]), '', $var_pad));
+				$vardata = array_merge($vardata, self::getTags(self::raw_mult($parser, $variations, 'CREATURE_VARIATION', $tag[1]), '', $var_pad));
 			case 'APPLY_CURRENT_CREATURE_VARIATION':
 				// parse the creature variation and apply it to the output so far
 				foreach ($vardata as $y => $vartag)
@@ -459,7 +483,7 @@ class DFRawFunctions
 	}
 
 	// Performs multiple string replacements
-	public static function mreplace (&$parser, $data = '')
+	public static function mreplace (&$parser, $data = ''/*, ...*/)
 	{
 		$numargs = func_num_args() - 2;
 		$rep_in = array();
@@ -474,7 +498,9 @@ class DFRawFunctions
 		return str_replace($rep_in, $rep_out, $data);
 	}
 
-	public static function delay (&$parser)
+	// Takes parameters and encodes them as an unevaluated template transclusion
+	// Best used with 'evaluate' below
+	public static function delay (&$parser/*, ...*/)
 	{
 		$args = func_get_args();
 		array_shift($args);
