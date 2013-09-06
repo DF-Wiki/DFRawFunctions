@@ -1669,7 +1669,7 @@ language_words
 		[THE_NOUN_SING]
 		[THE_NOUN_PLUR]
 		[OF_NOUN_PLUR]
-	[ADJ:childish[
+	[ADJ:childish]
 		[ADJ_DIST:2]
 		[FRONT_COMPOUND_ADJ]
 		[REAR_COMPOUND_ADJ]

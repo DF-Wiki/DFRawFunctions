@@ -543,4 +543,59 @@ class DFRawFunctions
 			return false;
 		return $size - $pos;
 	}
+	
+/* 
+Input is: 1|2|3|4|5|6
+1) Data location:
+		Masterwork:reaction_kobold.txt
+2) Object:
+		"REACTION"
+3) Requirement (checks if those are present in Object):
+		"BUILDING:TANNER"
+	or	"BUILDING"
+4) Type (inputs the following value if requirements are met):
+		"NAME"
+inputs	"craft bone shovel"
+5) Number:
+	1.	"-1"		returns the very last input with fulfilled requirements and Type
+	2.	""			returns whole list of Types, numbered and comma separated
+	3.	"N"			returns reaction number N, no formatting
+	4.	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
+	5.	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
+6) Description (works only with "N:FORMAT"):
+		"[[Shovel]]"
+*/
+
+	public static function get_type (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = ''){
+		if (gettype($number)!="integer"){
+		$number = explode(":",$number); (int) $number[0];}
+		$requirement_tmp=explode(":",$requirement);
+		$data = self::loadFile($data); $tags = self::getTags($data);
+		if (!$object)
+			return $data;
+		$e=0; $i = 0; $obj_numb=0; $return_value = ''; $tmp=array();
+		while ($tags[$i][0]!=FALSE){
+		
+			if ($tags[$i][0]==$object){ // Checks if left tag fits OBJECT.
+				$obj_num=$obj_num+1; $affirmed_type=FALSE; $i_object=$i; 
+			}
+			if ($obj_num>0){ // Made in case something's wrong with quotes.
+				if  ($tags[$i][0] == $requirement_tmp[0] and $tags[$i][1] == $requirement_tmp[1] and $affirmed_type == FALSE) // Checks if TYPE:PARAMETER is present in the OBJECT. Puts flag and leaps back if yes.
+				{$affirmed_type = TRUE; $i=$i_object;}
+				if ($l_type == $tags[$i][0] and $affirmed_type == TRUE){
+				$tmp[$e] = $tags[$i][1]; $e++;}
+			}
+			$i++;
+		}
+		if ($number[0] == '') 
+			return implode(", ",array_unique($tmp)).". ";
+		if ($number[0] == -1)
+			return "Last reaction of the TYPE is: '''". ($e-1) .". ". $tmp[$e-1] .".'''";
+		if ($number[0] != ($e-1) and $number[1] == "CHECK")
+			return "'''".'<span style="color:#ff0000">Error: Last '.$l_type.' is '.($e-1)." and not ". $number[0].".</span>'''";
+		if ($number[1] == "FORMAT")
+			return "'''".($number[0]).". ". $tmp[$number[0]] ."''' || " .$description;
+		if ($number != FALSE)
+			return $tmp[$number[0]];
+	}			
 }

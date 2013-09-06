@@ -186,7 +186,7 @@ creature_large_tropical
 			[TL_COLOR_MODIFIER:IRIS_EYE_BROWN:1]
 				[TLCM_NOUN:eyes:PLURAL]
 
-[CREATURE:LION]
+[CREATURE:LION][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A large ferocious predator found in grasslands.  It lives in groups of females and one male with a large mane.  They hunt together and are capable of felling extremely large prey.]
 	[NAME:lion:lions:lion]
 	[CASTE_NAME:lion:lions:lion]
@@ -279,7 +279,7 @@ creature_large_tropical
 	[SELECT_MATERIAL:ALL]
 		[MULTIPLY_VALUE:3]
 
-[CREATURE:LEOPARD]
+[CREATURE:LEOPARD][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A large spotted feline found in grass and woodland.  It is known for great speed in hunting.]
 	[NAME:leopard:leopards:leopard]
 	[CASTE_NAME:leopard:leopards:leopard]
@@ -372,7 +372,7 @@ creature_large_tropical
 	[SELECT_MATERIAL:ALL]
 		[MULTIPLY_VALUE:3]
 
-[CREATURE:JAGUAR]
+[CREATURE:JAGUAR][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A large, muscular, spotted feline found in tropical jungles.  It is solitary and stalks and ambushes its prey.]
 	[NAME:jaguar:jaguars:jaguar]
 	[CASTE_NAME:jaguar:jaguars:jaguar]
@@ -465,7 +465,7 @@ creature_large_tropical
 	[SELECT_MATERIAL:ALL]
 		[MULTIPLY_VALUE:3]
 
-[CREATURE:TIGER]
+[CREATURE:TIGER][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A huge, striped predator.  It is found in almost any climate on a lone hunt for its prey.]
 	[NAME:tiger:tigers:tiger]
 	[CASTE_NAME:tiger:tigers:tiger]
@@ -561,7 +561,7 @@ creature_large_tropical
 	[SELECT_MATERIAL:ALL]
 		[MULTIPLY_VALUE:3]
 
-[CREATURE:CHEETAH]
+[CREATURE:CHEETAH][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A large spotted feline predator.  It is capable of incredible speed when ambushing its prey.]
 	[NAME:cheetah:cheetahs:cheetah]
 	[CASTE_NAME:cheetah:cheetahs:cheetah]
@@ -1007,7 +1007,7 @@ creature_large_tropical
 			[TL_COLOR_MODIFIER:IRIS_EYE_BROWN:1]
 				[TLCM_NOUN:eyes:PLURAL]
 
-[CREATURE:GORILLA]
+[CREATURE:GORILLA][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A huge ape found in the forest.  It lives in small groups eating plants.  The groups are lead by a large dominant male with a silver back.]
 	[NAME:gorilla:gorillas:gorilla]
 	[CASTE_NAME:gorilla:gorillas:gorilla]
@@ -2183,7 +2183,7 @@ creature_large_tropical
 			[TL_COLOR_MODIFIER:BLACK:1]
 				[TLCM_NOUN:eyes:PLURAL]
 
-[CREATURE:CROCODILE_SALTWATER]
+[CREATURE:CROCODILE_SALTWATER][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A huge, predatory reptile found in coastal marshes and river deltas.  It ambushes its prey at the shore and uses its great size to drag the victim under and drown them.]
 	[NAME:saltwater crocodile:saltwater crocodiles:saltwater crocodile]
 	[CASTE_NAME:saltwater crocodile:saltwater crocodiles:saltwater crocodile]
@@ -2311,14 +2311,8 @@ creature_large_tropical
 	[MUNDANE]
 	[PREFSTRING:patience]
 	[BODY:HUMANOID_ARMLESS:2WINGS:2EYES:2LUNGS:HEART:GUTS:ORGANS:GIZZARD:HUMANOID_JOINTS:THROAT:NECK:SPINE:OUTERBRAIN:BRAIN:SKULL:4TOES:BEAK:TONGUE:RIBCAGE]
-	[BODY_DETAIL_PLAN:COMMON_ANIMAL_MATERIALS]
-		[REMOVE_MATERIAL:HAIR]
-		[USE_MATERIAL_TEMPLATE:FEATHER:FEATHER_TEMPLATE]
-	[BODY_DETAIL_PLAN:COMMON_ANIMAL_TISSUES]
-		[REMOVE_TISSUE:HAIR]
-		[USE_TISSUE_TEMPLATE:FEATHER:FEATHER_TEMPLATE]
-	[BODY_DETAIL_PLAN:VERTEBRATE_TISSUE_LAYERS:SKIN:FAT:MUSCLE:BONE:CARTILAGE]
-	[BODY_DETAIL_PLAN:BODY_FEATHER_TISSUE_LAYERS_NO_HEAD:FEATHER]
+[APPLY_CREATURE_VARIATION:FEATHERED]
+	[APPLY_CURRENT_CREATURE_VARIATION]
 	[USE_MATERIAL_TEMPLATE:TALON:NAIL_TEMPLATE]
 	[USE_TISSUE_TEMPLATE:TALON:TALON_TEMPLATE]
 	[TISSUE_LAYER:BY_CATEGORY:TOE:TALON:FRONT]
@@ -2382,7 +2376,7 @@ creature_large_tropical
 			[TL_COLOR_MODIFIER:BLACK:1]
 				[TLCM_NOUN:eyes:PLURAL]
 
-[CREATURE:RHINOCEROS]
+[CREATURE:RHINOCEROS][TRAINABLE_WAR]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A huge herbivore with thick plated skin and powerful build.  It is known for the thick horns on the end of its nose.]
 	[NAME:rhinoceros:rhinoceroses:rhinoceros]
 	[CASTE_NAME:rhinoceros:rhinoceroses:rhinoceros]

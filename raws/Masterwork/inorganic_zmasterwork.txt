@@ -3,6 +3,21 @@ inorganic_zmasterwork
 [OBJECT:INORGANIC]
 
 
+[INORGANIC:GNARLED_ROOTS]
+	[USE_MATERIAL_TEMPLATE:GEM_STONE_TEMPLATE]
+	[MATERIAL_VALUE:1]
+	[STATE_NAME_ADJ:ALL_SOLID:gnarled roots]
+	[DISPLAY_COLOR:6:7:0]	
+	[BUILD_COLOR:6:7:0]
+	[TILE:182]
+	[ENVIRONMENT:SEDIMENTARY:CLUSTER_ONE:5]
+	[ENVIRONMENT:SOIL:CLUSTER_ONE:5]
+	[SPEC_HEAT:450]
+	[BENDING_STRAIN_AT_YIELD:62]
+	[MAX_EDGE:1000]
+	[ITEMS_HARD]
+	[IS_STONE]
+
 [INORGANIC:DFHACK_TEST2] produced in transmutation
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:bug26]
@@ -13,7 +28,7 @@ inorganic_zmasterwork
  [BOILING_POINT:901]
  [MELTING_POINT:900]
  [SYNDROME]   
-	[SYN_CLASS:\LOCATION]
+	was syn_class location
  -[SYN_CLASS:\COMMAND]- autosyndrome command begins here
  -[SYN_CLASS:forcesiege]- assuming you named the script "forcesiege"
  -[SYN_CLASS:PLAINS]-
@@ -387,30 +402,84 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 
 
 
-// used for rare books that are used in the library
-[INORGANIC:MASTERPIECE]
-[USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:(books) masterpiece][DISPLAY_COLOR:7:7:1][TILE:176]
-[MATERIAL_VALUE:2]
-[STATE_NAME:ALL_SOLID:(books) masterpiece]
-       [STATE_ADJ:ALL_SOLID:(books) masterpiece]
-       [STATE_NAME:LIQUID:(books) masterpiece]
-       [STATE_ADJ:LIQUID:(books) masterpiece]
-	[IS_STONE]
+[INORGANIC:BLANK_UNKNOWN]
+[STATE_NAME_ADJ:ALL_SOLID:unknown material][DISPLAY_COLOR:0:4:1][TILE:176]
+[MATERIAL_VALUE:10][REACTION_CLASS:CORPSE]
+[STATE_NAME:ALL_SOLID:unknown material]
+       [STATE_ADJ:ALL_SOLID:unknown material]
+       [STATE_NAME:LIQUID:unknown material]
+       [STATE_ADJ:LIQUID:unknown material]
+   [SOLID_DENSITY:1000]
+   [IS_STONE]
+
+
+[INORGANIC:BLANK_CORPSE]
+[STATE_NAME_ADJ:ALL_SOLID:mutilated][DISPLAY_COLOR:0:4:1][TILE:176]
+[MATERIAL_VALUE:10][REACTION_CLASS:CORPSE]
+[STATE_NAME:ALL_SOLID:mutilated]
+       [STATE_ADJ:ALL_SOLID:mutilated]
+       [STATE_NAME:LIQUID:mutilated]
+       [STATE_ADJ:LIQUID:mutilated]
+   [SOLID_DENSITY:1000]
+   [IS_STONE]
+
+
+[INORGANIC:BLANK_CORPSE_EMPTY]
+[STATE_NAME_ADJ:ALL_SOLID:stripped][DISPLAY_COLOR:0:4:1][TILE:176]
+[MATERIAL_VALUE:10][REACTION_CLASS:CORPSE]
+[STATE_NAME:ALL_SOLID:stripped]
+       [STATE_ADJ:ALL_SOLID:stripped]
+       [STATE_NAME:LIQUID:stripped]
+       [STATE_ADJ:LIQUID:stripped]
+   [SOLID_DENSITY:1000]
+   [IS_STONE]
+
+[INORGANIC:BLANK_SOUL]
+[STATE_NAME_ADJ:ALL_SOLID:(megabeast) greater][DISPLAY_COLOR:7:7:1][TILE:176]
+[MATERIAL_VALUE:10]
+[STATE_NAME:ALL_SOLID:(megabeast) greater]
+       [STATE_ADJ:ALL_SOLID:(megabeast) greater]
+       [STATE_NAME:LIQUID:(megabeast) greater]
+       [STATE_ADJ:LIQUID:(megabeast) greater]
+   [SOLID_DENSITY:1000]
+   [IS_STONE]
+
+[INORGANIC:BLANK_FISHING]
+[STATE_NAME_ADJ:ALL_SOLID:(fishing supplies)][DISPLAY_COLOR:7:7:1][TILE:176]
+[MATERIAL_VALUE:1]
+[STATE_NAME:ALL_SOLID:(fishing supplies)]
+       [STATE_ADJ:ALL_SOLID:(fishing supplies)]
+       [STATE_NAME:LIQUID:(fishing supplies)]
+       [STATE_ADJ:LIQUID:(fishing supplies)]
+   [SOLID_DENSITY:1000]
+   [IS_STONE]
+
+
+
 
 // used for paper, parchment and vellum
 [INORGANIC:BLANK_LIBRARY]
 -USE_MATERIAL_TEMPLATE:STONE_TEMPLATE- <= reverted to "stone" as name with it.
 [STATE_NAME_ADJ:ALL_SOLID:(library supplies)][DISPLAY_COLOR:7:7:1][TILE:176]
 [MATERIAL_VALUE:1]
-[STATE_NAME:ALL_SOLID:]
-       [STATE_ADJ:ALL_SOLID:]
-       [STATE_NAME:LIQUID:]
-       [STATE_ADJ:LIQUID:]
+[STATE_NAME:ALL_SOLID:(library supplies)]
+       [STATE_ADJ:ALL_SOLID:(library supplies)]
+       [STATE_NAME:LIQUID:(library supplies)]
+       [STATE_ADJ:LIQUID:(library supplies)]
 	[SOLID_DENSITY:1000]
 	[IS_STONE]
 
-
+// down beds
+[INORGANIC:FEATHER_BED]
+-USE_MATERIAL_TEMPLATE:STONE_TEMPLATE- <= reverted to "stone" as name with it.
+[STATE_NAME_ADJ:ALL_SOLID:soft feather matress on a][DISPLAY_COLOR:7:7:1][TILE:176]
+[MATERIAL_VALUE:20]
+[STATE_NAME:ALL_SOLID:soft feather matress on a]
+       [STATE_ADJ:ALL_SOLID:soft feather matress on a]
+       [STATE_NAME:LIQUID:soft feather matress on a]
+       [STATE_ADJ:LIQUID:soft feather matress on a]
+	[SOLID_DENSITY:600]
+	
 
 //  used for books, notebooks and essays
 [INORGANIC:BLANK_LIBRARY2]
@@ -424,17 +493,6 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 	[SOLID_DENSITY:1000]
 	[IS_STONE]
 
-// name intentionally left empty, used for many misc items that shouldnt get names. Stockpiled normally under stone.
-[INORGANIC:BLANK]
--USE_MATERIAL_TEMPLATE:STONE_TEMPLATE- <= reverted to "stone" as name with it.
-[STATE_NAME_ADJ:ALL_SOLID:][DISPLAY_COLOR:7:7:1][TILE:176]
-[MATERIAL_VALUE:1]
-[STATE_NAME:ALL_SOLID:]
-       [STATE_ADJ:ALL_SOLID:]
-       [STATE_NAME:LIQUID:]
-       [STATE_ADJ:LIQUID:]
-	[SOLID_DENSITY:1000]
-	[IS_STONE]
 
 [INORGANIC:BLANK_ARC]
 -USE_MATERIAL_TEMPLATE:STONE_TEMPLATE- <= reverted to "stone" as name with it.
@@ -519,17 +577,6 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 	[SOLID_DENSITY:1000]
 	[IS_STONE]
 
-[INORGANIC:CEREMONIAL]
--[USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]-
-[STATE_NAME_ADJ:ALL_SOLID:][DISPLAY_COLOR:7:7:1][TILE:176]
-[MATERIAL_VALUE:1]
-[STATE_NAME:ALL_SOLID:(temple supplies) holy]
-       [STATE_ADJ:ALL_SOLID:(temple supplies) holy]
-       [STATE_NAME:LIQUID:(temple supplies) holy]
-       [STATE_ADJ:LIQUID:(temple supplies) holy]
-	[SOLID_DENSITY:5000]
-	[IS_STONE][MELTING_POINT:14440][BOILING_POINT:17440]
-
 
 // name intentionally left empty, used for many misc items that shouldnt get names. Stockpiled normally under stone.
 [INORGANIC:BLANK_EXPEDITION]
@@ -563,6 +610,17 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
        [STATE_ADJ:ALL_SOLID:bone]
        [STATE_NAME:LIQUID:bone]
        [STATE_ADJ:LIQUID:bone]
+	[IS_STONE]
+
+// used for leather blocks and furniture, otherwise they wouldnt be stockpiled.
+[INORGANIC:LEATHER_UPHOLSTERY]
+[USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
+[STATE_NAME_ADJ:ALL_SOLID:leather][DISPLAY_COLOR:6:0:0][TILE:176]
+[MATERIAL_VALUE:2]
+[STATE_NAME:ALL_SOLID:leather]
+       [STATE_ADJ:ALL_SOLID:leather]
+       [STATE_NAME:LIQUID:leather]
+       [STATE_ADJ:LIQUID:leather]
 	[IS_STONE]
 
 // used in thatchery for blocks, stockpiled under stone
@@ -669,7 +727,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 
 [INORGANIC:ANTHRACITE]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:anthracite][DISPLAY_COLOR:0:7:0][TILE:18]
+[STATE_NAME_ADJ:ALL_SOLID:anthracite][DISPLAY_COLOR:0:7:0][TILE:34]
 [ENVIRONMENT:IGNEOUS_EXTRUSIVE:CLUSTER_SMALL:25]
 [ENVIRONMENT:IGNEOUS_INTRUSIVE:CLUSTER_SMALL:25]
 [ENVIRONMENT:METAMORPHIC:CLUSTER_SMALL:25]
@@ -684,10 +742,10 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [IS_STONE]
 
 [INORGANIC:PEAT]
-[USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
+[USE_MATERIAL_TEMPLATE:DIGGABLE_STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:compact peat]
 [DISPLAY_COLOR:4:6:0]
-[TILE:138]
+[TILE:'"'] was 58
 [ITEM_SYMBOL:7] was 15. Try 248, degreesymbol.
 [ENVIRONMENT_SPEC:PEAT_SOIL:CLUSTER:25]
 [ENVIRONMENT_SPEC:PEAT_SOIL:CLUSTER_SMALL:25]
@@ -1304,6 +1362,16 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 
 
 
+[INORGANIC:SAWDUST_SOLID]
+   [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
+[STATE_NAME_ADJ:ALL_SOLID:sawdust]
+   [STATE_NAME:GAS:sawdust]
+   [STATE_ADJ:GAS:sawdust]
+[DISPLAY_COLOR:6:6:1]
+[STATE_COLOR:GAS:BROWN]
+   [IS_STONE]
+
+
 
 [INORGANIC:CM_PYRESTONE]
 	[USE_MATERIAL_TEMPLATE:SLIME_TEMPLATE]
@@ -1350,12 +1418,11 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 	[SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 		[SYN_NAME:judgement of armok]
-		[SYN_AFFECTED_CLASS:GENERAL_POISON][SYN_AFFECTED_CLASS:UNDEAD]
- 		[SYN_AFFECTED_CREATURE:DWARF]
+ 		[SYN_AFFECTED_CREATURE:DWARF:ALL]
  		[SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
 		[SYN_INHALED]
 		[CE_IMPAIR_FUNCTION:SEV:1000:PROB:100:BP:BY_CATEGORY:HEART:ALL:START:0:PEAK:1:END:500]
@@ -1806,7 +1873,6 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 
 
 
-
 [INORGANIC:WHITE_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:white brick][DISPLAY_COLOR:7:7:1][TILE:199]
@@ -1941,8 +2007,8 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 
 [INORGANIC:ORNAMENTAL_WHITE_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:fine white brick][DISPLAY_COLOR:7:7:1][TILE:199]
-[MATERIAL_VALUE:5]
+[STATE_NAME_ADJ:ALL_SOLID:fine white brick][DISPLAY_COLOR:7:7:1][BUILD_COLOR:7:7:1][TILE:199]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1950,7 +2016,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_GREY_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light grey brick][DISPLAY_COLOR:7:7:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1958,7 +2024,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_YELLOW_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine yellow brick][DISPLAY_COLOR:6:6:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1966,7 +2032,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_BROWN_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine brown brick][DISPLAY_COLOR:6:6:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1974,7 +2040,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_VIOLET_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark violet brick][DISPLAY_COLOR:5:5:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1982,7 +2048,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_VIOLET_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light violet brick][DISPLAY_COLOR:5:5:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1990,7 +2056,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_RED_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark red brick][DISPLAY_COLOR:4:4:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -1998,7 +2064,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_RED_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light red brick][DISPLAY_COLOR:4:4:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2006,7 +2072,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_CYAN_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark cyan brick][DISPLAY_COLOR:3:3:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2014,7 +2080,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_CYAN_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light cyan brick][DISPLAY_COLOR:3:3:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2022,7 +2088,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_GREEN_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark green brick][DISPLAY_COLOR:2:2:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2030,7 +2096,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_GREEN_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light green brick][DISPLAY_COLOR:2:2:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2038,7 +2104,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_BLUE_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark blue brick][DISPLAY_COLOR:1:1:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2046,7 +2112,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_LIGHT_BLUE_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine light blue brick][DISPLAY_COLOR:1:1:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2054,7 +2120,7 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_DARK_GREY_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine dark grey brick][DISPLAY_COLOR:0:0:1][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
@@ -2062,10 +2128,14 @@ a major titanium ore but can't refine through smelting (see e.g. Kroll process)
 [INORGANIC:ORNAMENTAL_BLACK_BRICK]
 [USE_MATERIAL_TEMPLATE:STONE_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:fine black brick][DISPLAY_COLOR:0:0:0][TILE:199]
-[MATERIAL_VALUE:5]
+[MATERIAL_VALUE:3]
 [IS_STONE]
 [MELTING_POINT:16507]
 [BOILING_POINT:18000]
+
+
+
+
 
 
 
@@ -3896,7 +3966,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[BUTCHER_SPECIAL:MEAT:NONE]
 	[MEAT]
 	[BUTCHER_SPECIAL:MEAT:NONE]
-	[MEAT_NAME:NONE:tripe:tripe]
+	[MEAT_NAME:NONE:stomach:stomach]
 	[EDIBLE_VERMIN]
 	[EDIBLE_COOKED]
 [MATERIAL_REACTION_PRODUCT:GROUND_MAT:INORGANIC:GROUND_MEAT]
@@ -4391,47 +4461,6 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 
 
 
-[INORGANIC:PAPER]
-	[STATE_COLOR:ALL_SOLID:GRAY]
-	[STATE_NAME:ALL_SOLID:paper]
-	[STATE_ADJ:ALL_SOLID:paper]
-	[STATE_COLOR:LIQUID:GRAY]
-	[STATE_NAME:LIQUID:n/a]
-	[STATE_ADJ:LIQUID:n/a]
-	[STATE_COLOR:GAS:GRAY]
-	[STATE_NAME:GAS:smoke]
-	[STATE_ADJ:GAS:smoke]
-	[DISPLAY_COLOR:7:0:0]
-	[MATERIAL_VALUE:1]
-	[SPEC_HEAT:4181]
-	[IGNITE_POINT:10508]
-	[MELTING_POINT:NONE]
-	[BOILING_POINT:NONE]
-	[HEATDAM_POINT:10250]
-	[COLDDAM_POINT:8900]
-	[MAT_FIXED_TEMP:NONE]
-	[SOLID_DENSITY:1000]
-	[LIQUID_DENSITY:NONE]
-	[MOLAR_MASS:NONE]
-	[IMPACT_YIELD:10000]
-	[IMPACT_FRACTURE:10000]
-	[IMPACT_ELASTICITY:50000]
-	[COMPRESSIVE_YIELD:10000]
-	[COMPRESSIVE_FRACTURE:10000]
-	[COMPRESSIVE_ELASTICITY:50000]
-	[TENSILE_YIELD:10000]
-	[TENSILE_FRACTURE:10000]
-	[TENSILE_ELASTICITY:50000]
-	[TORSION_YIELD:10000]
-	[TORSION_FRACTURE:10000]
-	[TORSION_ELASTICITY:50000]
-	[SHEAR_YIELD:20000] used data for human skin
-	[SHEAR_FRACTURE:20000]
-	[SHEAR_ELASTICITY:50000]
-	[BENDING_YIELD:10000]
-	[BENDING_FRACTURE:10000]
-	[BENDING_ELASTICITY:50000]
-	
 
 [INORGANIC:PAPYRUS]
 	[STATE_COLOR:ALL_SOLID:GRAY]
@@ -4692,11 +4721,11 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	 [SYN_NAME:culling gas poison]
-	 [SYN_AFFECTED_CREATURE:DWARF]
+	 [SYN_AFFECTED_CREATURE:DWARF:ALL]
       [SYN_AFFECTED_CLASS:GENERAL_POISON]
 	 [SYN_INHALED]
 	 [CE_IMPAIR_FUNCTION:SEV:1000:PROB:100:BP:BY_CATEGORY:LUNG:ALL:START:1:PEAK:300]
@@ -4720,9 +4749,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [SOLID_DENSITY:55667
    [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]]
+    was SYN_CLASS:\REACTION_INDEX]
 	[SYNDROME]
 	 [SYN_NAME:culling gas poison]
 	 [SYN_AFFECTED_CREATURE:DWARF]
@@ -5322,9 +5351,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [SYNDROME]
    [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	[SYN_NAME:disorientation]
 	[SYN_AFFECTED_CLASS:GENERAL_POISON]
 	[SYN_INHALED]
@@ -5345,9 +5374,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [SYNDROME]
    [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	[SYN_NAME:temporary blindness]
 	[SYN_AFFECTED_CLASS:GENERAL_POISON]
 	[SYN_INHALED]
@@ -5359,115 +5388,6 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [MATERIAL_VALUE:1]
 
 
-[INORGANIC:TRANSFORMATION_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:blinding flash of light]
-[STATE_NAME_ADJ:LIQUID:molten failure stone3]
-[STATE_NAME_ADJ:GAS:blinding light]
-    [SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:armor]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CLASS:WERECURSE]
-     [SYN_AFFECTED_CREATURE:DWARF:MALE]
-		 [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-         [CE_BODY_TRANSFORMATION:START:0]
-            [CE:CREATURE:DWARF:NECRO_MALE]
-[DISPLAY_COLOR:4:4:1][TILE:'*']
-[MELTING_POINT:9000]
-[BOILING_POINT:905]
-[SOLID_DENSITY:55520]
-[MATERIAL_VALUE:1]
-
-
-
-
-
-[INORGANIC:NECRO_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:shadowmancer vapor]
-[STATE_NAME_ADJ:LIQUID:shadowmancer vapor]
-[STATE_NAME_ADJ:GAS:shadowmancer vapor]
-    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:armor]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-	[SYN_CLASS:WERECURSE]
-     [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-         [CE_BODY_TRANSFORMATION:START:0]
-            [CE:CREATURE:DWARF:NECRO_MALE]
-[CE_MATERIAL_FORCE_MULTIPLIER:MAT_MULT:NONE:NONE:1:2]
--CE_DISPLAY_NAME:NAME:Shadowmancer:Shadowmancers:shadowmancer:START:0-
-[CE_ADD_TAG:NONAUSEA:NO_DIZZINESS:NO_FEVERS:PARALYZEIMMUNE:NOFEAR:TRANCES:LIKESFIGHTING:START:0]
-[DISPLAY_COLOR:4:4:1][TILE:'*']
-[MELTING_POINT:9000]
-[BOILING_POINT:905]
-[SOLID_DENSITY:55520]
-[MATERIAL_VALUE:1]
-
-
-
-[INORGANIC:HOLY_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Lifemancer vapor]
-[STATE_NAME_ADJ:LIQUID:Lifemancer vapor]
-[STATE_NAME_ADJ:GAS:Lifemancer vapor]
-    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:armor]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-	[SYN_CLASS:WERECURSE]
-     [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-         [CE_BODY_TRANSFORMATION:START:0]
-            [CE:CREATURE:DWARF:HOLY_MALE]
--CE_DISPLAY_NAME:NAME:Lifemancer:Lifemancers:lifemancer:START:0-
-[CE_MATERIAL_FORCE_MULTIPLIER:MAT_MULT:NONE:NONE:1:2]
-[CE_ADD_TAG:NONAUSEA:NO_DIZZINESS:NO_FEVERS:PARALYZEIMMUNE:NOFEAR:START:0]
-[DISPLAY_COLOR:4:4:1][TILE:'*']
-[MELTING_POINT:9000]
-[BOILING_POINT:905]
-[SOLID_DENSITY:55520]
-[MATERIAL_VALUE:1]
-
-
-[INORGANIC:NECROFIGHTER_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Demonbound Vapor]
-[STATE_NAME_ADJ:LIQUID:Demonbound Vapor]
-[STATE_NAME_ADJ:GAS:Demonbound Vapor]
-    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:armor]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-	[SYN_CLASS:WERECURSE]
-		 [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-         [CE_BODY_TRANSFORMATION:START:0]
-            [CE:CREATURE:DWARF:NECROFIGHTER_MALE]
--CE_DISPLAY_NAME:NAME:Demonbound:Demonbounds:demonbound:START:0-
-[CE_MATERIAL_FORCE_MULTIPLIER:MAT_MULT:NONE:NONE:1:2]
-[CE_ADD_TAG:NONAUSEA:NO_DIZZINESS:NO_FEVERS:PARALYZEIMMUNE:NOFEAR:TRANCES:LIKESFIGHTING:START:0]
-[DISPLAY_COLOR:4:4:1][TILE:'*']
-[MELTING_POINT:9000]
-[BOILING_POINT:905]
-[SOLID_DENSITY:55520]
-[MATERIAL_VALUE:1]
 
 [INORGANIC:POLYMORPH] produced in transmutation
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
@@ -5476,9 +5396,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:power of the sheep]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5493,33 +5413,6 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [MATERIAL_VALUE:1]
 
 
-[INORGANIC:HOLYFIGHTER_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Earthbound Vapor]
-[STATE_NAME_ADJ:LIQUID:Earthbound Vapor]
-[STATE_NAME_ADJ:GAS:Earthbound Vapor]
-    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:armor]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-	[SYN_CLASS:WERECURSE]
-     [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		 [SYN_AFFECTED_CREATURE:DWARF:FEMALE]
-         [CE_BODY_TRANSFORMATION:START:0]
-            [CE:CREATURE:DWARF:HOLYFIGHTER_MALE]
--CE_DISPLAY_NAME:NAME:Oathbound:Oathbounds:oathbound:START:0-
-[CE_MATERIAL_FORCE_MULTIPLIER:MAT_MULT:NONE:NONE:1:2]
-[CE_ADD_TAG:PARALYZEIMMUNE:NOFEAR:TRANCES:LIKESFIGHTING:START:0]
-[DISPLAY_COLOR:4:4:1][TILE:'*']
-[MELTING_POINT:9000]
-[BOILING_POINT:905]
-[SOLID_DENSITY:55520]
-[MATERIAL_VALUE:1]
-
 [INORGANIC:BLOODBEAST_STONE] produced in transmutation
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:Bloodbeast Vapors]
@@ -5527,9 +5420,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Bloodbeast Vapors]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5552,9 +5445,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Frost Wraith Vapors]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5577,9 +5470,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Berserking Vapors]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5600,15 +5493,16 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:Armored Dog (male)]
 [STATE_NAME_ADJ:GAS:Armored Dog (male)]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
          [SYN_AFFECTED_CREATURE:DOG:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:DOG_ARMORED:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5621,15 +5515,16 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:Armored Dog (female)]
 [STATE_NAME_ADJ:GAS:Armored Dog (female)]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
          [SYN_AFFECTED_CREATURE:DOG:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:DOG_ARMORED:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5658,9 +5553,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [SOLID_DENSITY:55667]
 	[SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	 [SYN_NAME:culling gas poison]
 	 [SYN_AFFECTED_CLASS:DWARF]
 	 [SYN_INHALED]
@@ -5732,9 +5627,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:armored raptor(male)]
 [STATE_NAME_ADJ:GAS:armored raptor(male)]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5742,6 +5637,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:RAPTOR:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_RAPTOR:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5756,9 +5652,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored grizzly(male)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5766,6 +5662,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:BEAR_GRIZZLY:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_BEAR_GRIZZLY:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5780,9 +5677,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored horse (male)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5790,6 +5687,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:HORSE:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_HORSE:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5804,9 +5702,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored mastiff (male)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5814,6 +5712,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:MASTIFF:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_MASTIFF:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5828,9 +5727,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored elephant (male)]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
 
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5838,6 +5737,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:ELEPHANT:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_ELEPHANT:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5853,15 +5753,16 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored sauropod (male)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
          [SYN_AFFECTED_CREATURE:SAUROPOD:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:SAUROPOD_STEEL:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5875,14 +5776,15 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored sauropod (female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:SAUROPOD:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:SAUROPOD_STEEL:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5896,14 +5798,15 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored sauropod (male)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:SAUROPOD:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:SAUROPOD_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5917,14 +5820,15 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored sauropod (female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:SAUROPOD:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:SAUROPOD_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5939,9 +5843,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored raptor(female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5949,6 +5853,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:RAPTOR:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_RAPTOR:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5963,9 +5868,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored grizzly(female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5973,6 +5878,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:BEAR_GRIZZLY:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_BEAR_GRIZZLY:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -5987,9 +5893,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored horse (female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -5997,6 +5903,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:HORSE:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_HORSE:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -6011,9 +5918,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:armored mastiff (female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -6021,6 +5928,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:MASTIFF:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_MASTIFF:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -6036,9 +5944,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
 
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -6046,6 +5954,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:ELEPHANT:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_ELEPHANT:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -6360,59 +6269,6 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
       [CE_PARALYSIS:SEV:5000:PROB:100:START:0:PEAK:0:END:50]
 
 
-[INORGANIC:UNNAMED_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:the unnamed one]
-[STATE_NAME_ADJ:LIQUID:the unnamed one]
-[STATE_NAME_ADJ:GAS:the unnamed one]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:end of all]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_BODY_TRANSFORMATION:START:0:END:33600]
-			[CE:CREATURE:UNNAMED_ONE:MALE]
-		[CE_DISPLAY_NAME:NAME:Unnamed One:Unnamed One:Unnamed One:START:0:END:33600]
-		[CE_PHYS_ATT_CHANGE:STRENGTH:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:AGILITY:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:TOUGHNESS:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:ENDURANCE:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:RECUPERATION:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:FOCUS:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:WILLPOWER:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:MEMORY:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:SPATIAL_SENSE:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:KINESTHETIC_SENSE:220:0:START:0:END:11200]
-[CE_ADD_TAG:NO_AGING:NOT_LIVING:EXTRAVISION:NOEXERT:NOPAIN:NOBREATHE:NONAUSEA:NO_DIZZINESS:NO_FEVERS:NOEMOTION:PARALYZEIMMUNE:NOFEAR:NO_EAT:NO_DRINK:NO_SLEEP:NO_PHYS_ATT_GAIN:NO_PHYS_ATT_RUST:NOTHOUGHT:NO_THOUGHT_CENTER_FOR_MOVEMENT:STERILE:TRANCES:LIKESFIGHTING:START:0:END:11200]
-
-
-
-[INORGANIC:UNNAMED_FAIL_STONE_3] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:the unnamed one (berserk)]
-[STATE_NAME_ADJ:LIQUID:the unnamed one (berserk)]
-[STATE_NAME_ADJ:GAS:the unnamed one (berserk)]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:end of all]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_ADD_TAG:CRAZED:START:0:END:33600]
-[CE_ADD_TAG:NO_AGING:NOT_LIVING:EXTRAVISION:NOEXERT:NOPAIN:NOBREATHE:NONAUSEA:NO_DIZZINESS:NO_FEVERS:NOEMOTION:PARALYZEIMMUNE:NOFEAR:NO_EAT:NO_DRINK:NO_SLEEP:NO_PHYS_ATT_GAIN:NO_PHYS_ATT_RUST:NOTHOUGHT:NO_THOUGHT_CENTER_FOR_MOVEMENT:STERILE:TRANCES:LIKESFIGHTING:START:0:END:11200]
-
-
-
-
 [INORGANIC:BLACK_MASS] produced in transmutation
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:a writhing black mass of pure evil]
@@ -6436,116 +6292,11 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[STATE_COLOR:GAS:BLACK]
 
 
-
-
-[INORGANIC:ANGEL_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Spirit of Nature]
-[STATE_NAME_ADJ:LIQUID:Spirit of Nature]
-[STATE_NAME_ADJ:GAS:Spirit of Nature]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:ascendance]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_BODY_TRANSFORMATION:START:0:END:33600]
-			[CE:CREATURE:MESSIAHANGEL:MALE]
-		[CE_DISPLAY_NAME:NAME:Spirit of Nature:Spirit of Nature:Spirit of Nature:START:0:END:33600]
-		[CE_PHYS_ATT_CHANGE:STRENGTH:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:AGILITY:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:TOUGHNESS:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:ENDURANCE:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:RECUPERATION:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:FOCUS:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:WILLPOWER:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:MEMORY:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:SPATIAL_SENSE:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:KINESTHETIC_SENSE:220:0:START:0:END:11200]
-[CE_ADD_TAG:NO_AGING:NOT_LIVING:EXTRAVISION:NOEXERT:NOPAIN:NOBREATHE:NONAUSEA:NO_DIZZINESS:NO_FEVERS:NOEMOTION:PARALYZEIMMUNE:NOFEAR:NO_EAT:NO_DRINK:NO_SLEEP:NO_PHYS_ATT_GAIN:NO_PHYS_ATT_RUST:NOTHOUGHT:NO_THOUGHT_CENTER_FOR_MOVEMENT:STERILE:TRANCES:LIKESFIGHTING:START:0:END:11200]
-		
-
-
-[INORGANIC:MOUNTAINKING_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:The Mountain King]
-[STATE_NAME_ADJ:LIQUID:The Mountain King]
-[STATE_NAME_ADJ:GAS:The Mountain King]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:awakening]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_BODY_TRANSFORMATION:START:0:END:33600]
-			[CE:CREATURE:MOUNTAINKING:MALE]
-		[CE_DISPLAY_NAME:NAME:The Mountain King:The Mountain King:Mountain King:START:0:END:33600]
-		[CE_PHYS_ATT_CHANGE:STRENGTH:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:AGILITY:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:TOUGHNESS:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:ENDURANCE:220:0:START:0:END:11200]
-		[CE_PHYS_ATT_CHANGE:RECUPERATION:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:FOCUS:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:WILLPOWER:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:MEMORY:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:SPATIAL_SENSE:220:0:START:0:END:11200]
-		[CE_MENT_ATT_CHANGE:KINESTHETIC_SENSE:220:0:START:0:END:11200]
-[CE_ADD_TAG:NO_AGING:NOT_LIVING:EXTRAVISION:NOEXERT:NOPAIN:NOBREATHE:NONAUSEA:NO_DIZZINESS:NO_FEVERS:NOEMOTION:PARALYZEIMMUNE:NOFEAR:NO_EAT:NO_DRINK:NO_SLEEP:NO_PHYS_ATT_GAIN:NO_PHYS_ATT_RUST:NOTHOUGHT:NO_THOUGHT_CENTER_FOR_MOVEMENT:STERILE:TRANCES:LIKESFIGHTING:START:0:END:11200]
-
 [INORGANIC:BLOOD_VAPOR] produced in transmutation
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 [STATE_NAME_ADJ:ALL_SOLID:blood]
 [STATE_NAME_ADJ:LIQUID:blood]
 [STATE_NAME_ADJ:GAS:blood]
-
-
-[INORGANIC:MAGIC_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Magmamancer Vapors]
-[STATE_NAME_ADJ:LIQUID:Magmamancer Vapors]
-[STATE_NAME_ADJ:GAS:Magmamancer Vapors]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:fire]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_BODY_TRANSFORMATION:START:0]
-			[CE:CREATURE:DWARF:MAGIC_MALE]
--CE_DISPLAY_NAME:NAME:Magmamancer:Magmamancers:magmamancer:START:0-
-
-
-[INORGANIC:MAGICFIGHTER_STONE] produced in transmutation
-[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:ALL_SOLID:Stonebound dust]
-[STATE_NAME_ADJ:LIQUID:Stonebound dust]
-[STATE_NAME_ADJ:GAS:Stonebound dust]
-	[SYNDROME]
-	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
-         [SYN_NAME:fire]
-         [SYN_CONTACT]
-         [SYN_INHALED]
-         [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
-		[CE_BODY_TRANSFORMATION:START:0]
-			[CE:CREATURE:DWARF:MAGICFIGHTER_MALE]
--CE_DISPLAY_NAME:NAME:Stonebound:Stonebounds:stonebound:START:0-
-
 
 
 [INORGANIC:DRAGONFIRE]
@@ -6619,9 +6370,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fire]
          [SYN_CONTACT]
          [SYN_INHALED][SYN_AFFECTED_CLASS:DWARF_INTER]
@@ -6664,9 +6415,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 		[CE:CREATURE:MUSICIAN:MUSIC_BATTLE]
 
@@ -6678,9 +6429,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_SPEED]
 
@@ -6692,9 +6443,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_COURAGE]
 
@@ -6707,9 +6458,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_SLEEP]
 
@@ -6722,9 +6473,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_NOSLEEP]
 
@@ -6736,9 +6487,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_NOFOOD]
 
@@ -6751,9 +6502,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_CLEAN]
 
@@ -6765,9 +6516,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_HORROR]
 
@@ -6781,9 +6532,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_UNDEAD]
 
@@ -6799,9 +6550,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 	[CE:CREATURE:MUSICIAN:MUSIC_NOEMOTION]
 
@@ -6816,9 +6567,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 
 	[CE:CREATURE:MUSICIAN:MUSIC_LUCK]
@@ -6832,9 +6583,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL]		[CE_BODY_TRANSFORMATION:PROB:100:START:0:END:36000]
 
 	[CE:CREATURE:MUSICIAN:MUSIC_ANGER]
@@ -6850,9 +6601,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -6875,9 +6626,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -6900,9 +6651,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -6928,9 +6679,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -6954,9 +6705,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -6979,9 +6730,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7005,9 +6756,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7030,9 +6781,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7051,15 +6802,15 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 
 [INORGANIC:MUSIC_UNDEAD]
    [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
-[STATE_NAME_ADJ:GAS:Raise Dead Song]
+[STATE_NAME_ADJ:GAS:Raise all Dead]
    [SPEC_HEAT:1]
    [IGNITE_POINT:NONE]
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7068,10 +6819,36 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [CDI:INTERACTION:RAISE_CORPSE_FRIENDLY]
          [CDI:ADV_NAME:Bow]
          [CDI:TARGET:A:LINE_OF_SIGHT]
-         [CDI:TARGET_RANGE:A:25]
-	[CDI:VERB:shake the bonerattle, which emits a strange resonating tone:shakes the bonerattle, which emits a strange resonating tone:NA]
+         [CDI:TARGET_RANGE:A:325]
+	[CDI:VERB:move your hands ominously:chants and sacrifices to the dark gods and summons spirits to inhabit the dead:NA]
          [CDI:TARGET_VERB:are coming to life:is coming back from the dead to haunt the living]
          [CDI:MAX_TARGET_NUMBER:A:125]
+         [CDI:FREE_ACTION]
+
+
+[INORGANIC:MUSIC_UNDEAD1]
+   [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:GAS:Raise single Dead]
+   [SPEC_HEAT:1]
+   [IGNITE_POINT:NONE]
+   [HEATDAM_POINT:1]
+   [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
+   [SYN_CLASS:\WORKER_ONLY]
+   was syn_class location
+   [SYN_CLASS:\WORKER_ID]
+    was SYN_CLASS:\REACTION_INDEX
+      [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
+      [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
+      [SYN_INHALED]
+      [SYN_CONTACT]
+      [CE_CAN_DO_INTERACTION:PROB:100:START:0:END:160]
+         [CDI:INTERACTION:RAISE_CORPSE_FRIENDLY]
+         [CDI:ADV_NAME:Bow]
+         [CDI:TARGET:A:LINE_OF_SIGHT]
+         [CDI:TARGET_RANGE:A:10]
+	[CDI:VERB:move your hands ominously:chants and sacrifices to the dark gods and summons spirits to inhabit the dead:NA]
+         [CDI:TARGET_VERB:are coming to life:is coming back from the dead to haunt the living]
+         [CDI:MAX_TARGET_NUMBER:A:1]
          [CDI:FREE_ACTION]
 
 
@@ -7083,9 +6860,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7111,9 +6888,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7138,9 +6915,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
       [SYN_INHALED]
@@ -7166,9 +6943,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Armoks Ward against the Carp God]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX][SYN_NAME:armor][SYN_CONTACT][SYN_INHALED]
+    was SYN_CLASS:\REACTION_INDEX[SYN_NAME:armor][SYN_CONTACT][SYN_INHALED]
      [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
          [CE_BODY_TRANSFORMATION:START:0:END:500]
             [CE:CREATURE:WARD_CULT:MALE]
@@ -7182,13 +6959,28 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten stone]
 [STATE_NAME_ADJ:GAS:Healing]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX][SYN_NAME:healing][SYN_CONTACT][SYN_INHALED]
+    was SYN_CLASS:\REACTION_INDEX[SYN_NAME:healing][SYN_CONTACT][SYN_INHALED]
 [SYN_AFFECTED_CLASS:PET_HEALING]
          [CE_BODY_TRANSFORMATION:START:0:END:1]
             [CE:CREATURE:HEALING:MALE]
 	[CE_PHYS_ATT_CHANGE:RECUPERATION:5000:5000:START:0:END:33600]
+[DISPLAY_COLOR:4:4:1][TILE:'*']
+
+
+[INORGANIC:PET_NEUTER] produced in transmutation
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:ALL_SOLID:Neuter pet]
+[STATE_NAME_ADJ:LIQUID:Neuter pet]
+[STATE_NAME_ADJ:GAS:Neuter pet]
+    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
+   was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
+    was SYN_CLASS:\REACTION_INDEX[SYN_NAME:neutered][SYN_CONTACT]
+[SYN_AFFECTED_CLASS:PET_HEALING]
+	[CE_ADD_TAG:STERILE:START:0]
+	[CE_DISPLAY_NAME:NAME:(neutered):(neutered):(neutered):START:0]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 
 
@@ -7199,9 +6991,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Iron Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7226,9 +7018,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Iron Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7253,9 +7045,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Iron Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7280,9 +7072,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Golden Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7307,9 +7099,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Golden Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7334,9 +7126,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Golden Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7361,9 +7153,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Copper Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7388,9 +7180,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Copper Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7415,9 +7207,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Copper Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7442,9 +7234,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Steel Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7469,9 +7261,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Steel Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7496,9 +7288,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Steel Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7523,9 +7315,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Titanium Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7550,9 +7342,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Titanium Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7577,9 +7369,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Titanium Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7604,9 +7396,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Mithril Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7631,9 +7423,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Mithril Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7658,9 +7450,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Mithril Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7685,9 +7477,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Adamantine Swordgolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7712,9 +7504,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Adamantine Hammergolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7739,9 +7531,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Adamantine Speargolem]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7766,9 +7558,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone47]
 [STATE_NAME_ADJ:GAS:Golem Strength upgrade]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7788,9 +7580,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone48]
 [STATE_NAME_ADJ:GAS:Golem Speed Upgrade]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:golem]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7812,9 +7604,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Golem Stun Attack Upgrade]
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:GOLEM:ALL]
       [SYN_INHALED]
       [SYN_CONTACT]
@@ -7842,9 +7634,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:Repair Golem]
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:GOLEM:ALL]
       [SYN_INHALED]
       [SYN_CONTACT]
@@ -7867,15 +7659,16 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
          [SYN_AFFECTED_CREATURE:DOG:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:DOG_ARMORED_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -7888,15 +7681,16 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone52]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
          [SYN_AFFECTED_CREATURE:DOG:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:DOG_ARMORED_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -7911,9 +7705,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone53]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7921,6 +7715,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:RAPTOR:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_RAPTOR_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -7934,9 +7729,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone54]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7944,6 +7739,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:BEAR_GRIZZLY:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_BEAR_GRIZZLY_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -7957,9 +7753,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone55]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7967,6 +7763,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:HORSE:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_HORSE_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -7981,9 +7778,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -7991,6 +7788,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:MASTIFF:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_MASTIFF_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8004,9 +7802,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone57]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8014,6 +7812,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:ELEPHANT:MALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_ELEPHANT_IRON:MALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8029,9 +7828,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone58]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8039,6 +7838,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:RAPTOR:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_RAPTOR_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8052,9 +7852,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone59]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8062,6 +7862,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:BEAR_GRIZZLY:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_BEAR_GRIZZLY_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8076,9 +7877,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8086,6 +7887,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:HORSE:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_HORSE_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8099,9 +7901,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone61]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8109,6 +7911,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:MASTIFF:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_MASTIFF_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8122,9 +7925,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [STATE_NAME_ADJ:LIQUID:molten failure stone62]
 [STATE_NAME_ADJ:GAS:ironclad animal]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -8132,6 +7935,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
          [SYN_AFFECTED_CREATURE:ELEPHANT:FEMALE]
          [CE_BODY_TRANSFORMATION:START:0]
             [CE:CREATURE:ARMORED_ELEPHANT_IRON:FEMALE]
+	[CE_ADD_TAG:STERILE:START:10]
 [DISPLAY_COLOR:4:4:1][TILE:'*']
 [MELTING_POINT:9000]
 [BOILING_POINT:905]
@@ -8150,19 +7954,19 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_INHALED]
       [SYN_CONTACT]
       [CE_CAN_DO_INTERACTION:PROB:100:START:0:END:11060]
     [CDI:INTERACTION:BLESSING_ATTRIBUTE]
-				[CDI:USAGE_HINT:GREETING]
-				[CDI:VERB:feel the goodwill of armok. Filled with new energy all movement seems faster and the body seems to carry the heaviest burdens with ease:feels the goodwill of armok. Filled with new energy all movement seems faster and the body seems to carry the heaviest burdens with ease:NA]
-				[CDI:TARGET:B:LINE_OF_SIGHT]
-				[CDI:TARGET_RANGE:B:25]
-				[CDI:WAIT_PERIOD:20]
+			[CDI:USAGE_HINT:GREETING]
+			[CDI:VERB:feel the goodwill of armok. Filled with new energy all movement seems faster and the body seems to carry the heaviest burdens with ease:feels the goodwill of armok. Filled with new energy all movement seems faster and the body seems to carry the heaviest burdens with ease:NA]
+			[CDI:TARGET:B:LINE_OF_SIGHT]
+			[CDI:TARGET_RANGE:B:25]
+			[CDI:WAIT_PERIOD:20]
 
 
 
@@ -8177,9 +7981,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_INHALED]
       [SYN_CONTACT]
@@ -8202,9 +8006,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
    [HEATDAM_POINT:1]
    [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
       [SYN_INHALED]
       [SYN_CONTACT]
@@ -8285,6 +8089,19 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [DISPLAY_COLOR:5:7:1][TILE:'*']
 [MELTING_POINT:8000]
 [BOILING_POINT:990]
+[SOLID_DENSITY:55520]
+[MATERIAL_VALUE:1]
+
+
+[INORGANIC:SWEAT] produced in transmutation
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:ALL_SOLID:sweat]
+[STATE_NAME_ADJ:LIQUID:sweat]
+[STATE_NAME_ADJ:GAS:sweat]
+[DISPLAY_COLOR:3:3:1][TILE:'*']
+[MELTING_POINT:9100]
+[BOILING_POINT:9100]
+[MAT_FIXED_TEMP:9200]
 [SOLID_DENSITY:55520]
 [MATERIAL_VALUE:1]
 
@@ -8522,9 +8339,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 [SOLID_DENSITY:20000000]
 	[SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	[SYN_INHALED]
 	[SYN_INGESTED]
 	[SYN_NAME:skeletons]
@@ -8567,7 +8384,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[TORSION_YIELD:1750000][TORSION_FRACTURE:1750000][TORSION_STRAIN_AT_YIELD:200]
 	[SHEAR_YIELD:1750000][SHEAR_FRACTURE:1750000][SHEAR_STRAIN_AT_YIELD:200]
 	[BENDING_YIELD:1750000][BENDING_FRACTURE:1750000][BENDING_STRAIN_AT_YIELD:200]
-	[IS_STONE][ITEMS_HARD]
+	[ITEMS_HARD]
 
 [INORGANIC:FIRE_DEPLOY]
 	
@@ -8583,7 +8400,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[TORSION_YIELD:1750000][TORSION_FRACTURE:1750000][TORSION_STRAIN_AT_YIELD:200]
 	[SHEAR_YIELD:1750000][SHEAR_FRACTURE:1750000][SHEAR_STRAIN_AT_YIELD:200]
 	[BENDING_YIELD:1750000][BENDING_FRACTURE:1750000][BENDING_STRAIN_AT_YIELD:200]
-	[IS_STONE][ITEMS_HARD]
+	[ITEMS_HARD]
 
 [INORGANIC:HELLFIRE_DEPLOY]
 	
@@ -8599,7 +8416,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[TORSION_YIELD:1750000][TORSION_FRACTURE:1750000][TORSION_STRAIN_AT_YIELD:200]
 	[SHEAR_YIELD:1750000][SHEAR_FRACTURE:1750000][SHEAR_STRAIN_AT_YIELD:200]
 	[BENDING_YIELD:1750000][BENDING_FRACTURE:1750000][BENDING_STRAIN_AT_YIELD:200]
-	[IS_STONE][ITEMS_HARD]
+	[ITEMS_HARD]
 
 [INORGANIC:ICE_DEPLOY]
 	
@@ -8615,7 +8432,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[TORSION_YIELD:1750000][TORSION_FRACTURE:1750000][TORSION_STRAIN_AT_YIELD:200]
 	[SHEAR_YIELD:1750000][SHEAR_FRACTURE:1750000][SHEAR_STRAIN_AT_YIELD:200]
 	[BENDING_YIELD:1750000][BENDING_FRACTURE:1750000][BENDING_STRAIN_AT_YIELD:200]
-	[IS_STONE][ITEMS_HARD]
+	[ITEMS_HARD]
 
 [INORGANIC:DRYICE_DEPLOY]
 	
@@ -8631,7 +8448,7 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[TORSION_YIELD:1750000][TORSION_FRACTURE:1750000][TORSION_STRAIN_AT_YIELD:200]
 	[SHEAR_YIELD:1750000][SHEAR_FRACTURE:1750000][SHEAR_STRAIN_AT_YIELD:200]
 	[BENDING_YIELD:1750000][BENDING_FRACTURE:1750000][BENDING_STRAIN_AT_YIELD:200]
-	[IS_STONE][ITEMS_HARD]
+	[ITEMS_HARD]
 
 [INORGANIC:WARPSTONE_DEPLOY]
 	
@@ -8826,9 +8643,9 @@ This is for creatures that are "made of fire".  Right now there isn't a good for
 	[STATE_COLOR:GAS:BLUE]
 [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
 	[SYN_NAME:splinters]
 	[SYN_AFFECTED_CLASS:DWARF_INTER]
 			[SYN_NAME:life elixir]
@@ -8913,7 +8730,7 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
        [PREFIX:NONE][AQUIFER]
 [MATERIAL_VALUE:25][DISPLAY_COLOR:3:1:1]
 [ENVIRONMENT:IGNEOUS_INTRUSIVE:CLUSTER_ONE:25]
-
+[MATERIAL_REACTION_PRODUCT:FIRED_MAT:INORGANIC:CERAMIC_EARTHENWARE]
 
 
 [INORGANIC:BLESSING_OF_ARMOK]
@@ -8930,7 +8747,7 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
         [SYN_AFFECTED_CLASS:GENERAL_POISON]
         [SYN_INHALED]
         [CE_SPEED_CHANGE:SPEED_PERC:10000:START:0:END:11200]
-[ENVIRONMENT:IGNEOUS_INTRUSIVE:CLUSTER_ONE:20]
+[ENVIRONMENT:IGNEOUS_INTRUSIVE:CLUSTER_ONE:30]
 [ITEM_SYMBOL:'*'][DISPLAY_COLOR:5:0:1][TILE:172]
 [SOLID_DENSITY:300796]
 [MATERIAL_VALUE:8]
@@ -8940,6 +8757,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
  [SYN_AFFECTED_CLASS:GENERAL_POISON]
  [SYN_INHALED]
 [CE_SPEED_CHANGE:SPEED_PERC:10000:START:0:END:5600]
+
+
 
 
 
@@ -8957,7 +8776,6 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [ITEM_SYMBOL:'*'][DISPLAY_COLOR:0:0:1][TILE:4]
 [SOLID_DENSITY:3796]
 [MATERIAL_VALUE:55]
-
 
 
 // rare gem that gives unlimited magma
@@ -8983,9 +8801,9 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:GAS:explosion]
 [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
    [SYN_CLASS:\WORKER_ONLY]
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\WORKER_ID]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_NAME:wtfBOOM]
       [SYN_AFFECTED_CLASS:GENERAL_POISON]
 // no syn_affect_class means it will affect any creature (?)
@@ -9108,8 +8926,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile dragon raptor]
 [STATE_NAME_ADJ:LIQUID:Hostile dragon raptor]
 [STATE_NAME_ADJ:GAS:Hostile dragon raptor]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9123,8 +8941,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile gian lion]
 [STATE_NAME_ADJ:LIQUID:Hostile gian lion]
 [STATE_NAME_ADJ:GAS:Hostile gian lion]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9137,8 +8955,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile gian desert scorpion]
 [STATE_NAME_ADJ:LIQUID:Hostile gian desert scorpion]
 [STATE_NAME_ADJ:GAS:Hostile gian desert scorpion]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9151,8 +8969,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile blizzard man]
 [STATE_NAME_ADJ:LIQUID:Hostile blizzard man]
 [STATE_NAME_ADJ:GAS:Hostile blizzard man]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9165,8 +8983,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile grimeling]
 [STATE_NAME_ADJ:LIQUID:Hostile grimeling]
 [STATE_NAME_ADJ:GAS:Hostile grimeling]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9180,8 +8998,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile devourer]
 [STATE_NAME_ADJ:LIQUID:Hostile devourer]
 [STATE_NAME_ADJ:GAS:Hostile devourer]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9194,8 +9012,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile umber hulk]
 [STATE_NAME_ADJ:LIQUID:Hostile umber hulk]
 [STATE_NAME_ADJ:GAS:Hostile umber hulk]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9208,8 +9026,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile cave crawler]
 [STATE_NAME_ADJ:LIQUID:Hostile cave crawler]
 [STATE_NAME_ADJ:GAS:Hostile cave crawler]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9222,8 +9040,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile deep one]
 [STATE_NAME_ADJ:LIQUID:Hostile deep one]
 [STATE_NAME_ADJ:GAS:Hostile deep one]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9236,8 +9054,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile cave ogre]
 [STATE_NAME_ADJ:LIQUID:Hostile cave ogre]
 [STATE_NAME_ADJ:GAS:Hostile cave ogre]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9250,8 +9068,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile cerberus]
 [STATE_NAME_ADJ:LIQUID:Hostile cerberus]
 [STATE_NAME_ADJ:GAS:Hostile cerberus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9264,8 +9082,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile balrog]
 [STATE_NAME_ADJ:LIQUID:Hostile balrog]
 [STATE_NAME_ADJ:GAS:Hostile balrog]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9279,8 +9097,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9293,8 +9111,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9307,8 +9125,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9321,8 +9139,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9335,8 +9153,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -9348,8 +9166,8 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:ALL_SOLID:Hostile colossus]
 [STATE_NAME_ADJ:LIQUID:Hostile colossus]
 [STATE_NAME_ADJ:GAS:Hostile colossus]
-   [SYNDROME]   [SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+   [SYNDROME]   [SYN_CLASS:\COMMAND]was syn_class location
+   [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:fight colosseum] [SYN_CONTACT][SYN_INHALED]
          [SYN_AFFECTED_CREATURE:CHANGELING:ALL]
          [CE_BODY_TRANSFORMATION:START:0]
@@ -10452,9 +10270,9 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:LIQUID:Armored Ogre (male)]
 [STATE_NAME_ADJ:GAS:Armored Ogre (male)]
     [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -10474,9 +10292,9 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:GAS:Armored Ogre (female)]
     [SYNDROME]
 	   [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
          [SYN_NAME:armor]
          [SYN_CONTACT]
          [SYN_INHALED]
@@ -10499,9 +10317,9 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [STATE_NAME_ADJ:GAS:Ogre Stun Attack Upgrade]
    [SYNDROME]
       [SYN_CLASS:\COMMAND] autosyndrome command begins here
-   [SYN_CLASS:\LOCATION]
+   was syn_class location
    [SYN_CLASS:\ALLOW_MULTIPLE_TARGETS]
-   [SYN_CLASS:\REACTION_INDEX]
+    was SYN_CLASS:\REACTION_INDEX
       [SYN_AFFECTED_CREATURE:OGRE_KOBOLD:ALL]
     [SYN_AFFECTED_CREATURE:OGRE_KOBOLD_ARMORED:ALL]
       [SYN_INHALED]
@@ -11716,7 +11534,7 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 [SYN_AFFECTED_CLASS:DWARF_INTER]
 [SYN_AFFECTED_CREATURE:DWARF:ALL]
 	[SYN_AFFECTED_CLASS:ALL_CREATURES]
-[CE_ADD_TAG:PROB:100:NOSTUN:START:0:END:498]
+[CE_ADD_TAG:PROB:100:NOSTUN:NO_SLEEP:START:0:END:498]
 
 
 //bronze grade
@@ -12511,12 +12329,13 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 
 
 
+
 [INORGANIC:CHANGELING_M_WARP]
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 	[STATE_NAME_ADJ:ALL:Mutate pet into changeling]
 [MATERIAL_VALUE:0][SYNDROME]
-[SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
 [SYN_AFFECTED_CLASS:ALL_CREATURES]
 [CE_CAN_DO_INTERACTION:START:0:END:299]
 	[CDI:INTERACTION:TRANSFORM_CHANGELING_M]
@@ -12524,15 +12343,15 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 		[CDI:ADV_NAME:mutate]
 		[CDI:TARGET_RANGE:A:1]
 		[CDI:MAX_TARGET_NUMBER:A:1]
-		[CDI:WAIT_PERIOD:300]
+		[CDI:WAIT_PERIOD:160]
 
 
 [INORGANIC:CHANGELING_F_WARP]
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 	[STATE_NAME_ADJ:ALL:Mutate pet into changeling]
 [MATERIAL_VALUE:0][SYNDROME]
-[SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
 [SYN_AFFECTED_CLASS:ALL_CREATURES]
 [CE_CAN_DO_INTERACTION:START:0:END:299]
 	[CDI:INTERACTION:TRANSFORM_CHANGELING_F]
@@ -12540,15 +12359,450 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 		[CDI:ADV_NAME:mutate]
 		[CDI:TARGET_RANGE:A:1]
 		[CDI:MAX_TARGET_NUMBER:A:1]
-		[CDI:WAIT_PERIOD:300]
+		[CDI:WAIT_PERIOD:160]
+
+
+[INORGANIC:REANIMATE_COLOSSUS]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_COLOSSUS]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_DRAGON]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_DRAGON]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_GIANT]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_GIANT]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_CYCLOPS]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_CYCLOPS]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_ETTIN]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_ETTIN]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_MINOTAUR]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_MINOTAUR]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_HYDRA]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_HYDRA]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_ROC]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_ROC]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_BALROG]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_BALROG]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_GRIFFON]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_GRIFFON]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_MANTICORE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_MANTICORE]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_PHOENIX]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_PHOENIX]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_DEEP_CROW]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_DEEP_CROW]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_THUNDERBIRD]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_THUNDERBIRD]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_DRAGON_ENGINE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_DRAGON_ENGINE]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_BLACKSMITH]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_BLACKSMITH]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_MAIDEN]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_MAIDEN]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_CENTAUR]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_CENTAUR]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_BEHEMOTH]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_BEHEMOTH]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_SPIDER_QUEEN]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_SPIDER_QUEEN]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_CYCLOPS_GELV]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_CYCLOPS_GELV]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_ROCK_GUARDIAN]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_ROCK_GUARDIAN]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_FOREST_GIANT]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_FOREST_GIANT]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_MOUNTAIN_GIANT]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_MOUNTAIN_GIANT]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_SKY_GIANT]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_SKY_GIANT]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_WRAITH]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_WRAITH]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_GARGOYLE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_GARGOYLE]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_LICH]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_LICH]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_BITER]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_BITER]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_VAMPIRE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_VAMPIRE]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+[INORGANIC:REANIMATE_FIEND]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Reanimate Megabeast]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] 
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:REANIMATE_FIEND]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
 
 
 [INORGANIC:SPRITE_M_WARP]
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 	[STATE_NAME_ADJ:ALL:Mutate pet into sprite]
 [MATERIAL_VALUE:0][SYNDROME]
-[SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
 [SYN_AFFECTED_CLASS:ALL_CREATURES]
 [CE_CAN_DO_INTERACTION:START:0:END:299]
 	[CDI:INTERACTION:TRANSFORM_SPRITE_M]
@@ -12556,14 +12810,14 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 		[CDI:ADV_NAME:mutate]
 		[CDI:TARGET_RANGE:A:1]
 		[CDI:MAX_TARGET_NUMBER:A:1]
-		[CDI:WAIT_PERIOD:300]
+		[CDI:WAIT_PERIOD:160]
 
 [INORGANIC:SPRITE_F_WARP]
 [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
 	[STATE_NAME_ADJ:ALL:Mutate pet into sprite]
 [MATERIAL_VALUE:0][SYNDROME] 
-[SYN_CLASS:\COMMAND][SYN_CLASS:\LOCATION]
-[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS][SYN_CLASS:\REACTION_INDEX]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
 [SYN_AFFECTED_CLASS:ALL_CREATURES]
 [CE_CAN_DO_INTERACTION:START:0:END:299]
 	[CDI:INTERACTION:TRANSFORM_SPRITE_F]
@@ -12571,7 +12825,7 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 		[CDI:ADV_NAME:mutate]
 		[CDI:TARGET_RANGE:A:1]
 		[CDI:MAX_TARGET_NUMBER:A:1]
-		[CDI:WAIT_PERIOD:300]
+		[CDI:WAIT_PERIOD:160]
 
 
 [INORGANIC:HOLY]
@@ -12605,3 +12859,138 @@ YESWARP[INORGANIC:TEARS_OF_ARMOK]
 	[BENDING_FRACTURE:310000]
 	[BENDING_STRAIN_AT_YIELD:73]
 	[MAX_EDGE:10000]
+
+
+// name intentionally left empty, used for many misc items that shouldnt get names. Stockpiled normally under stone.
+[INORGANIC:BLANK]
+-USE_MATERIAL_TEMPLATE:STONE_TEMPLATE- <= reverted to "stone" as name with it.
+[STATE_NAME_ADJ:ALL_SOLID:][DISPLAY_COLOR:7:7:1][TILE:176]
+[MATERIAL_VALUE:1]
+[STATE_NAME:ALL_SOLID:]
+       [STATE_ADJ:ALL_SOLID:]
+       [STATE_NAME:LIQUID:]
+       [STATE_ADJ:LIQUID:]
+	[SOLID_DENSITY:1000]
+	[IS_STONE]
+
+
+
+[INORGANIC:MAGMALING_M]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Mutate pet into changeling]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:TRANSFORM_MAGMALING_M]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:ADV_NAME:mutate]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+		
+		
+[INORGANIC:WATERLING_M]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Mutate pet into changeling]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:\ALLOW_MULTIPLE_TARGETS] was SYN_CLASS:\REACTION_INDEX
+[SYN_AFFECTED_CREATURE:CHANGELING:ALL]
+[CE_CAN_DO_INTERACTION:START:0:END:299]
+	[CDI:INTERACTION:TRANSFORM_WATERLING_M]
+		[CDI:TARGET:A:SELF_ONLY]
+		[CDI:ADV_NAME:mutate]
+		[CDI:TARGET_RANGE:A:1]
+		[CDI:MAX_TARGET_NUMBER:A:1]
+		[CDI:WAIT_PERIOD:160]
+
+
+
+[INORGANIC:MAGMASOURCE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Magmaling start spawning magma]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:slayrace][SYN_CLASS:MAGMALING][SYN_CLASS:magma]
+
+
+[INORGANIC:WATERSOURCE]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Waterlings start spawning water]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:slayracewater][SYN_CLASS:WATERLING][SYN_CLASS:water]
+
+
+[INORGANIC:MAGMASOURCE_D]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Kill all magmalings]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:slayrace][SYN_CLASS:MAGMALING]
+
+
+[INORGANIC:WATERSOURCE_D]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Kill all waterlings]
+[MATERIAL_VALUE:0][SYNDROME]
+[SYN_CLASS:\COMMAND]was syn_class location
+[SYN_CLASS:slayracewater][SYN_CLASS:WATERLING]
+
+
+
+[INORGANIC:PET_FEEDING]
+[USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+	[STATE_NAME_ADJ:ALL:Feed nearby grazers]
+[MATERIAL_VALUE:0][SYNDROME]
+	[SYN_CLASS:\COMMAND]
+	[SYN_CLASS:fovcommand]
+	[SYN_CLASS:\WORKER_ID]
+	[SYN_CLASS:feedsimple]
+[SYN_AFFECTED_CLASS:PET_HEALING] => should target grazers only
+
+
+[INORGANIC:RED_MARKER]
+   [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:GAS:NECROMORPH ATTACK!!!]
+   [SPEC_HEAT:1]
+   [IGNITE_POINT:NONE]
+   [HEATDAM_POINT:1]
+   [SYNDROME]   [SYN_CLASS:\COMMAND] autosyndrome command begins here
+   [SYN_CLASS:\WORKER_ONLY]
+      [SYN_AFFECTED_CREATURE:DWARF:ALL][SYN_AFFECTED_CREATURE:KOBOLD_CAMP:ALL]
+      [SYN_AFFECTED_CREATURE:ORC_TAIGA:ALL]
+      [SYN_INHALED]
+      [SYN_CONTACT]
+      [CE_CAN_DO_INTERACTION:PROB:100:START:0:END:160]
+         [CDI:INTERACTION:RESURRECT_NECROMORPH]
+         [CDI:ADV_NAME:Bow]
+         [CDI:TARGET_RANGE:A:325]
+         [CDI:TARGET_VERB:NA:starts to move and melt and reform its flesh and rise from the ground to hunt]
+         [CDI:MAX_TARGET_NUMBER:A:225]
+         [CDI:FREE_ACTION]
+
+
+[INORGANIC:KILL_NECROMORPHS]
+   [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:GAS:Destroy the Marker]
+   [SPEC_HEAT:1]
+   [IGNITE_POINT:NONE]
+   [HEATDAM_POINT:1]
+   [SYNDROME]
+	[SYN_CLASS:\COMMAND]
+	[SYN_CLASS:slayrace]
+	[SYN_CLASS:necromorph]
+
+[INORGANIC:KILL_SOGGOTH]
+   [USE_MATERIAL_TEMPLATE:STONE_VAPOR_TEMPLATE]
+[STATE_NAME_ADJ:GAS:Destroy all Soggoths]
+   [SPEC_HEAT:1]
+   [IGNITE_POINT:NONE]
+   [HEATDAM_POINT:1]
+   [SYNDROME]
+	[SYN_CLASS:\COMMAND]
+	[SYN_CLASS:slayrace]
+	[SYN_CLASS:soggoth]

@@ -3,6 +3,7 @@ creature_kobold_camp
 [OBJECT:CREATURE]
 
 [CREATURE:KOBOLD_CAMP]
+[CREATURE_CLASS:KOBOLD]
 	[CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:A small, dog-like humanoid with long drooping ears.]
 	[NAME:kobold:kobolds:kobold]
 	[CASTE_NAME:kobold:kobolds:kobold]
@@ -12,15 +13,14 @@ creature_kobold_camp
 	[INTELLIGENT]
 	[CANOPENDOORS]
 
-[NATURAL_SKILL:HERBALISM:3]
-[NATURAL_SKILL:WAX_WORKING:3]
-
-[NATURAL_SKILL:BLOWGUN:2]
-[NATURAL_SKILL:SNEAK:2]
-[NATURAL_SKILL:DODGING:2]
+-NATURAL_SKILL:HERBALISM:3-
+-NATURAL_SKILL:WAX_WORKING:2-
+-NATURAL_SKILL:BLOWGUN:1-
+-NATURAL_SKILL:SNEAK:1-
+[NATURAL_SKILL:DODGING:3]
 
 	[BONECARN]
-	[LITTERSIZE:2:8]
+	[LITTERSIZE:1:5]
 	[PREFSTRING:mischief]
 	[PERSONALITY:ANXIETY:80:90:100]
 	[PERSONALITY:CHEERFULNESS:80:90:100]
@@ -74,8 +74,8 @@ creature_kobold_camp
 	[PROFESSION_NAME:MASTER_LASHER:tribal whipbold:tribal whipbolds]
 	[PROFESSION_NAME:MASTER_BLOWGUNMAN:tribal blowgunbold:tribal blowgunbolds]
 
-	[PROFESSION_NAME:CROSSBOWMAN:marksbold:marksbolds] => free. no crossbolt can be used.
-	[PROFESSION_NAME:MASTER_CROSSBOWMAN:tribal marksbold:tribal marksbolds] => free. no crossbolt can be used.
+	[PROFESSION_NAME:CROSSBOWMAN:bombardier:bombardiers] => free. no crossbolt can be used.
+	[PROFESSION_NAME:MASTER_CROSSBOWMAN:tribal bombardier:tribal bombardiers] => free. no crossbolt can be used.
 	(no guns can be used as well, kobolds are too small. Same for hammers, pikes, crossbows.)
 
 	[PROFESSION_NAME:MINER:digger:diggers]
@@ -284,7 +284,7 @@ creature_kobold_camp
    [NATURAL_SKILL:SHIELD:1]
    [NATURAL_SKILL:SWIMMING:3]    #water
    [SWIM_SPEED:1500]      #water   
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Turtle-sign Kobold:Turtle-sign Kobolds] 
    
    [CASTE:EEL_FEMALE]
       [FEMALE]
@@ -298,7 +298,7 @@ creature_kobold_camp
    [NATURAL_SKILL:PROCESSFISH:1]
    [NATURAL_SKILL:SWIMMING:3]   #water
    [SWIM_SPEED:1500]      #water
-   [POP_RATIO:12]         
+   [POP_RATIO:12]         [CASTE_PROFESSION_NAME:STANDARD:Eel-sign Kobold:Eel-sign Kobolds] 
 
    [CASTE:DARTFROG_FEMALE]
       [FEMALE]
@@ -314,7 +314,7 @@ creature_kobold_camp
    [NATURAL_SKILL:WAX_WORKING:1]   
    [NATURAL_SKILL:SWIMMING:3]   #water
    [SWIM_SPEED:1500]      #water
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Dartfrog-sign Kobold:Dartfrog-sign Kobolds] 
 
    ### Fire Signs
 
@@ -329,7 +329,7 @@ creature_kobold_camp
    [SKILL_LEARN_RATE:ANIMALTRAIN:150]
    [NATURAL_SKILL:ANIMALTRAIN:1]
    [SPEED:800]          #fire
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Rat-sign Kobold:Rat-sign Kobolds] 
 
    [CASTE:SALAMANDER_FEMALE]
       [FEMALE]
@@ -348,7 +348,7 @@ creature_kobold_camp
       [PLUS_MATERIAL:PUS]
       [MELTING_POINT:10000]
    [SPEED:800]          #fire
-   [POP_RATIO:12]   
+   [POP_RATIO:12]   [CASTE_PROFESSION_NAME:STANDARD:Salamander-sign Kobold:Salamander-sign Kobolds] 
    
    [CASTE:COYOTE_FEMALE]
       [FEMALE]
@@ -367,7 +367,7 @@ creature_kobold_camp
    [SKILL_LEARN_RATE:WOODCRAFT:150]
    [SKILL_LEARN_RATE:DETAILSTONE:150]
    [SPEED:800]          #fire
-   [POP_RATIO:12]      
+   [POP_RATIO:12]      [CASTE_PROFESSION_NAME:STANDARD:Coyote-sign Kobold:Coyote-sign Kobolds] 
    
    ### Air Signs   
 
@@ -391,7 +391,7 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:3360]
             [CDI:FREE_ACTION]
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Kestrel-sign Kobold:Kestrel-sign Kobolds] 
 
    [CASTE:OWL_FEMALE]
       [FEMALE]
@@ -411,7 +411,7 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:3360]
             [CDI:FREE_ACTION]
-   [POP_RATIO:12]   
+   [POP_RATIO:12]   [CASTE_PROFESSION_NAME:STANDARD:Owl-sign Kobold:Owl-sign Kobolds] 
    
    [CASTE:BLUEBIRD_FEMALE]
       [FEMALE]
@@ -436,14 +436,14 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:3360]
             [CDI:FREE_ACTION]   
-   [POP_RATIO:12]   
+   [POP_RATIO:12]   [CASTE_PROFESSION_NAME:STANDARD:Bluebird-sign Kobold:Bluebird-sign Kobolds] 
 
    ### Earth Signs      
    
    [CASTE:VIPER_FEMALE]
       [FEMALE]
  [LITTERSIZE:1:5]
-   [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*VIPER* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Viper are not shy about close combat with knife nor fang.  Like all Earth Sign kobolds, they begin to thrive upon combat once they get a taste of it.]
+   [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*VIPER* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Viper are not shy about close combat with knife nor fang.  Like all Earth Sign kobolds, they begin to thrive upon combat once they get a taste of it.][CASTE_PROFESSION_NAME:STANDARD:Viper-sign Kobold:Viper-sign Kobolds] 
 
 [USE_MATERIAL_TEMPLATE:VENOM:CREATURE_EXTRACT_TEMPLATE]
       [STATE_NAME:ALL_SOLID:frozen kobold saliva]
@@ -505,7 +505,7 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:33600] 
       [CDI:FREE_ACTION]
-   [POP_RATIO:12]   
+   [POP_RATIO:12]   [CASTE_PROFESSION_NAME:STANDARD:Lizard-sign Kobold:Lizard-sign Kobolds] 
    
    [CASTE:BADGER_FEMALE]
       [FEMALE]
@@ -522,7 +522,7 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:33600] 
       [CDI:FREE_ACTION]
-   [POP_RATIO:12]   
+   [POP_RATIO:12]   [CASTE_PROFESSION_NAME:STANDARD:Badger-sign Kobold:Badger-sign Kobolds] 
    
  ### Water Sign Castes
    
@@ -538,7 +538,7 @@ creature_kobold_camp
    [NATURAL_SKILL:SHIELD:1]
    [NATURAL_SKILL:SWIMMING:3]    #water
    [SWIM_SPEED:1500]      #water   
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Turtle-sign Kobold:Turtle-sign Kobolds] 
    
    [CASTE:EEL_MALE]
       [MALE]
@@ -551,11 +551,11 @@ creature_kobold_camp
    [SKILL_LEARN_RATE:PROCESSFISH:150]
    [NATURAL_SKILL:PROCESSFISH:1]
    [NATURAL_SKILL:SWIMMING:3]   #water
-   [SWIM_SPEED:1500]      #water
+   [SWIM_SPEED:1500]      #water[CASTE_PROFESSION_NAME:STANDARD:Eel-sign Kobold:Eel-sign Kobolds] 
    [POP_RATIO:12]         
 
    [CASTE:DARTFROG_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Dartfrog-sign Kobold:Dartfrog-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*DARTFROG* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Dartfrog are intrigued by poisons, toxins, and all other forms of brewing.  Like all Water Sign kobolds they are natural swimmers.]
    [SKILL_LEARN_RATE:COOK:150]
@@ -583,10 +583,10 @@ creature_kobold_camp
    [SKILL_LEARN_RATE:ANIMALTRAIN:150]
    [NATURAL_SKILL:ANIMALTRAIN:1]
    [SPEED:800]          #fire
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Rat-sign Kobold:Rat-sign Kobolds] 
 
    [CASTE:SALAMANDER_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Salamander-sign Kobold:Salamander-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*SALAMANDER* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Salamander are resitant to fire, and are entranced by the heat of a forge.  Like all Fire Sign Kobolds they move a bit more quickly than others.]
    [SKILL_LEARN_RATE:FORGE_WEAPON:100] # I assume default for Kobolds will be very low, so 100 is high
@@ -621,7 +621,7 @@ creature_kobold_camp
    [SKILL_LEARN_RATE:WOODCRAFT:150]
    [SKILL_LEARN_RATE:DETAILSTONE:150]
    [SPEED:800]          #fire
-   [POP_RATIO:12]      
+   [POP_RATIO:12]      [CASTE_PROFESSION_NAME:STANDARD:Coyote-sign Kobold:Coyote-sign Kobolds] 
    
    ### Air Signs   
 
@@ -645,10 +645,10 @@ creature_kobold_camp
       [CDI:TARGET:A:SELF_ONLY]
       [CDI:WAIT_PERIOD:3360]
             [CDI:FREE_ACTION]
-   [POP_RATIO:12]
+   [POP_RATIO:12][CASTE_PROFESSION_NAME:STANDARD:Kestrel-sign Kobold:Kestrel-sign Kobolds] 
 
    [CASTE:OWL_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Owl-sign Kobold:Owl-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*OWL* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Owl are wise and tend to make good students and teachers alike.  Like all Air Sign kobolds, they are adept at stealth and cannot be ensnared in webs.]
    [MENT_ATT_RANGE:FOCUS:2000:2500:3000:3250:3500:3750:4000]           
@@ -668,7 +668,7 @@ creature_kobold_camp
    [POP_RATIO:12]   
    
    [CASTE:BLUEBIRD_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Bluebird-sign Kobold:Bluebird-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*BLUEBIRD* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Bluebird are at peace with wild creatures and tend to find work in medicine.  Like all Air Sign kobolds, they are adept at stealth and cannot be ensnared in webs.]
    [AT_PEACE_WITH_WILDLIFE]
@@ -695,7 +695,7 @@ creature_kobold_camp
    ### Earth Signs      
    
    [CASTE:VIPER_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Viper-sign Kobold:Viper-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*VIPER* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Viper are not shy about close combat with knife nor fang.  Like all Earth Sign kobolds, they begin to thrive upon combat once they get a taste of it.]
 
@@ -740,7 +740,7 @@ creature_kobold_camp
    [POP_RATIO:12]
 
    [CASTE:LIZARD_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Lizard-sign Kobold:Lizard-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*LIZARD* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Lizard have great powers of recuperation.  Like all Earth Sign kobolds, they begin to thrive upon combat once they get a taste of it.]
    [PHYS_ATT_RANGE:RECUPERATION:2000:2500:3000:3250:3500:3750:4000]  +++
@@ -762,7 +762,7 @@ creature_kobold_camp
    [POP_RATIO:12]   
    
    [CASTE:BADGER_MALE]
-      [MALE]
+      [MALE][CASTE_PROFESSION_NAME:STANDARD:Badger-sign Kobold:Badger-sign Kobolds] 
 
    [CREATURE_CLASS:ALL_CREATURES][DESCRIPTION:*BADGER* A small, dog-like humanoid with long drooping ears.  Kobolds born under the Sign of the Badger are strong and ferocious, and tend to find work as butchers.  Like all Earth Sign kobolds, they begin to thrive upon combat once they get a taste of it.]
    [PHYS_ATT_RANGE:STRENGTH:750:1200:1500:1800:2000:2250:2550]  + 50% bonus wrt other kobolds
@@ -786,8 +786,8 @@ creature_kobold_camp
       [FEMALE]
    [CREATURE_CLASS:ALL_CREATURES]
    [DESCRIPTION:*WITCH* A small, dog-like humanoid with long drooping ears.  Kobolds that are born under unknown stars draw power from the earth around them and can speak mighty spells and curses. By learning from different mojos they can become very powerful indeed. Witches can throw webs of shadow or entangle enemies with roots.]
-   [SKILL_LEARN_RATE:ALCHEMY:150]
-   [NATURAL_SKILL:ALCHEMY:1]
+   [SKILL_LEARN_RATE:ALCHEMY:150][CASTE_PROFESSION_NAME:STANDARD:Witch:Witches] 
+   [NATURAL_SKILL:ALCHEMY:15][WEBIMMUNE] 
    [POP_RATIO:1]
 	[CAN_DO_INTERACTION:FREEZE]
 		[CDI:ADV_NAME:Lethargy]
@@ -797,26 +797,27 @@ creature_kobold_camp
 		[CDI:VERB:call upon nature:calls upon nature:NA]
 		[CDI:TARGET_VERB:are entangled in roots:is entangled in roots]
 		[CDI:MAX_TARGET_NUMBER:A:1]
-		[CDI:WAIT_PERIOD:1500]
-[WEBBER:INORGANIC:SHADOW:SILK]
+		[CDI:WAIT_PERIOD:500]
+[USE_MATERIAL_TEMPLATE:SILK:SILK_TEMPLATE]
+	[WEBBER:CREATURE_MAT:ANIMAL:SILK]
 		[CAN_DO_INTERACTION:MATERIAL_EMISSION]
 		[CDI:ADV_NAME:Spray web]
 		[CDI:USAGE_HINT:ATTACK]
 		[CDI:BP_REQUIRED:BY_TOKEN:LB]
-		[CDI:MATERIAL:INORGANIC:SHADOW:WEB_SPRAY]
+[CDI:MATERIAL:CREATURE_MAT:ANIMAL_RARE:SILK:WEB_SPRAY]
 [CDI:VERB:throw a web of shadows:throws a web of shadows:NA]
 		[CDI:TARGET:C:LINE_OF_SIGHT]
 		[CDI:TARGET_RANGE:C:5]
 		[CDI:MAX_TARGET_NUMBER:C:1]
-		[CDI:WAIT_PERIOD:300]
+		[CDI:WAIT_PERIOD:200]
 
  [CASTE:WITCHER]
 	[CASTE_NAME:kobold witcher:kobold witchers:kobold]
       [MALE]
    [CREATURE_CLASS:ALL_CREATURES]
    [DESCRIPTION:*WITCHER* A small, dog-like humanoid with long drooping ears.  Kobolds that are born under unknown stars draw power from the earth around them and can speak mighty spells and curses. By learning from different mojos they can become very powerful indeed. Witchers can slow enemies down and cause sickness.]
-   [SKILL_LEARN_RATE:ALCHEMY:150]
-   [NATURAL_SKILL:ALCHEMY:1]
+   [SKILL_LEARN_RATE:ALCHEMY:150][CASTE_PROFESSION_NAME:STANDARD:Witcher:Witchers] 
+   [NATURAL_SKILL:ALCHEMY:15][WEBIMMUNE] 
    [POP_RATIO:1]
 [CAN_DO_INTERACTION:SLOW_SPELL]
 		[CDI:ADV_NAME:Slow]
@@ -826,7 +827,7 @@ creature_kobold_camp
                [CDI:MAX_TARGET_NUMBER:A:10]
 		[CDI:VERB:seem to darken:seems to darken]
                [CDI:TARGET_VERB:are uncertain and slow down:is uncertain and slows down]
-		[CDI:WAIT_PERIOD:600]
+		[CDI:WAIT_PERIOD:100]
 
 		[USE_MATERIAL_TEMPLATE:SPELL:CREATURE_EXTRACT_TEMPLATE]
 			[STATE_NAME:ALL_SOLID:dark spell]
@@ -862,7 +863,7 @@ creature_kobold_camp
 		[CDI:TARGET:C:LINE_OF_SIGHT]
 		[CDI:TARGET_RANGE:C:15]
 		[CDI:MAX_TARGET_NUMBER:C:1]
-		[CDI:WAIT_PERIOD:350]
+		[CDI:WAIT_PERIOD:150]
 
 ##############################################
 druids
@@ -871,17 +872,24 @@ druids
       [MALE][CREATURE_CLASS:ALL_CREATURES]
    [DESCRIPTION:*DRUID* A small, dog-like humanoid with long drooping ears.  Kobold Druids have forsaken the star signs they were born under and stand in contact with nature. They transform into mighty spirit bears in combat, but in their rage they abandon their equipment and let go of weapon and shield. After a week their wrath has succumbed and they appear a bit confused and helpless, before they gather their wits again.]
    [NATURAL_SKILL:MAGIC_NATURE:15]
-   [POP_RATIO:1]
+   [POP_RATIO:1][CASTE_PROFESSION_NAME:STANDARD:Druid:Druids] 
+
 
 [CAN_DO_INTERACTION:SPIRIT_BEAR_KOBOLD]
 		[CDI:ADV_NAME:Spirit Transformation]
 		[CDI:USAGE_HINT:ATTACK]
    [CDI:VERB:take on the form of a mighty spirit bear and charges the enemy:takes on the form of a mighty spirit bear and charges the enemy:NA]
    [CDI:TARGET:A:SELF_ONLY]
-   [CDI:WAIT_PERIOD:22500]
-   [CDI:FREE_ACTION]
+   [CDI:WAIT_PERIOD:22500] -22500
 
-[CASTE:DRUID_FEMALE]
+[CAN_DO_INTERACTION:SPIRIT_BEAR_KOBOLD]
+		[CDI:ADV_NAME:Spirit Transformation]
+		[CDI:USAGE_HINT:FLEEING]
+   [CDI:VERB:take on the form of a mighty spirit bear and charges the enemy:takes on the form of a mighty spirit bear and charges the enemy:NA]
+   [CDI:TARGET:A:SELF_ONLY]
+   [CDI:WAIT_PERIOD:22500]
+
+[CASTE:DRUID_FEMALE][CASTE_PROFESSION_NAME:STANDARD:Druid:Druids] 
 	[CASTE_NAME:kobold druid:kobold druids:kobold]
       [FEMALE][CREATURE_CLASS:ALL_CREATURES]
    [DESCRIPTION:*DRUID* A small, dog-like humanoid with long drooping ears.  Kobold Druids have forsaken the star signs they were born under and stand in contact with nature. They transform into mighty spirit bears in combat, but in their rage they abandon their equipment and let go of weapon and shield. After a week their wrath has succumbed and they appear a bit confused and helpless, before they gather their wits again.]
@@ -893,8 +901,14 @@ druids
 		[CDI:USAGE_HINT:ATTACK]
    [CDI:VERB:take on the form of a mighty spirit bear and charges the enemy:takes on the form of a mighty spirit bear and charges the enemy:NA]
    [CDI:TARGET:A:SELF_ONLY]
+   [CDI:WAIT_PERIOD:22500]22500
+
+[CAN_DO_INTERACTION:SPIRIT_BEAR_KOBOLD]
+		[CDI:ADV_NAME:Spirit Transformation]
+		[CDI:USAGE_HINT:FLEEING]
+   [CDI:VERB:take on the form of a mighty spirit bear and charges the enemy:takes on the form of a mighty spirit bear and charges the enemy:NA]
+   [CDI:TARGET:A:SELF_ONLY]
    [CDI:WAIT_PERIOD:22500]
-   [CDI:FREE_ACTION]
 
 
 

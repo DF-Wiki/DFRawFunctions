@@ -16,7 +16,7 @@ if (!defined('MEDIAWIKI'))
  */
 
 // Whether or not to allow loading raws from disk
-$wgDFRawEnableDisk = false;
+$wgDFRawEnableDisk = true;
 
 // The directory which contains the raw folders and files
 $wgDFRawPath = dirname(__FILE__) .'/raws';
@@ -53,6 +53,7 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('mreplace',		'DFRawFunctions::mreplace');
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
+	$parser->setFunctionHook('df_type',		'DFRawFunctions::get_type');
 	return true;
 }
 
@@ -70,5 +71,6 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['mreplace']		= array(0, 'mreplace');
 	$magicWords['delay']		= array(0, 'delay');
 	$magicWords['eval']		= array(0, 'eval');
+	$magicWords['df_type']		= array(0, 'df_type');
 	return true;
 }
