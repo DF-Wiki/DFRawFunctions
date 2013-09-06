@@ -583,7 +583,7 @@ inputs	"craft bone shovel"
 				if  ($tags[$i][0] == $requirement_tmp[0] and $tags[$i][1] == $requirement_tmp[1] and $affirmed_type == FALSE) // Checks if TYPE:PARAMETER is present in the OBJECT. Puts flag and leaps back if yes.
 				{$affirmed_type = TRUE; $i=$i_object;}
 				if ($l_type == $tags[$i][0] and $affirmed_type == TRUE){
-				$tmp[$e] = $tags[$i][1]; $e++;}
+				$tmp[$e] = $tags[$i][2]; $e++;}
 			}
 			$i++;
 		}
@@ -598,4 +598,18 @@ inputs	"craft bone shovel"
 		if ($number != FALSE)
 			return $tmp[$number[0]];
 	}			
+}
+
+// Get wiki styled keybind expression from "CUSTOM_SHIFT_ALT_CTRL_S"-likes.
+// Not added to DFRawFunctions.php. Not sure if it's needed. Intended as inside function.
+public static function get_keybind ($custom){
+	$custom=explode("_",$custom); 
+	$tmp=$custom[count($custom)-1];
+	if (in_array("SHIFT",$custom)===FALSE)
+		$tmp=(strtolower($tmp));
+	if (in_array("ALT",$custom))
+		$tmp="Alt+". $tmp;
+	if (in_array("CTRL",$custom))
+		$tmp="Ctrl+". $tmp;
+	return $tmp;
 }
