@@ -248,3 +248,9 @@ Number could be:
 	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
 	
 Example: {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
+
+get_keybind
+----
+Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S". Intended for inside use.
+
+Usage: {{#get_keybind:data}}

@@ -1,4 +1,6 @@
 <?php
+//ini_set('display_errors', 'On');
+//error_reporting(E_ALL);
 
 class DFRawFunctions
 {
@@ -544,72 +546,102 @@ class DFRawFunctions
 		return $size - $pos;
 	}
 	
-/* 
-Input is: 1|2|3|4|5|6
-1) Data location:
-		Masterwork:reaction_kobold.txt
-2) Object:
-		"REACTION"
-3) Requirement (checks if those are present in Object):
-		"BUILDING:TANNER"
-	or	"BUILDING"
-4) Type (inputs the following value if requirements are met):
-		"NAME"
-inputs	"craft bone shovel"
-5) Number:
-	1.	"-1"		returns the very last input with fulfilled requirements and Type
-	2.	""			returns whole list of Types, numbered and comma separated
-	3.	"N"			returns reaction number N, no formatting
-	4.	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
-	5.	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
-6) Description (works only with "N:FORMAT"):
-		"[[Shovel]]"
-*/
+	/* 
+	Input is: 1|2|3|4|5|6
+	1) Data location:
+			Masterwork:reaction_kobold.txt
+	2) Object:
+			"REACTION"
+	3) Requirement (checks if those are present in Object):
+			"BUILDING:TANNER"
+		or	"BUILDING"
+	4) Type (inputs the following value if requirements are met):
+			"NAME"
+	inputs	"craft bone shovel"
+	5) Number:
+		1.	"-1"		returns the very last input with fulfilled requirements and Type
+		2.	""			returns whole list of Types, numbered and comma separated
+		3.	"N"			returns reaction number N, no formatting
+		4.	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
+		5.	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
+		6.  "N::STACK"	
+	6) Description (works only with "N:FORMAT"):
+			"[[Shovel]]"
+	*/
 
 	public static function get_type (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = ''){
+		// makes array from number
+		if ($number!=''){
 		if (gettype($number)!="integer"){
-		$number = explode(":",$number); (int) $number[0];}
-		$requirement_tmp=explode(":",$requirement);
+		$number = explode(":",$number); 
+		if ($number[0]!='')
+		(int) $number[0];}}
+		
+		$requirement=explode(":",$requirement); $l_type=explode(":",$l_type);
+		
 		$data = self::loadFile($data); $tags = self::getTags($data);
+		
 		if (!$object)
 			return $data;
 		$e=0; $i = 0; $obj_numb=0; $return_value = ''; $tmp=array();
 		while ($tags[$i][0]!=FALSE){
-		
+			
 			if ($tags[$i][0]==$object){ // Checks if left tag fits OBJECT.
 				$obj_num=$obj_num+1; $affirmed_type=FALSE; $i_object=$i; 
 			}
 			if ($obj_num>0){ // Made in case something's wrong with quotes.
-				if  ($tags[$i][0] == $requirement_tmp[0] and $tags[$i][1] == $requirement_tmp[1] and $affirmed_type == FALSE) // Checks if TYPE:PARAMETER is present in the OBJECT. Puts flag and leaps back if yes.
+			
+				if  ($tags[$i][0] == $requirement[0] and $tags[$i][1] == $requirement[1] and $affirmed_type == FALSE) // Checks if TYPE:PARAMETER is present in the OBJECT. Puts flag and leaps back if yes.
 				{$affirmed_type = TRUE; $i=$i_object;}
-				if ($l_type == $tags[$i][0] and $affirmed_type == TRUE){
-				$tmp[$e] = $tags[$i][2]; $e++;}
+				
+				$tmp_e=array(); $r1=0;
+				// advanced requirement check
+				if ($number[2]=="STACK")
+				for ($r=0; $r <= (count($tags[$i])-1); $r++){
+					if ($l_type[$r]!=$tags[$i][$r]){
+					$tmp_e[$r1]=$tags[$i][$r]; $r1=$r1+1;}
+				}
+				if ($number[2]!="STACK")
+					$tmp_e=array_diff($tags[$i], $l_type);
+				
+				if (count($tmp_e) != count($tags[$i]) and $affirmed_type == TRUE){
+				$tmp[$e]=implode(":",$tmp_e); $e++;}
 			}
-			$i++;
+			$i++; 
 		}
+		
+		if (($l_type[0]=="BUILDING" and $l_type[1]!="")or($l_type[0]=="BUILD_KEY")){
+			foreach ($tmp as &$step)
+			$step = self::get_keybind($step);
+			}
+			
 		if ($number[0] == '') 
-			return implode(", ",array_unique($tmp)).". ";
+			return implode(", ",array_unique($tmp));
 		if ($number[0] == -1)
 			return "Last reaction of the TYPE is: '''". ($e-1) .". ". $tmp[$e-1] .".'''";
 		if ($number[0] != ($e-1) and $number[1] == "CHECK")
-			return "'''".'<span style="color:#ff0000">Error: Last '.$l_type.' is '.($e-1)." and not ". $number[0].".</span>'''";
+			return "'''".'<span style="color:#ff0000">Error: Last '.implode(":",$l_type).' is '.($e-1)." and not ". $number[0].".</span>'''";
 		if ($number[1] == "FORMAT")
 			return "'''".($number[0]).". ". $tmp[$number[0]] ."''' || " .$description;
 		if ($number != FALSE)
 			return $tmp[$number[0]];
+					
 	}			
+	
+	// Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
+	public static function get_keybind ($custom){
+		$custom=explode("_",$custom); 
+		$tmp=$custom[count($custom)-1];
+		if (in_array("SHIFT",$custom)===FALSE)
+			$tmp=(strtolower($tmp));
+		if (in_array("ALT",$custom))
+			$tmp="Alt+". $tmp;
+		if (in_array("CTRL",$custom))
+			$tmp="Ctrl+". $tmp;
+		if (in_array("NONE"))
+			$tmp='';
+		return $tmp;
+	}
+	
 }
 
-// Get wiki styled keybind expression from "CUSTOM_SHIFT_ALT_CTRL_S"-likes.
-// Not added to DFRawFunctions.php. Not sure if it's needed. Intended as inside function.
-public static function get_keybind ($custom){
-	$custom=explode("_",$custom); 
-	$tmp=$custom[count($custom)-1];
-	if (in_array("SHIFT",$custom)===FALSE)
-		$tmp=(strtolower($tmp));
-	if (in_array("ALT",$custom))
-		$tmp="Alt+". $tmp;
-	if (in_array("CTRL",$custom))
-		$tmp="Ctrl+". $tmp;
-	return $tmp;
-}

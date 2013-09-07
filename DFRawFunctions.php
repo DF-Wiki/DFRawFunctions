@@ -54,6 +54,8 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
 	$parser->setFunctionHook('df_type',		'DFRawFunctions::get_type');
+	$parser->setFunctionHook('get_keybind',		'DFRawFunctions::get_keybind');
+	
 	return true;
 }
 
@@ -72,5 +74,6 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['delay']		= array(0, 'delay');
 	$magicWords['eval']		= array(0, 'eval');
 	$magicWords['df_type']		= array(0, 'df_type');
+	$magicWords['get_keybind']		= array(0, 'get_keybind');
 	return true;
 }
