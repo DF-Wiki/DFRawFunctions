@@ -36,6 +36,7 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $wgAutoloadClasses['DFRawFunctions'] = dirname(__FILE__) . '/DFRawFunctions.body.php';
 
+
 $wgHooks['ParserFirstCallInit'][] = 'efDFRawFunctions_Initialize';
 $wgHooks['LanguageGetMagic'][] = 'efDFRawFunctions_RegisterMagicWords';
 
@@ -53,8 +54,9 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('mreplace',		'DFRawFunctions::mreplace');
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
-	$parser->setFunctionHook('df_type',		'DFRawFunctions::get_type');
-	$parser->setFunctionHook('get_keybind',		'DFRawFunctions::get_keybind');
+	$parser->setFunctionHook('df_type',		'DFRawFunctions::getType');
+	$parser->setFunctionHook('df_keybind',		'DFRawFunctions::getKeybind');
+	$parser->setFunctionHook('df_tile',		'DFRawFunctions::getTile');
 	
 	return true;
 }
@@ -74,6 +76,7 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['delay']		= array(0, 'delay');
 	$magicWords['eval']		= array(0, 'eval');
 	$magicWords['df_type']		= array(0, 'df_type');
-	$magicWords['get_keybind']		= array(0, 'get_keybind');
+	$magicWords['df_keybind']		= array(0, 'df_keybind');
+	$magicWords['df_tile']		= array(0, 'df_tile');
 	return true;
 }

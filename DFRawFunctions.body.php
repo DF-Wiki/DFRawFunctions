@@ -1,6 +1,7 @@
 <?php
-//ini_set('display_errors', 'On');
-//error_reporting(E_ALL);
+
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 class DFRawFunctions
 {
@@ -569,7 +570,7 @@ class DFRawFunctions
 			"[[Shovel]]"
 	*/
 
-	public static function get_type (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = ''){
+	public static function getType (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = ''){
 		// makes array from number
 		if ($number!=''){
 		if (gettype($number)!="integer"){
@@ -583,8 +584,8 @@ class DFRawFunctions
 		
 		if (!$object)
 			return $data;
-		$e=0; $i = 0; $obj_numb=0; $return_value = ''; $tmp=array();
-		while ($tags[$i][0]!=FALSE){
+		$e=0; $i = 0; $obj_numb=0; $return_value = ''; $tmp=array(); $obj_num=0;
+		while ($i<=(count($tags)-1)){
 			
 			if ($tags[$i][0]==$object){ // Checks if left tag fits OBJECT.
 				$obj_num=$obj_num+1; $affirmed_type=FALSE; $i_object=$i; 
@@ -594,25 +595,25 @@ class DFRawFunctions
 				if  ($tags[$i][0] == $requirement[0] and $tags[$i][1] == $requirement[1] and $affirmed_type == FALSE) // Checks if TYPE:PARAMETER is present in the OBJECT. Puts flag and leaps back if yes.
 				{$affirmed_type = TRUE; $i=$i_object;}
 				
-				$tmp_e=array(); $r1=0;
-				// advanced requirement check
-				if ($number[2]=="STACK")
-				for ($r=0; $r <= (count($tags[$i])-1); $r++){
-					if ($l_type[$r]!=$tags[$i][$r]){
-					$tmp_e[$r1]=$tags[$i][$r]; $r1=$r1+1;}
-				}
-				if ($number[2]!="STACK")
+				if ($affirmed_type == TRUE){
+					$tmp_e=array(); $r1=1;
+					// advanced requirement check
+					if ($number[2]=="STACK")
+					if (array_intersect_assoc($l_type, $tags[$i])==$l_type){
+						$tmp_e=array_slice($tags[$i],count($l_type));
+						$tmp[$e]=implode(":",$tmp_e); $e++;}
+					
+					if ($number[2]!="STACK"){
 					$tmp_e=array_diff($tags[$i], $l_type);
-				
-				if (count($tmp_e) != count($tags[$i]) and $affirmed_type == TRUE){
-				$tmp[$e]=implode(":",$tmp_e); $e++;}
+					if (count($tmp_e) != count($tags[$i])){					 
+					$tmp[$e]=implode(":",$tmp_e); $e++;}}
+				}
 			}
 			$i++; 
 		}
-		
 		if (($l_type[0]=="BUILDING" and $l_type[1]!="")or($l_type[0]=="BUILD_KEY")){
 			foreach ($tmp as &$step)
-			$step = self::get_keybind($step);
+			$step = self::getKeybind($step);
 			}
 			
 		if ($number[0] == '') 
@@ -629,7 +630,7 @@ class DFRawFunctions
 	}			
 	
 	// Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
-	public static function get_keybind ($custom){
+	public static function getKeybind ($custom){
 		$custom=explode("_",$custom); 
 		$tmp=$custom[count($custom)-1];
 		if (in_array("SHIFT",$custom)===FALSE)
@@ -638,10 +639,371 @@ class DFRawFunctions
 			$tmp="Alt+". $tmp;
 		if (in_array("CTRL",$custom))
 			$tmp="Ctrl+". $tmp;
-		if (in_array("NONE"))
+		if (in_array("NONE",$custom))
 			$tmp='';
 		return $tmp;
 	}
 	
+	public static function getTile (&$parser, $data = '', $building = '', $options = '')
+	{
+		$tags = array(); $dim = array(); $block = array(); $color = array(); $tile = array(); $j = 0; $i = 0; $type_check = 0;
+		$tags = self::getTags(self::loadFile($data));  $building=explode(":",$building); $options=explode(":",$options); 
+		//if ($options[1]!=FALSE){$options[1]=intval($options[1]);}
+		
+		//Extracts $dim, $work_location, $block, $tile, $color, $item from $tags.
+		while ($i<=(count($tags)-1)){
+			if ($type_check == 0 and $tags[$i][0] == $building[0] and $tags[$i][1]==$building[1])
+				$type_check = 1;
+			// get tiles: {{#df_tile:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|}}
+			if ($type_check == 1){
+				switch ($tags[$i][0]){
+					case "DIM" :
+					$dim=array_slice($tags[$i],1,3);
+					case "WORK_LOCATION": 
+					$work_location=$tags[$i][1]."&#x2715".$tags[$i][2];
+					case "BLOCK": 
+					$block[$tags[$i][1]]=array_slice($tags[$i],2);
+					case "TILE": 
+					$tile[$tags[$i][1]][$tags[$i][2]]=array_slice($tags[$i],3);
+					case "COLOR": 
+					$color[$tags[$i][1]][$tags[$i][2]]=array_slice($tags[$i],3);
+					case "BUILD_ITEM": 
+					$item=array_slice($tags[$i],1);
+				}
+			if ($tags[$i][0]==$building[0] and $tags[$i][1]!=$building[1])
+				break;
+			}
+			$i++;	
+		}
+		
+		switch ($options[0]){
+		
+			case "DIM":
+			return implode("&#x2715;",$dim);
+			
+			
+			case "TILE":
+			$conv_table=explode(" "," &#x263A; &#x263B; &#x2665; &#x2666; &#x2663; &#x2660; &#x2022; &#x25D8; &#x25CB; &#x25D9; &#x2642; &#x2640; &#x266A; &#x266B; &#x263C; &#x25BA; &#x25C4; &#x2195; &#x203C; &#x00B6; &#x00A7; &#x25AC; &#x21A8; &#x2191; &#x2193; &#x2192; &#x2190; &#x221F; &#x2194; &#x25B2; &#x25BC;  &#x0021; &#x0022; &#x0023; &#x0024; &#x0025; &#x0026; &#x0027; &#x0028; &#x0029; &#x002A; &#x002B; &#x002C; &#x002D; &#x002E; &#x002F; &#x0030; &#x0031; &#x0032; &#x0033; &#x0034; &#x0035; &#x0036; &#x0037; &#x0038; &#x0039; &#x003A; &#x003B; &#x003C; &#x003D; &#x003E; &#x003F; &#x0040; &#x0041; &#x0042; &#x0043; &#x0044; &#x0045; &#x0046; &#x0047; &#x0048; &#x0049; &#x004A; &#x004B; &#x004C; &#x004D; &#x004E; &#x004F; &#x0050; &#x0051; &#x0052; &#x0053; &#x0054; &#x0055; &#x0056; &#x0057; &#x0058; &#x0059; &#x005A; &#x005B; &#x005C; &#x005D; &#x005E; &#x005F; &#x0060; &#x0061; &#x0062; &#x0063; &#x0064; &#x0065; &#x0066; &#x0067; &#x0068; &#x0069; &#x006A; &#x006B; &#x006C; &#x006D; &#x006E; &#x006F; &#x0070; &#x0071; &#x0072; &#x0073; &#x0074; &#x0075; &#x0076; &#x0077; &#x0078; &#x0079; &#x007A; &#x007B; &#x007C; &#x007D; &#x007E; &#x2302; &#x00C7; &#x00FC; &#x00E9; &#x00E2; &#x00E4; &#x00E0; &#x00E5; &#x00E7; &#x00EA; &#x00EB; &#x00E8; &#x00EF; &#x00EE; &#x00EC; &#x00C4; &#x00C5; &#x00C9; &#x00E6; &#x00C6; &#x00F4; &#x00F6; &#x00F2; &#x00FB; &#x00F9; &#x00FF; &#x00D6; &#x00DC; &#x00A2; &#x00A3; &#x00A5; &#x20A7; &#x0192; &#x00E1; &#x00ED; &#x00F3; &#x00FA; &#x00F1; &#x00D1; &#x00AA; &#x00BA; &#x00BF; &#x2310; &#x00AC; &#x00BD; &#x00BC; &#x00A1; &#x00AB; &#x00BB; &#x2591; &#x2592; &#x2593; &#x2502; &#x2524; &#x2561; &#x2562; &#x2556; &#x2555; &#x2563; &#x2551; &#x2557; &#x255D; &#x255C; &#x255B; &#x2510; &#x2514; &#x2534; &#x252C; &#x251C; &#x2500; &#x253C; &#x255E; &#x255F; &#x255A; &#x2554; &#x2569; &#x2566; &#x2560; &#x2550; &#x256C; &#x2567; &#x2568; &#x2564; &#x2565; &#x2559; &#x2558; &#x2552; &#x2553; &#x256B; &#x256A; &#x2518; &#x250C; &#x2588; &#x2584; &#x258C; &#x2590; &#x2580; &#x03B1; &#x00DF; &#x0393; &#x03C0; &#x03A3; &#x03C3; &#x00B5; &#x03C4; &#x03A6; &#x0398; &#x03A9; &#x03B4; &#x221E; &#x03C6; &#x03B5; &#x2229; &#x2261; &#x00B1; &#x2265; &#x2264; &#x2320; &#x2321; &#x00F7; &#x2248; &#x00B0; &#x2219; &#x00B7; &#x221A; &#x207F; &#x00B2; &#x25A0;");
+			$tmp=array(); $b=0;
+			for ($j = 1; $j <= ($dim[1]); $j++){
+			$tmp = array_merge($tmp,$tile[$options[1]][$j]);
+			print_r($tile[$options[1]][$j]);}
+        }
+		$tile=$tmp;
+		
+		//echo implode(":",$tile); echo ("<br/>");
+		echo $dim[0].$dim[1];
+		$tmp='|';
+		for ($i = 1; $i <= ($dim[1]); $i++){
+			for ($j = 1; $j <= ($dim[0]); $j++){
+				$tmp .= $conv_table[$tile[($i-1)*$dim[0]+$j-1]]." "; 
+				if ($j==$dim[0]) {$tmp .= \p;}
+			}
+		}
+		$tile=$tmp;
+		
+		return $tile;
+	} 
+    
+	
+	
+/*	
+	switch {
+ case "0:0"
+ $col = "#000000";
+ case "1:0"
+ $col = "#000000";
+ case "2:0"
+ $col = "#000000";
+ case "3:0"
+ $col = "#000000";
+ case "4:0"
+ $col = "#000000";
+ case "5:0"
+ $col = "#000000";
+ case "6:0"
+ $col = "#000000";
+ case "7:0"
+ $col = "#000000";
+ case "0:1"
+ $col = "#000000";
+ case "1:1"
+ $col = "#000000";
+ case "2:1"
+ $col = "#000000";
+ case "3:1"
+ $col = "#000000";
+ case "4:1"
+ $col = "#000000";
+ case "5:1"
+ $col = "#000000";
+ case "6:1"
+ $col = "#000000";
+ case "7:1"
+ $col = "#000000";
+ case "0:0:0"
+ $col = "#000000";
+ case "1:0:0"
+ $col = "#000000";
+ case "2:0:0"
+ $col = "#000000";
+ case "3:0:0"
+ $col = "#000000";
+ case "4:0:0"
+ $col = "#000000";
+ case "5:0:0"
+ $col = "#000000";
+ case "6:0:0"
+ $col = "#000000";
+ case "7:0:0"
+ $col = "#000000";
+ case "0:0:1"
+ $col = "#000000";
+ case "1:0:1"
+ $col = "#000000";
+ case "2:0:1"
+ $col = "#000000";
+ case "3:0:1"
+ $col = "#000000";
+ case "4:0:1"
+ $col = "#000000";
+ case "5:0:1"
+ $col = "#000000";
+ case "6:0:1"
+ $col = "#000000";
+ case "7:0:1"
+ $col = "#000000";
+ case "0:1:0"
+ $col = "#000080";
+ case "1:1:0"
+ $col = "#000080";
+ case "2:1:0"
+ $col = "#000080";
+ case "3:1:0"
+ $col = "#000080";
+ case "4:1:0"
+ $col = "#000080";
+ case "5:1:0"
+ $col = "#000080";
+ case "6:1:0"
+ $col = "#000080";
+ case "7:1:0"
+ $col = "#000080";
+ case "0:1:1"
+ $col = "#000080";
+ case "1:1:1"
+ $col = "#000080";
+ case "2:1:1"
+ $col = "#000080";
+ case "3:1:1"
+ $col = "#000080";
+ case "4:1:1"
+ $col = "#000080";
+ case "5:1:1"
+ $col = "#000080";
+ case "6:1:1"
+ $col = "#000080";
+ case "7:1:1"
+ $col = "#000080";
+ case "0:2:0"
+ $col = "#008000";
+ case "1:2:0"
+ $col = "#008000";
+ case "2:2:0"
+ $col = "#008000";
+ case "3:2:0"
+ $col = "#008000";
+ case "4:2:0"
+ $col = "#008000";
+ case "5:2:0"
+ $col = "#008000";
+ case "6:2:0"
+ $col = "#008000";
+ case "7:2:0"
+ $col = "#008000";
+ case "0:2:1"
+ $col = "#008000";
+ case "1:2:1"
+ $col = "#008000";
+ case "2:2:1"
+ $col = "#008000";
+ case "3:2:1"
+ $col = "#008000";
+ case "4:2:1"
+ $col = "#008000";
+ case "5:2:1"
+ $col = "#008000";
+ case "6:2:1"
+ $col = "#008000";
+ case "7:2:1"
+ $col = "#008000";
+ case "0:3:0"
+ $col = "#008080";
+ case "1:3:0"
+ $col = "#008080";
+ case "2:3:0"
+ $col = "#008080";
+ case "3:3:0"
+ $col = "#008080";
+ case "4:3:0"
+ $col = "#008080";
+ case "5:3:0"
+ $col = "#008080";
+ case "6:3:0"
+ $col = "#008080";
+ case "7:3:0"
+ $col = "#008080";
+ case "0:3:1"
+ $col = "#008080";
+ case "1:3:1"
+ $col = "#008080";
+ case "2:3:1"
+ $col = "#008080";
+ case "3:3:1"
+ $col = "#008080";
+ case "4:3:1"
+ $col = "#008080";
+ case "5:3:1"
+ $col = "#008080";
+ case "6:3:1"
+ $col = "#008080";
+ case "7:3:1"
+ $col = "#008080";
+ case "0:4:0"
+ $col = "#800000";
+ case "1:4:0"
+ $col = "#800000";
+ case "2:4:0"
+ $col = "#800000";
+ case "3:4:0"
+ $col = "#800000";
+ case "4:4:0"
+ $col = "#800000";
+ case "5:4:0"
+ $col = "#800000";
+ case "6:4:0"
+ $col = "#800000";
+ case "7:4:0"
+ $col = "#800000";
+ case "0:4:1"
+ $col = "#800000";
+ case "1:4:1"
+ $col = "#800000";
+ case "2:4:1"
+ $col = "#800000";
+ case "3:4:1"
+ $col = "#800000";
+ case "4:4:1"
+ $col = "#800000";
+ case "5:4:1"
+ $col = "#800000";
+ case "6:4:1"
+ $col = "#800000";
+ case "7:4:1"
+ $col = "#800000";
+ case "0:5:0"
+ $col = "#800080";
+ case "1:5:0"
+ $col = "#800080";
+ case "2:5:0"
+ $col = "#800080";
+ case "3:5:0"
+ $col = "#800080";
+ case "4:5:0"
+ $col = "#800080";
+ case "5:5:0"
+ $col = "#800080";
+ case "6:5:0"
+ $col = "#800080";
+ case "7:5:0"
+ $col = "#800080";
+ case "0:5:1"
+ $col = "#800080";
+ case "1:5:1"
+ $col = "#800080";
+ case "2:5:1"
+ $col = "#800080";
+ case "3:5:1"
+ $col = "#800080";
+ case "4:5:1"
+ $col = "#800080";
+ case "5:5:1"
+ $col = "#800080";
+ case "6:5:1"
+ $col = "#800080";
+ case "7:5:1"
+ $col = "#800080";
+ case "0:6:0"
+ $col = "#808000";
+ case "1:6:0"
+ $col = "#808000";
+ case "2:6:0"
+ $col = "#808000";
+ case "3:6:0"
+ $col = "#808000";
+ case "4:6:0"
+ $col = "#808000";
+ case "5:6:0"
+ $col = "#808000";
+ case "6:6:0"
+ $col = "#808000";
+ case "7:6:0"
+ $col = "#808000";
+ case "0:6:1"
+ $col = "#808000";
+ case "1:6:1"
+ $col = "#808000";
+ case "2:6:1"
+ $col = "#808000";
+ case "3:6:1"
+ $col = "#808000";
+ case "4:6:1"
+ $col = "#808000";
+ case "5:6:1"
+ $col = "#808000";
+ case "6:6:1"
+ $col = "#808000";
+ case "7:6:1"
+ $col = "#808000";
+ case "0:7:0"
+ $col = "#C0C0C0";
+ case "1:7:0"
+ $col = "#C0C0C0";
+ case "2:7:0"
+ $col = "#C0C0C0";
+ case "3:7:0"
+ $col = "#C0C0C0";
+ case "4:7:0"
+ $col = "#C0C0C0";
+ case "5:7:0"
+ $col = "#C0C0C0";
+ case "6:7:0"
+ $col = "#C0C0C0";
+ case "7:7:0"
+ $col = "#C0C0C0";
+ case "0:7:1"
+ $col = "#C0C0C0";
+ case "1:7:1"
+ $col = "#C0C0C0";
+ case "2:7:1"
+ $col = "#C0C0C0";
+ case "3:7:1"
+ $col = "#C0C0C0";
+ case "4:7:1"
+ $col = "#C0C0C0";
+ case "5:7:1"
+ $col = "#C0C0C0";
+ case "6:7:1"
+ $col = "#C0C0C0";
+ case "7:7:1"
+ $col = "#C0C0C0";
+ }
+	
+	$tmp=array(&$parser, $data = '');
+		for ($i=1; $i <= 255; $i++)
+		$tmp[$i]=$i. " - &#x". $conv_table[$i];
+		}
+	}
+	 */
 }
 
