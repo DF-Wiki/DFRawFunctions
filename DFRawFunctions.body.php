@@ -688,7 +688,7 @@ class DFRawFunctions
 			$tile=$tmp;
 		
 			//echo implode(":",$tile); echo ("<br/>");
-			$tmp='|';
+			$tmp='';
 			for ($i = 1; $i <= ($dim[1]); $i++)
 			{
 				for ($j = 1; $j <= ($dim[0]); $j++)
@@ -721,15 +721,20 @@ class DFRawFunctions
 			//echo $tile."<br/>".$color_backgr."<br/>".$color_foregr;
 				
 			$tile=explode("<br/>",$tile); $color_backgr=explode("<br/>",$color_backgr); $color_foregr=explode("<br/>",$color_foregr);
-			$tile_color='';
+			
+			$tile_color='<table border=0 cellpadding=0 cellspacing=0><tr>';
 				for ($i = 0; $i <= ($dim[1]-1); $i++)
 				{
 					$tile_tmp=explode(" ",$tile[$i]); $color_backgr_tmp=explode(" ",$color_backgr[$i]); $color_foregr_tmp=explode(" ",$color_foregr[$i]);
 					for ($j = 0; $j <= ($dim[0]-1); $j++)
 					{
-						$tile_color .= '<code style="color: '. $color_foregr_tmp[$j] .'; background:'. $color_backgr_tmp[$j]."; font-size: 20; font-weight: bold; font-family: 'Courier New', 'Quicktype Mono', 'Bitstream Vera Sans Mono', 'Lucida Console',  'Lucida Sans Typewriter', monospace; font-weight:bold".'">'. $tile_tmp[$j] .'</code>';
-						if ($j==$dim[0]-1){$tile_color .='<br/>';}
+					/*  padding: 0.1em 0.2em; */
+						$tile_color .= '<td><span style="color: '. $color_foregr_tmp[$j] .'; background:'. $color_backgr_tmp[$j]."; font-size:150%; font-family: 'Courier New', 'Quicktype Mono', 'Bitstream Vera Sans Mono', 'Lucida Console',  'Lucida Sans Typewriter', monospace; font-weight:bold".'">'. $tile_tmp[$j] .'</span></td>';
+						if ($j==$dim[0]-1){$tile_color .='</tr>';}
 					}
+					
+					if (($i!=$dim[1]-1) and ($j!=$dim[0]-1)){$tile_color .='<tr>';
+					} else {$tile_color .='</table>';}
 				}
 				return $tile_color;
 		} 
