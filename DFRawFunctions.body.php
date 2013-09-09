@@ -553,7 +553,7 @@ class DFRawFunctions
 			Masterwork:reaction_kobold.txt
 	2) Object:
 			"REACTION"
-	3) Requirement (checks if those are present in Object):
+	3) Requirement: checks if those are present in Object
 			"BUILDING:TANNER"
 		or	"BUILDING"
 	4) Type (inputs the following value if requirements are met):
@@ -563,20 +563,37 @@ class DFRawFunctions
 		1.	"-1"		returns the very last input with fulfilled requirements and Type
 		2.	""			returns whole list of Types, numbered and comma separated
 		3.	"N"			returns reaction number N, no formatting
-		4.	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
-		5.	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
-		6.  "N::STACK"	
-	6) Description (works only with "N:FORMAT"):
-			"[[Shovel]]"
+		4.	"FORMAT" 	returns reaction number N, wiki table formatting and Description
+		5.	"CHECK"		checks if Nth Type is the last one, returns error if it's not.
+		6.  "ORDER"		compares first tags with Object, otherwise searches through every tag.
+	6) Description: description for wiki, works only with "N:FORMAT"
 	*/
 
-	public static function getType (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = ''){
-		// makes array from number
-		if ($number!=''){
-		if (gettype($number)!="integer"){
-		$number = explode(":",$number); 
-		if ($number[0]!='')
-		(int) $number[0];}}
+	public static function getType (&$parser, $data = '', $object = '', $requirement = '', $l_type = '', $number = '',  $description = '')
+	{
+	
+		// checks for errors and extracts from $number: number of reaction, options (ORDER, CHECK, FORMAT).
+		$Order = FALSE; $Check = FALSE; $Format = FALSE; $Number='';
+		if ($number!='' and gettype($number)!="integer" and is_array($number)){
+			$number = explode(":",$number);
+			foreach ($number as &$tmp)
+			{
+				switch ($tmp){
+					case "ORDER":
+						$Order = TRUE;
+					case "CHECK":
+						$Check = TRUE;
+					case "FORMAT":
+						$Format = TRUE;
+				}
+				echo $tmp;
+				if (is_numeric($tmp))
+					$Number=$tmp;
+				if (!is_numeric($tmp) and $tmp!="ORDER" and $tmp!="CHECK" and $tmp!="FORMAT")
+					return '<span style="color:#ff0000">Error, check input values for getType</span>';
+			}unset ($tmp);
+		}
+		if (is_numeric($number)){$Number=$number;}
 		
 		$requirement=explode(":",$requirement); $l_type=explode(":",$l_type);
 		
@@ -598,14 +615,19 @@ class DFRawFunctions
 				if ($affirmed_type == TRUE){
 					$tmp_e=array();
 					// advanced requirement check
-					if (in_array("STACK",$number)){
-					if (array_intersect_assoc($l_type, $tags[$i])==$l_type){
-						$tmp_e=array_slice($tags[$i],count($l_type));
-						$tmp[$e]=implode(":",$tmp_e); $e++;} 
-					}	else	{
-					$tmp_e=array_diff($tags[$i], $l_type);
-					if (count($tmp_e) != count($tags[$i])){					 
-					$tmp[$e]=implode(":",$tmp_e); $e++;}}
+					if ($Order)
+					{
+						if (array_intersect_assoc($l_type, $tags[$i])==$l_type)
+						{
+							$tmp_e=array_slice($tags[$i],count($l_type));
+							$tmp[$e]=implode(":",$tmp_e); $e++;
+						} 
+					}
+					else
+					{
+						$tmp_e=array_diff($tags[$i], $l_type);
+						if (count($tmp_e) != count($tags[$i])){$tmp[$e]=implode(":",$tmp_e); $e++;}
+					}
 				}
 			}
 			$i++; 
@@ -615,22 +637,23 @@ class DFRawFunctions
 			$step = self::getKeybind($step);
 			}
 			
-		if ($number[0] == '') 
+		if ($Number == '') 
 			return implode(", ",array_unique($tmp));
-		if ($number[0] == -1)
+		if ($Number == -1)
 			return "Last reaction of the TYPE is: '''". ($e-1) .". ". $tmp[$e-1] .".'''";
-		if ($number[0] != ($e-1) and $number[1] == "CHECK")
-			return "'''".'<span style="color:#ff0000">Error: Last '.implode(":",$l_type).' is '.($e-1)." and not ". $number[0].".</span>'''";
-		if ($number[1] == "FORMAT")
-			return "'''".($number[0]).". ". $tmp[$number[0]] ."''' || " .$description;
-		if ($number != FALSE)
-			return $tmp[$number[0]];
+		if ($Number != ($e-1) and $Check)
+			return "'''".'<span style="color:#ff0000">Error: Last '.implode(":",$l_type).' is '.($e-1)." and not ". $Number.".</span>'''";
+		if ($Format)
+			return "'''".($Number).". ". $tmp[$Number] ."''' || " .$description;
+		if ($Number != FALSE)
+			return $tmp[$Number];
 					
 	}			
 	
 	// Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
-	public static function getKeybind ($custom){
-		$custom=explode("_",$custom); 
+	public static function getKeybind ($custom=''){
+		$custom=explode("_",$custom); $tmp=$custom[count($custom)-1]; $custom[count($custom)-1]='CUSTOM';
+		if (array_diff($custom, array("CUSTOM", "ALT", "SHIFT", "CTRL", "NONE"))!=FALSE){return'<span style="color:#ff0000">Error, check input values for getKeybind</span>';}
 		$tmp=$custom[count($custom)-1];
 		if (in_array("SHIFT",$custom)===FALSE)
 			$tmp=(strtolower($tmp));
@@ -642,13 +665,15 @@ class DFRawFunctions
 			$tmp='';
 		return $tmp;
 	}
-	// Should be renamed to df_building!!!
-	// building - either "BUILDING_FURNACE:MAGMA_GENERATOR" or "NAME:Magma Generator (Dwarf)".
-	// options - DIM returns dimensions, TILE:N returns tiles as xHTML table
-	public static function getTile (&$parser, $data = '', $building = '', $options = '')
+	
+	/*###DF_BUILDING### Provides information about workshops and furnaces. 
+	building - should be either workshop or furnace with syntax as follows:  "BUILDING_FURNACE:MAGMA_GENERATOR" or "NAME:Magma Generator (Dwarf)".
+	options - DIM returns dimensions, TILE:N returns tiles as xHTML table */
+	public static function getBuilding (&$parser, $data = '', $building = '', $options = '')
 	{
 		// Defining variables and input check
 		$tags = array(); $dim = array(); $block = array(); $color = array(); $tile = array(); $j = 0; $i = 0; $type_check = 0; $single_tag_counter=0; $item_counter=0;
+		echo $data;
 		$tags = self::getTags(self::loadFile($data));  $building=explode(":",$building); 
 		
 		// $options input check
@@ -752,11 +777,26 @@ class DFRawFunctions
 				} else {$tile_color .='</table>';}
 			}
 			return $tile_color;
-		} 
+		}
+		
 		if (in_array("TILE",$options))
 		{
 		
 		}
 		
 	}
+	// ###### Returns item parameters based on whatever.
+	public static function getItem (&$parser, $datas='', $item = '', $options = '')
+	{	
+		
+		$tags=array(); $i=0;
+		$options=implode(':',$options);
+		$tags = self::getTags(self::loadFile($data));
+		while ($i<=(count($tags)-1)){
+		
+		
+		$i++;
+		}
+	}
+	
 }
