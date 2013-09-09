@@ -596,14 +596,13 @@ class DFRawFunctions
 				{$affirmed_type = TRUE; $i=$i_object;}
 				
 				if ($affirmed_type == TRUE){
-					$tmp_e=array(); $r1=1;
+					$tmp_e=array();
 					// advanced requirement check
-					if ($number[2]=="STACK")
+					if (in_array("STACK",$number)){
 					if (array_intersect_assoc($l_type, $tags[$i])==$l_type){
 						$tmp_e=array_slice($tags[$i],count($l_type));
-						$tmp[$e]=implode(":",$tmp_e); $e++;}
-					
-					if ($number[2]!="STACK"){
+						$tmp[$e]=implode(":",$tmp_e); $e++;} 
+					}	else	{
 					$tmp_e=array_diff($tags[$i], $l_type);
 					if (count($tmp_e) != count($tags[$i])){					 
 					$tmp[$e]=implode(":",$tmp_e); $e++;}}
@@ -643,19 +642,34 @@ class DFRawFunctions
 			$tmp='';
 		return $tmp;
 	}
-	
+	// Should be renamed to df_building!!!
+	// building - either "BUILDING_FURNACE:MAGMA_GENERATOR" or "NAME:Magma Generator (Dwarf)".
+	// options - DIM returns dimensions, TILE:N returns tiles as xHTML table
 	public static function getTile (&$parser, $data = '', $building = '', $options = '')
 	{
-		$tags = array(); $dim = array(); $block = array(); $color = array(); $tile = array(); $j = 0; $i = 0; $type_check = 0;
-		$tags = self::getTags(self::loadFile($data));  $building=explode(":",$building); $options=explode(":",$options); 
-		//if ($options[1]!=FALSE){$options[1]=intval($options[1]);}
+		// Defining variables and input check
+		$tags = array(); $dim = array(); $block = array(); $color = array(); $tile = array(); $j = 0; $i = 0; $type_check = 0; $single_tag_counter=0; $item_counter=0;
+		$tags = self::getTags(self::loadFile($data));  $building=explode(":",$building); 
 		
-		//Extracts $dim, $work_location, $block, $tile, $color, $item from $tags.
+		// $options input check
+		if ($options!="DIM")
+		{
+		$options=explode(":",$options);
+		$building_stage = implode(':',array_intersect(array(0,1,2,3),$options));
+		$options_err_check=array("TILE","COLOR","DIM",0,1,2,3,"WORK_LOCATION","BUILD_ITEM");
+		if (array_diff($options, $options_err_check)!=FALSE 
+			or count($building)!=2
+			or !is_numeric($building_stage))
+		return '<span style="color:#ff0000">Error, check input values!</span>';
+		}
+		
+		// Extract arrays: dim (workshop dimensions), work_location, block, tile, color, item, single_tag from tags.
 		while ($i<=(count($tags)-1)){
 			if ($type_check == 0 and $tags[$i][0] == $building[0] and $tags[$i][1]==$building[1])
 				$type_check = 1;
-			// get tiles: {{#df_tile:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|}}
-			if ($type_check == 1){
+			
+			if ($type_check == 1)
+			{
 				switch ($tags[$i][0]){
 					case "DIM" :
 					$dim=array_slice($tags[$i],1,3);
@@ -668,10 +682,14 @@ class DFRawFunctions
 					case "COLOR": 
 					$color[$tags[$i][1]][$tags[$i][2]]=array_slice($tags[$i],3);
 					case "BUILD_ITEM": 
-					$item=array_slice($tags[$i],1);
+					$item[$item_counter]=array_slice($tags[$i],1);
+					$item_counter=$item_counter+1;
 				}
-			if ($tags[$i][0]==$building[0] and $tags[$i][1]!=$building[1])
-				break;
+				if (count($tags[$i])==1){$single_tag[$single_tag_counter]= $tags[$i][0]; $single_tag_counter=$single_tag_counter+1;}
+			
+				// Breaks per-tile extraction if next object
+				if ($tags[$i][0]==$building[0] and $tags[$i][1]!=$building[1])
+					break;
 			}
 			$i++;	
 		}
@@ -680,11 +698,12 @@ class DFRawFunctions
 			return implode("&#x2715;",$dim);
 			
 			
-		if (in_array("TILE",$options)){
+		if (in_array("TILE",$options))
+		{
 			$conv_unicode=explode(" "," &#x263A; &#x263B; &#x2665; &#x2666; &#x2663; &#x2660; &#x2022; &#x25D8; &#x25CB; &#x25D9; &#x2642; &#x2640; &#x266A; &#x266B; &#x263C; &#x25BA; &#x25C4; &#x2195; &#x203C; &#x00B6; &#x00A7; &#x25AC; &#x21A8; &#x2191; &#x2193; &#x2192; &#x2190; &#x221F; &#x2194; &#x25B2; &#x25BC;  &#x0021; &#x0022; &#x0023; &#x0024; &#x0025; &#x0026; &#x0027; &#x0028; &#x0029; &#x002A; &#x002B; &#x002C; &#x002D; &#x002E; &#x002F; &#x0030; &#x0031; &#x0032; &#x0033; &#x0034; &#x0035; &#x0036; &#x0037; &#x0038; &#x0039; &#x003A; &#x003B; &#x003C; &#x003D; &#x003E; &#x003F; &#x0040; &#x0041; &#x0042; &#x0043; &#x0044; &#x0045; &#x0046; &#x0047; &#x0048; &#x0049; &#x004A; &#x004B; &#x004C; &#x004D; &#x004E; &#x004F; &#x0050; &#x0051; &#x0052; &#x0053; &#x0054; &#x0055; &#x0056; &#x0057; &#x0058; &#x0059; &#x005A; &#x005B; &#x005C; &#x005D; &#x005E; &#x005F; &#x0060; &#x0061; &#x0062; &#x0063; &#x0064; &#x0065; &#x0066; &#x0067; &#x0068; &#x0069; &#x006A; &#x006B; &#x006C; &#x006D; &#x006E; &#x006F; &#x0070; &#x0071; &#x0072; &#x0073; &#x0074; &#x0075; &#x0076; &#x0077; &#x0078; &#x0079; &#x007A; &#x007B; &#x007C; &#x007D; &#x007E; &#x2302; &#x00C7; &#x00FC; &#x00E9; &#x00E2; &#x00E4; &#x00E0; &#x00E5; &#x00E7; &#x00EA; &#x00EB; &#x00E8; &#x00EF; &#x00EE; &#x00EC; &#x00C4; &#x00C5; &#x00C9; &#x00E6; &#x00C6; &#x00F4; &#x00F6; &#x00F2; &#x00FB; &#x00F9; &#x00FF; &#x00D6; &#x00DC; &#x00A2; &#x00A3; &#x00A5; &#x20A7; &#x0192; &#x00E1; &#x00ED; &#x00F3; &#x00FA; &#x00F1; &#x00D1; &#x00AA; &#x00BA; &#x00BF; &#x2310; &#x00AC; &#x00BD; &#x00BC; &#x00A1; &#x00AB; &#x00BB; &#x2591; &#x2592; &#x2593; &#x2502; &#x2524; &#x2561; &#x2562; &#x2556; &#x2555; &#x2563; &#x2551; &#x2557; &#x255D; &#x255C; &#x255B; &#x2510; &#x2514; &#x2534; &#x252C; &#x251C; &#x2500; &#x253C; &#x255E; &#x255F; &#x255A; &#x2554; &#x2569; &#x2566; &#x2560; &#x2550; &#x256C; &#x2567; &#x2568; &#x2564; &#x2565; &#x2559; &#x2558; &#x2552; &#x2553; &#x256B; &#x256A; &#x2518; &#x250C; &#x2588; &#x2584; &#x258C; &#x2590; &#x2580; &#x03B1; &#x00DF; &#x0393; &#x03C0; &#x03A3; &#x03C3; &#x00B5; &#x03C4; &#x03A6; &#x0398; &#x03A9; &#x03B4; &#x221E; &#x03C6; &#x03B5; &#x2229; &#x2261; &#x00B1; &#x2265; &#x2264; &#x2320; &#x2321; &#x00F7; &#x2248; &#x00B0; &#x2219; &#x00B7; &#x221A; &#x207F; &#x00B2; &#x25A0;");
 			$tmp=array(); $b=0;
 			for ($j = 1; $j <= ($dim[1]); $j++)
-			$tmp = array_merge($tmp,$tile[$options[1]][$j]);
+			$tmp = array_merge($tmp,$tile[$building_stage][$j]);
 			$tile=$tmp;
 		
 			//echo implode(":",$tile); echo ("<br/>");
@@ -697,55 +716,47 @@ class DFRawFunctions
 					if ($j==$dim[0]) {$tmp .= "<br/>";}
 				}
 			}
-		$tile=$tmp;
-		}
-		if (in_array("COLOR",$options))
-		{
+			$tile=$tmp;
 			$conv_color_foregr=array("0:0" => "#000000", "1:0" => "#000080", "2:0" => "#008000", "3:0" => "#008080", "4:0" => "#800000", "5:0" => "#800080", "6:0" => "#808000", "7:0" => "#C0C0C0", "0:1" => "#808080", "1:1" => "#0000FF", "2:1" => "#00FF00", "3:1" => "#00FFFF", "4:1" => "#FF0000", "5:1" => "#FF00FF", "6:1" => "#FFFF00", "7:1" => "#FFFFFF", "0:0:0" => "#000000", "1:0:0" => "#000080", "2:0:0" => "#008000", "3:0:0" => "#008080", "4:0:0" => "#800000", "5:0:0" => "#800080", "6:0:0" => "#808000", "7:0:0" => "#C0C0C0", "0:0:1" => "#808080", "1:0:1" => "#0000FF", "2:0:1" => "#00FF00", "3:0:1" => "#00FFFF", "4:0:1" => "#FF0000", "5:0:1" => "#FF00FF", "6:0:1" => "#FFFF00", "7:0:1" => "#FFFFFF", " 0:1:0" => "#000000", "1:1:0" => "#000080", "2:1:0" => "#008000", "3:1:0" => "#008080", "4:1:0" => "#800000", "5:1:0" => "#800080", "6:1:0" => "#808000", "7:1:0" => "#C0C0C0", "0:1:1" => "#808080", "1:1:1" => "#0000FF", "2:1:1" => "#00FF00", "3:1:1" => "#00FFFF", "4:1:1" => "#FF0000", "5:1:1" => "#FF00FF", "6:1:1" => "#FFFF00", "7:1:1" => "#FFFFFF", " 0:2:0" => "#000000", "1:2:0" => "#000080", "2:2:0" => "#008000", "3:2:0" => "#008080", "4:2:0" => "#800000", "5:2:0" => "#800080", "6:2:0" => "#808000", "7:2:0" => "#C0C0C0", "0:2:1" => "#808080", "1:2:1" => "#0000FF", "2:2:1" => "#00FF00", "3:2:1" => "#00FFFF", "4:2:1" => "#FF0000", "5:2:1" => "#FF00FF", "6:2:1" => "#FFFF00", "7:2:1" => "#FFFFFF", " 0:3:0" => "#000000", "1:3:0" => "#000080", "2:3:0" => "#008000", "3:3:0" => "#008080", "4:3:0" => "#800000", "5:3:0" => "#800080", "6:3:0" => "#808000", "7:3:0" => "#C0C0C0", "0:3:1" => "#808080", "1:3:1" => "#0000FF", "2:3:1" => "#00FF00", "3:3:1" => "#00FFFF", "4:3:1" => "#FF0000", "5:3:1" => "#FF00FF", "6:3:1" => "#FFFF00", "7:3:1" => "#FFFFFF", " 0:4:0" => "#000000", "1:4:0" => "#000080", "2:4:0" => "#008000", "3:4:0" => "#008080", "4:4:0" => "#800000", "5:4:0" => "#800080", "6:4:0" => "#808000", "7:4:0" => "#C0C0C0", "0:4:1" => "#808080", "1:4:1" => "#0000FF", "2:4:1" => "#00FF00", "3:4:1" => "#00FFFF", "4:4:1" => "#FF0000", "5:4:1" => "#FF00FF", "6:4:1" => "#FFFF00", "7:4:1" => "#FFFFFF", " 0:5:0" => "#000000", "1:5:0" => "#000080", "2:5:0" => "#008000", "3:5:0" => "#008080", "4:5:0" => "#800000", "5:5:0" => "#800080", "6:5:0" => "#808000", "7:5:0" => "#C0C0C0", "0:5:1" => "#808080", "1:5:1" => "#0000FF", "2:5:1" => "#00FF00", "3:5:1" => "#00FFFF", "4:5:1" => "#FF0000", "5:5:1" => "#FF00FF", "6:5:1" => "#FFFF00", "7:5:1" => "#FFFFFF", " 0:6:0" => "#000000", "1:6:0" => "#000080", "2:6:0" => "#008000", "3:6:0" => "#008080", "4:6:0" => "#800000", "5:6:0" => "#800080", "6:6:0" => "#808000", "7:6:0" => "#C0C0C0", "0:6:1" => "#808080", "1:6:1" => "#0000FF", "2:6:1" => "#00FF00", "3:6:1" => "#00FFFF", "4:6:1" => "#FF0000", "5:6:1" => "#FF00FF", "6:6:1" => "#FFFF00", "7:6:1" => "#FFFFFF", " 0:7:0" => "#000000", "1:7:0" => "#000080", "2:7:0" => "#008000", "3:7:0" => "#008080", "4:7:0" => "#800000", "5:7:0" => "#800080", "6:7:0" => "#808000", "7:7:0" => "#C0C0C0", "0:7:1" => "#808080", "1:7:1" => "#0000FF", "2:7:1" => "#00FF00", "3:7:1" => "#00FFFF", "4:7:1" => "#FF0000", "5:7:1" => "#FF00FF", "6:7:1" => "#FFFF00", "7:7:1" => "#FFFFFF");
-
-
 			$conv_color_backgr=array("0:0" => "#000000", "1:0" => "#000000", "2:0" => "#000000", "3:0" => "#000000", "4:0" => "#000000", "5:0" => "#000000", "6:0" => "#000000", "7:0" => "#000000", "0:1" => "#000000", "1:1" => "#000000", "2:1" => "#000000", "3:1" => "#000000", "4:1" => "#000000", "5:1" => "#000000", "6:1" => "#000000", "7:1" => "#000000", "0:0:0" => "#000000", "1:0:0" => "#000000", "2:0:0" => "#000000", "3:0:0" => "#000000", "4:0:0" => "#000000", "5:0:0" => "#000000", "6:0:0" => "#000000", "7:0:0" => "#000000", "0:0:1" => "#000000", "1:0:1" => "#000000", "2:0:1" => "#000000", "3:0:1" => "#000000", "4:0:1" => "#000000", "5:0:1" => "#000000", "6:0:1" => "#000000", "7:0:1" => "#000000", "0:1:0" => "#000080", "1:1:0" => "#000080", "2:1:0" => "#000080", "3:1:0" => "#000080", "4:1:0" => "#000080", "5:1:0" => "#000080", "6:1:0" => "#000080", "7:1:0" => "#000080", "0:1:1" => "#000080", "1:1:1" => "#000080", "2:1:1" => "#000080", "3:1:1" => "#000080", "4:1:1" => "#000080", "5:1:1" => "#000080", "6:1:1" => "#000080", "7:1:1" => "#000080", "0:2:0" => "#008000", "1:2:0" => "#008000", "2:2:0" => "#008000", "3:2:0" => "#008000", "4:2:0" => "#008000", "5:2:0" => "#008000", "6:2:0" => "#008000", "7:2:0" => "#008000", "0:2:1" => "#008000", "1:2:1" => "#008000", "2:2:1" => "#008000", "3:2:1" => "#008000", "4:2:1" => "#008000", "5:2:1" => "#008000", "6:2:1" => "#008000", "7:2:1" => "#008000", "0:3:0" => "#008080", "1:3:0" => "#008080", "2:3:0" => "#008080", "3:3:0" => "#008080", "4:3:0" => "#008080", "5:3:0" => "#008080", "6:3:0" => "#008080", "7:3:0" => "#008080", "0:3:1" => "#008080", "1:3:1" => "#008080", "2:3:1" => "#008080", "3:3:1" => "#008080", "4:3:1" => "#008080", "5:3:1" => "#008080", "6:3:1" => "#008080", "7:3:1" => "#008080", "0:4:0" => "#800000", "1:4:0" => "#800000", "2:4:0" => "#800000", "3:4:0" => "#800000", "4:4:0" => "#800000", "5:4:0" => "#800000", "6:4:0" => "#800000", "7:4:0" => "#800000", "0:4:1" => "#800000", "1:4:1" => "#800000", "2:4:1" => "#800000", "3:4:1" => "#800000", "4:4:1" => "#800000", "5:4:1" => "#800000", "6:4:1" => "#800000", "7:4:1" => "#800000", "0:5:0" => "#800080", "1:5:0" => "#800080", "2:5:0" => "#800080", "3:5:0" => "#800080", "4:5:0" => "#800080", "5:5:0" => "#800080", "6:5:0" => "#800080", "7:5:0" => "#800080", "0:5:1" => "#800080", "1:5:1" => "#800080", "2:5:1" => "#800080", "3:5:1" => "#800080", "4:5:1" => "#800080", "5:5:1" => "#800080", "6:5:1" => "#800080", "7:5:1" => "#800080", "0:6:0" => "#808000", "1:6:0" => "#808000", "2:6:0" => "#808000", "3:6:0" => "#808000", "4:6:0" => "#808000", "5:6:0" => "#808000", "6:6:0" => "#808000", "7:6:0" => "#808000", "0:6:1" => "#808000", "1:6:1" => "#808000", "2:6:1" => "#808000", "3:6:1" => "#808000", "4:6:1" => "#808000", "5:6:1" => "#808000", "6:6:1" => "#808000", "7:6:1" => "#808000", "0:7:0" => "#C0C0C0", "1:7:0" => "#C0C0C0", "2:7:0" => "#C0C0C0", "3:7:0" => "#C0C0C0", "4:7:0" => "#C0C0C0", "5:7:0" => "#C0C0C0", "6:7:0" => "#C0C0C0", "7:7:0" => "#C0C0C0", "0:7:1" => "#C0C0C0", "1:7:1" => "#C0C0C0", "2:7:1" => "#C0C0C0", "3:7:1" => "#C0C0C0", "4:7:1" => "#C0C0C0", "5:7:1" => "#C0C0C0", "6:7:1" => "#C0C0C0", "7:7:1" => "#C0C0C0");
 			$color_backgr=''; $color_foregr='';
 			for ($i = 1; $i <= ($dim[1]); $i++)
 			{
 				for ($j = 1; $j <= ($dim[0]); $j++)
 				{
-					$color_backgr .=	$conv_color_backgr[implode(":",array_slice ($color[$options[1]][$i],($j-1)*3, 3))]." ";
-					$color_foregr .=	$conv_color_foregr[implode(":",array_slice ($color[$options[1]][$i],($j-1)*3, 3))]." ";
+					$color_backgr .=	$conv_color_backgr[implode(":",array_slice ($color[$building_stage][$i],($j-1)*3, 3))]." ";
+					$color_foregr .=	$conv_color_foregr[implode(":",array_slice ($color[$building_stage][$i],($j-1)*3, 3))]." ";
 					if ($j==$dim[0]) {$color_backgr .= "<br/>"; $color_foregr .= "<br/>";}
 				}
 			}
-			if (!in_array("TILE",$options))
-				return $color_backgr."<br/>".$color_foregr."<br/>";	
+			
+			//------------COLOR PART---------------
 			
 			//echo $tile."<br/>".$color_backgr."<br/>".$color_foregr;
 				
 			$tile=explode("<br/>",$tile); $color_backgr=explode("<br/>",$color_backgr); $color_foregr=explode("<br/>",$color_foregr);
 			
 			$tile_color='<table border=0 cellpadding=0 cellspacing=0><tr>';
-				for ($i = 0; $i <= ($dim[1]-1); $i++)
+			for ($i = 0; $i <= ($dim[1]-1); $i++)
+			{
+				$tile_tmp=explode(" ",$tile[$i]); $color_backgr_tmp=explode(" ",$color_backgr[$i]); $color_foregr_tmp=explode(" ",$color_foregr[$i]);
+				
+				for ($j = 0; $j <= ($dim[0]-1); $j++)
 				{
-					$tile_tmp=explode(" ",$tile[$i]); $color_backgr_tmp=explode(" ",$color_backgr[$i]); $color_foregr_tmp=explode(" ",$color_foregr[$i]);
-					for ($j = 0; $j <= ($dim[0]-1); $j++)
-					{
-					/*  padding: 0.1em 0.2em; */
-						$tile_color .= '<td><span style="color: '. $color_foregr_tmp[$j] .'; background:'. $color_backgr_tmp[$j]."; font-size:150%; font-family: 'Courier New', 'Quicktype Mono', 'Bitstream Vera Sans Mono', 'Lucida Console',  'Lucida Sans Typewriter', monospace; font-weight:bold".'">'. $tile_tmp[$j] .'</span></td>';
-						if ($j==$dim[0]-1){$tile_color .='</tr>';}
-					}
-					
-					if (($i!=$dim[1]-1) and ($j!=$dim[0]-1)){$tile_color .='<tr>';
-					} else {$tile_color .='</table>';}
+				/*  padding: 0.1em 0.2em; */
+					$tile_color .= '<td><span style="color: '. $color_foregr_tmp[$j] .'; background:'. $color_backgr_tmp[$j]."; font-size:150%; font-family: 'Courier New', 'Quicktype Mono', 'Bitstream Vera Sans Mono', 'Lucida Console',  'Lucida Sans Typewriter', monospace; font-weight:bold".'">'. $tile_tmp[$j] .'</span></td>';
+					if ($j==$dim[0]-1){$tile_color .='</tr>';}
 				}
-				return $tile_color;
+				
+				if (($i!=$dim[1]-1) and ($j!=$dim[0]-1)){$tile_color .='<tr>';
+				} else {$tile_color .='</table>';}
+			}
+			return $tile_color;
 		} 
+		if (in_array("TILE",$options))
+		{
 		
+		}
 		
-
-
 	}
-	
-
-
- }
-
-
+}
