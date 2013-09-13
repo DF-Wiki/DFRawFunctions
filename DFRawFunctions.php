@@ -58,6 +58,8 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('df_keybind',		'DFRawFunxctions::getKeybind');
 	$parser->setFunctionHook('df_building',		'DFRawFunctions::getBuilding');
 	$parser->setFunctionHook('df_item',		'DFRawFunctions::getItem');
+	$parser->setFunctionHook('df_tile',		'DFRawFunctions::colorTile');
+	
 	
 	return true;
 }
@@ -80,5 +82,6 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['df_keybind']		= array(0, 'df_keybind');
 	$magicWords['df_building']		= array(0, 'df_building');
 	$magicWords['df_item']		= array(0, 'df_item');
+	$magicWords['df_tile']		= array(0, 'df_tile');
 	return true;
 }
