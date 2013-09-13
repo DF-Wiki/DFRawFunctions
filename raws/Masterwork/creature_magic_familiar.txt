@@ -979,7 +979,7 @@ Basilisk
                [CDI:VERB:focus the arcane powers of its master:focuses the arcane powers of its master:NA]
                [CDI:WAIT_PERIOD:33600]
 --------------------------------------
-	[USE_MATERIAL_TEMPLATE:VENOM:CREATURE_EXTRACT_TEMPLATE][MILKABLE:LOCAL_CREATURE_MAT:VENOM:20000]
+	[USE_MATERIAL_TEMPLATE:VENOM:CREATURE_EXTRACT_TEMPLATE][REACTION_CLASS:IS_VENOM][MILKABLE:LOCAL_CREATURE_MAT:VENOM:10000][REACTION_CLASS:IS_VENOM]
 		[STATE_NAME:ALL_SOLID:frozen basilisk venom]
 		[STATE_ADJ:ALL_SOLID:frozen basilisk venom]
 		[STATE_NAME:LIQUID:basilisk venom]

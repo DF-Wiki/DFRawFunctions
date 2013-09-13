@@ -55,8 +55,11 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
 	$parser->setFunctionHook('df_type',		'DFRawFunctions::getType');
-	$parser->setFunctionHook('df_keybind',		'DFRawFunctions::getKeybind');
-	$parser->setFunctionHook('df_tile',		'DFRawFunctions::getTile');
+	$parser->setFunctionHook('df_keybind',		'DFRawFunxctions::getKeybind');
+	$parser->setFunctionHook('df_building',		'DFRawFunctions::getBuilding');
+	$parser->setFunctionHook('df_item',		'DFRawFunctions::getItem');
+	$parser->setFunctionHook('df_tile',		'DFRawFunctions::colorTile');
+	
 	
 	return true;
 }
@@ -77,6 +80,8 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['eval']		= array(0, 'eval');
 	$magicWords['df_type']		= array(0, 'df_type');
 	$magicWords['df_keybind']		= array(0, 'df_keybind');
+	$magicWords['df_building']		= array(0, 'df_building');
+	$magicWords['df_item']		= array(0, 'df_item');
 	$magicWords['df_tile']		= array(0, 'df_tile');
 	return true;
 }

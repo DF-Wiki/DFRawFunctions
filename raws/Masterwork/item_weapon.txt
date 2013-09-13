@@ -3,6 +3,20 @@ item_weapon
 [OBJECT:ITEM]
 
 
+[ITEM_WEAPON:ITEM_WEAPON_DAGGER_HORN]
+[NAME:knife:knives]
+[ADJECTIVE:small]
+[SIZE:100]
+[SKILL:DAGGER]
+[TWO_HANDED:5500]
+[MINIMUM_SIZE:5000] amphibian men, etc., need variants
+[MATERIAL_SIZE:1]
+[ATTACK:EDGE:20:1000:stab:stabs:NO_SUB:1000]
+[ATTACK:BLUNT:1000:600:bash:bashes:shaft:1250]
+[ATTACK:EDGE:20:1000:sidestep quickly and slash:sidesteps quickly and slashes:NO_SUB:1250]
+[ATTACK:EDGE:20:1000:make a reverse cut and stab:makes a reverse cut and stabs:NO_SUB:1000]
+[ATTACK:EDGE:20:1000:spring away and simultaneously slash:springs away and simultaneously slashes:NO_SUB:1250]
+[ATTACK:EDGE:20:1000:furiously stab:furiously stabs:sharp tip:1000]
 
 ##############################################################
 ################    2 handed weapons    ######################

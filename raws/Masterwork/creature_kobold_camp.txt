@@ -90,12 +90,7 @@ creature_kobold_camp
 
 [PROFESSION_NAME:FARMER:farmworker:farmworkers]
 [PROFESSION_NAME:MILLER:archeologist:archeologists]
-[PROFESSION_NAME:TANNER:ambassador:ambassadors]
-[PROFESSION_NAME:POTTER:scribe:scribes]
-[PROFESSION_NAME:WAX_WORKER:wax/poison worker:wax/poison workers]
-[PROFESSION_NAME:GLAZER:musician:musicians]
 [PROFESSION_NAME:HERBALIST:herbalist:herbalists]
-[PROFESSION_NAME:SOAP_MAKER:painter:painters]
 [PROFESSION_NAME:WOOD_BURNER:oven operator:oven operators]
 [PROFESSION_NAME:LYE_MAKER:chemist:chemists]
 [PROFESSION_NAME:POTASH_MAKER:alchemist:alchemists]
@@ -106,7 +101,6 @@ creature_kobold_camp
 [PROFESSION_NAME:BEEKEEPER:hivekeeper:hivekeepers]
 [PROFESSION_NAME:CLOTHIER:tailor:tailors]
 [PROFESSION_NAME:THRESHER:miller:millers]
-[PROFESSION_NAME:ANIMAL_CARETAKER:animal armorer:animal armorers]
 
 	[BODY:HUMANOID:2EYES:2EARS:NOSE:2LUNGS:HEART:GUTS:ORGANS:HUMANOID_JOINTS:THROAT:NECK:SPINE:BRAIN:SKULL:4FINGERS:3TOES:MOUTH:FACIAL_FEATURES:TEETH:RIBCAGE]
 	[BODY_DETAIL_PLAN:STANDARD_MATERIALS]

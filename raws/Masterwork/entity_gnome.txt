@@ -1,6 +1,6 @@
 entity_gnome
 
-YESGNOME[OBJECT:ENTITY]
+!NOGNOME!OBJECT:ENTITY]
 
 
 ################################################################
