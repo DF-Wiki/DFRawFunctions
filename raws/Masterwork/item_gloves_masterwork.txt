@@ -18,6 +18,22 @@ item_gloves_masterwork
 [HARD]
 
 
+[ITEM_GLOVES:ITEM_GLOVES_GAUNTLETS_ARMOK]
+[NAME:gauntlet of armok:gauntlets of armok]
+[ARMORLEVEL:3]
+[UPSTEP:MAX]
+[SHAPED]
+[LAYER:ARMOR]
+[COVERAGE:150]
+[LAYER_SIZE:20]
+[LAYER_PERMIT:49]
+[MATERIAL_SIZE:2]
+[SCALED]
+[BARRED]
+[METAL]
+[HARD]
+
+
 
 [ITEM_GLOVES:ITEM_GLOVES_FIST]
 [NAME:battle fist:battle fists]
@@ -115,4 +131,4 @@ item_gloves_masterwork
 #### FLAVOR ITEMS #####
 #######################
 
-None, since I removed all gloves from invaders, to reduce clutter. They have a small area they protect, but count as 2 seperate items.
+None, since I removed all gloves from invaders, to reduce clutter. They have a small area they protect, but count as 2 separate items.

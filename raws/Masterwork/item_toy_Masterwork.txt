@@ -10,6 +10,10 @@ item_toy_masterwork
 [NAME:brazier:braziers]
 [HARD_MAT]
 
+[ITEM_TOY:ITEM_TOY_FIREPLACE]
+[NAME:fireplace:fireplaces]
+[HARD_MAT]
+
 [ITEM_TOY:ITEM_TOY_ALLIGATOR_DOLL]
 [NAME:alligator doll:alligator dolls]
 [HARD_MAT]
