@@ -11,6 +11,60 @@ Fortress raws.
 
 .. contents::
 
+df_type
+----
+usage: {{#df_type:DATA|OBJECT|REQUIREMENT|TYPE|NUMBER|DESCRIPTION}}
+
+Finds any object with filled requirement. Returns type.
+Number could be:
+*		returns whole list of Types, numbered and comma separated
+* -1		кeturns the very last input with fulfilled requirements and Type	
+* N		returns reaction number N, no formatting
+* N:FORMAT"	returns reaction number N, wiki table formatting and Description
+* N:CHECK	checks if Nth Type is the last one, returns error if it's not.
+
+	
+Input:  {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
+Output: 
+
+df_keybind
+----
+Makes readable keybind raws. from "CUSTOM_SHIFT_ALT_CTRL_S".
+
+Input:  {{#df_keybind:CUSTOM_SHIFT_ALT_CTRL_S}}
+Output: Alt+Ctrl+S
+
+df_building
+----
+Provides information about workshops and furnaces. 
+
+**Syntax:** ``{{#df_building:DATA|BUILDING|OPTIONS}}``
+
+* BUILDING - should be either workshop or furnace with syntax as follows:  ``BUILDING_FURNACE:MAGMA_GENERATOR`` or ``NAME:Magma Generator (Dwarf)``.
+* OPTIONS - you have to put ":" between parameters, their position won't matter.
+ * LOCATION - returnts tiled image, depicting passability and work location (not implemented)
+ * TILE - returns tiled image of workshop
+ * COLOR - returns tiled and coloured image of workshop
+ * N - where N is 0, 1, 2 specifies building stage (3 by default)
+ * BUILD_ITEM - returns build items (not implemented)
+
+ :**Input**:``{{#df_building:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|COLOR:3}}``
+ :**Output**: Colurful image
+
+df_tile
+----
+Makes HTML and wiki supported tiles from ones used in raws. Only TILE is mandatory. Three other values can be omitted.
+
+**Syntax:** ``{{#df_tile:TILE|COLOR|IMAGE|STEP}}``
+
+* TILE is tiles from raws, &lt;br/> should be placed between lines
+* COLOR is same as TILES, but color
+* IMAGE is a wiki styled image link
+* STEP is size of tile in pixels
+
+**Input:**  ``{{#df_tile:43:222:219<br/>33:214:184|3:5:1:3:5:1:3:5:1<br/>3:5:1:3:5:1:3:5:1|[[File:Phoebus 16x16.png|link=]]|16}}``
+
+**Output:** Coloruful image
 
 df_raw
 ------
@@ -32,7 +86,6 @@ Parameters:
 - The string to be returned if the specified entity could not be located.
 
 Example: {{#df_raw:DF2012:creature_standard.txt|CREATURE|DWARF|Not found!}}
-
 
 df_tag
 ------
@@ -239,29 +292,4 @@ data. Intended for usage with df_foreachtag, df_foreachtoken, and
 df_makelist.
 
 Usage: {{#eval:data}}
-
-df_type
-----
-usage: {{#df_type:data|object|requirement|type|number|description}}
-
-Finds any object with filled requirement. Returns type.
-Number could be:
-	"-1"		returns the very last input with fulfilled requirements and Type
-	""			returns whole list of Types, numbered and comma separated
-	"N"			returns reaction number N, no formatting
-	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
-	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
-	
-Input:  {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
-Output: 
-
-df_keybind
-----
-Makes readable keybind raws. from "CUSTOM_SHIFT_ALT_CTRL_S".
-
-Input:  {{#df_keybind:CUSTOM_SHIFT_ALT_CTRL_S}}
-Output: Alt+Ctrl+S
-
-df_tile
-----
 
