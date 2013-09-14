@@ -677,7 +677,7 @@ class DFRawFunctions
 	
 	
 	
-	// Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
+	// Makes "Alt+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
 	public static function getKeybind (&$parser, $text='', $replace="$1", $join='-') {
 		$keys = explode("_", $text);
 		$tmp = $keys[count($keys)-1];

@@ -257,11 +257,25 @@ Output:
 
 df_keybind
 ----
-Makes readable keybind raws. from "CUSTOM_SHIFT_ALT_CTRL_S".
+Parses a raw keybinding string into a readable result.
 
-Input:  {{#df_keybind:CUSTOM_SHIFT_ALT_CTRL_S}}
-Output: Alt+Ctrl+S
+Usage: {{#df_keybind:string|display_text|separator}}
+Parameters:
+* string
+- The raw keybinding string
+* display_text (Optional, default: $1)
+- The text to be displayed for each key. $1 or \1 will be replaced by the key's
+value.
+* seperator (Optional, default: -)
+- The text displayed between each key
+
+Example::
+
+{{#df_keybind:SHIFT_ALT_E|[$1]|+}}
+
+gives::
+
+[ALT]+[E]
 
 df_tile
 ----
-
