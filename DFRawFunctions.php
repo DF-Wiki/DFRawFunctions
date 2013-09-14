@@ -79,8 +79,8 @@ function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
 	$magicWords['delay']		= array(0, 'delay');
 	$magicWords['eval']		= array(0, 'eval');
 	$magicWords['df_type']		= array(0, 'df_type');
-	$magicWords['df_keybind']	= array(0, 'df_keybind');
-	$magicWords['df_building']	= array(0, 'df_building');
+	$magicWords['df_keybind']		= array(0, 'df_keybind');
+	$magicWords['df_building']		= array(0, 'df_building');
 	$magicWords['df_item']		= array(0, 'df_item');
 	$magicWords['df_tile']		= array(0, 'df_tile');
 	return true;
