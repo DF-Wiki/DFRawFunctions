@@ -55,7 +55,7 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
 	$parser->setFunctionHook('df_type',		'DFRawFunctions::getType');
-	$parser->setFunctionHook('df_keybind',		'DFRawFunxctions::getKeybind');
+	$parser->setFunctionHook('df_keybind',		'DFRawFunctions::getKeybind');
 	$parser->setFunctionHook('df_building',		'DFRawFunctions::getBuilding');
 	$parser->setFunctionHook('df_item',		'DFRawFunctions::getItem');
 	$parser->setFunctionHook('df_tile',		'DFRawFunctions::colorTile');

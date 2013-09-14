@@ -673,23 +673,33 @@ class DFRawFunctions
 			return "'''".($Number).". ". $tmp[$Number] ."''' || " .$description;
 		//otherwise
 		return $tmp[$Number];
-					
-	}			
+	}
 	
 	
 	
-	// Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
-	public static function getKeybind (&$parser, $custom=''){
-		$custom=explode("_",$custom); $tmp=$custom[count($custom)-1]; $custom[count($custom)-1]='CUSTOM';
-		if (array_diff($custom, array("CUSTOM", "ALT", "SHIFT", "CTRL", "NONE"))!=FALSE){return'<span style="color:#ff0000">Error, check input values for getKeybind</span>';}
-		if (in_array("SHIFT",$custom)===FALSE)
+	// Makes "Alt+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S".
+	public static function getKeybind (&$parser, $text='', $replace="$1", $join='-') {
+		$keys = explode("_", $text);
+		$tmp = $keys[count($keys)-1];
+		$keys[count($keys)-1] = 'CUSTOM';
+		$invalid = array_diff($keys, array("CUSTOM", "ALT", "SHIFT", "CTRL", "NONE"));
+		if ($invalid != FALSE) {
+			$invalid = implode(', ', $invalid);
+			return "<span class=\"error\">Unrecognized keybinding values: $invalid</span>";
+		}
+		if (in_array("NONE", $keys))
+			return '';
+		if (in_array("SHIFT", $keys) === FALSE)
 			$tmp=(strtolower($tmp));
-		if (in_array("ALT",$custom))
-			$tmp="Alt+". $tmp;
-		if (in_array("CTRL",$custom))
-			$tmp="Ctrl+". $tmp;
-		if (in_array("NONE",$custom))
-			$tmp='';
+		if (in_array("ALT", $keys))
+			$tmp="Alt-{$tmp}";
+		if (in_array("CTRL", $keys))
+			$tmp="Ctrl-{$tmp}";
+		$parts = explode('-', $tmp);
+		foreach ($parts as $key => $part) {
+			$parts[$key] = preg_replace('/(.+)/', $replace, $part);
+		}
+		$tmp = implode($join, $parts);
 		return $tmp;
 	}
 	

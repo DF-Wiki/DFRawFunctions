@@ -13,32 +13,59 @@ Fortress raws.
 
 df_type
 ----
-usage: {{#df_type:DATA|OBJECT|REQUIREMENT|TYPE|NUMBER|DESCRIPTION}}
+Usage: ``{{#df_type:DATA|OBJECT|REQUIREMENT|TYPE|NUMBER|DESCRIPTION}}``
 
 Finds any object with filled requirement. Returns type.
 Number could be:
-*		returns whole list of Types, numbered and comma separated
-* -1		кeturns the very last input with fulfilled requirements and Type	
-* N		returns reaction number N, no formatting
-* N:FORMAT"	returns reaction number N, wiki table formatting and Description
-* N:CHECK	checks if Nth Type is the last one, returns error if it's not.
+
+* *(blank)*	
+  - returns whole list of types, numbered and comma separated
+* ``-1``
+  - returns the very last input with fulfilled requirements and type	
+* ``N``
+  - returns reaction number N, no formatting
+* ``N:FORMAT``
+  - returns reaction number N, wiki table formatting and description
+* ``N:CHECK``
+  - checks if Nth Type is the last one, returns error if it's not.
 
 	
-Input:  {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
-Output: 
+Example::
+
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
+
+Output::
+
+'''1. make bone studs(2) from vermin''' || [[Vermin]] in not useless.
 
 df_keybind
 ----
-Makes readable keybind raws. from "CUSTOM_SHIFT_ALT_CTRL_S".
+Parses a raw keybinding string into a readable result.
 
-Input:  {{#df_keybind:CUSTOM_SHIFT_ALT_CTRL_S}}
-Output: Alt+Ctrl+S
+Usage: ``{{#df_keybind:string|display_text|separator}}``
+
+Parameters:
+
+* ``string``
+  - The raw keybinding string
+* ``display_text`` (Optional, default: $1)
+  - The text to be displayed for each key. $1 or \1 will be replaced by the key's value.
+* ``seperator`` (Optional, default: -)
+  - The text displayed between each key
+
+Example::
+
+{{#df_keybind:SHIFT_ALT_E|[$1]|+}}
+
+Output::
+
+[Alt]+[E]
 
 df_building
 ----
 Provides information about workshops and furnaces. 
 
-**Syntax:** ``{{#df_building:DATA|BUILDING|OPTIONS}}``
+Usage: ``{{#df_building:DATA|BUILDING|OPTIONS}}``
 
 * BUILDING - should be either workshop or furnace with syntax as follows:  ``BUILDING_FURNACE:MAGMA_GENERATOR`` or ``NAME:Magma Generator (Dwarf)``.
 * OPTIONS - you have to put ":" between parameters, their position won't matter.
@@ -48,8 +75,11 @@ Provides information about workshops and furnaces.
  * N - where N is 0, 1, 2 specifies building stage (3 by default)
  * BUILD_ITEM - returns build items (not implemented)
 
- :**Input**:``{{#df_building:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|COLOR:3}}``
- :**Output**: Colurful image
+Example::
+
+{{#df_building:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|COLOR:3}}
+
+Output: Colorful image
 
 df_tile
 ----
