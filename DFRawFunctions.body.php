@@ -673,8 +673,7 @@ class DFRawFunctions
 			return "'''".($Number).". ". $tmp[$Number] ."''' || " .$description;
 		//otherwise
 		return $tmp[$Number];
-					
-	}			
+	}
 	
 	
 	
