@@ -13,9 +13,9 @@ Fortress raws.
 
 df_type
 ----
-Usage: ``{{#df_type:DATA|OBJECT|REQUIREMENT|TYPE|NUMBER|DESCRIPTION}}``
+Usage: ``{{#df_type:data|object|requirement|type|number|description}}``
 
-Finds any object with filled requirement. Returns type.
+Finds any object with filled requirement. Take a look at examples for additional info.
 Number could be:
 
 * *(blank)*	
@@ -26,17 +26,35 @@ Number could be:
   - returns reaction number N, no formatting
 * ``N:FORMAT``
   - returns reaction number N, wiki table formatting and description
+* ``CHECK``
+  - return last type number (number of reaction for workshop etc.)
 * ``N:CHECK``
-  - checks if Nth Type is the last one, returns error if it's not.
+  - checks if Nth Type is the last one returns error if it's not, returns nothing if number is correct
+* ``FIRST_ONLY``
+  - returns only first tag after type, if you won't use FIRST_ONLY at example 2, you'll get keybind in par with name
+* ``ORDER``
+  - type will be compared from the beginning, by default - randomly
+* ``DOUBLES``
+  - checks for doubles in reaction, returns nothing if no doubles
 
 	
-Example::
+Example 1::
 
 {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
 
-Output::
+Output 1::
 
 '''1. make bone studs(2) from vermin''' || [[Vermin]] in not useless.
+
+Example 2::
+
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|SKIN_TANNED:REAGENT|BUILDING|CHECK:FIRST_ONLY|}}  
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|SKIN_TANNED:REAGENT|BUILDING|FIRST_ONLY||}}.
+
+Output 2::
+
+'''There is 11 BUILDINGs in total.''' TANNER, LEATHERTRIMMER, SCALECLEANER, CHITINSCRAPPER, SHELLSCULPTOR, ALTAR_GRIBLIN, TRAPSHOP, BONECHIPPER, LEATHERUPHOLSTERY, BOMBARDIER, BREEDING_WARREN.
+
 
 df_keybind
 ----
@@ -65,21 +83,31 @@ df_building
 ----
 Provides information about workshops and furnaces. 
 
-Usage: ``{{#df_building:DATA|BUILDING|OPTIONS}}``
+Usage: ``{{#df_building:data|duilding|options}}``
 
-* BUILDING - should be either workshop or furnace with syntax as follows:  ``BUILDING_FURNACE:MAGMA_GENERATOR`` or ``NAME:Magma Generator (Dwarf)``.
-* OPTIONS - you have to put ":" between parameters, their position won't matter.
- * LOCATION - returnts tiled image, depicting passability and work location (not implemented)
- * TILE - returns tiled image of workshop
- * COLOR - returns tiled and coloured image of workshop
- * N - where N is 0, 1, 2 specifies building stage (3 by default)
- * BUILD_ITEM - returns build items (not implemented)
+* building - should be either workshop or furnace with syntax as follows:  ``BUILDING_FURNACE:MAGMA_GENERATOR`` or ``NAME:Magma Generator (Dwarf)``.
+* options - you have to put ":" between parameters, their position won't matter.
+ * ``LOCATION`` - returnts tiled image, depicting passability and work location (not implemented)
+ * ``TILE`` - returns tiled image of workshop
+ * ``COLOR`` - returns tiled and coloured image of workshop
+ * ``N`` - where N is 0, 1 or 2, specifies building stage (3 by default)
+ * ``BUILD_ITEM`` - returns build items with quantities
 
-Example::
+Example 1::
 
 {{#df_building:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|COLOR:3}}
 
-Output: Colorful image
+Output 1:: 
+
+Colorful image
+
+Example 2::
+
+{{#df_building:Masterwork:building_furnaces_masterwork.txt|BUILDING_FURNACE:GUNSMITH|BUILD_ITEM}}
+
+Output 2:: 
+
+1 science discovery(gunsmith), <b>BMW</b> 4 blocks, <b>A</b> 1 anvil
 
 df_tile
 ----
