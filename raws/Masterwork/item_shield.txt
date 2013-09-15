@@ -9,12 +9,6 @@ item_shield
 [UPSTEP:1]
 [MATERIAL_SIZE:3]
 
-[ITEM_SHIELD:ITEM_SHIELD_SHIELD]
-[NAME:round shield:round shields]
-[ARMORLEVEL:2]
-[BLOCKCHANCE:20]
-[UPSTEP:2]
-[MATERIAL_SIZE:6]YES
 
 [ITEM_SHIELD:ITEM_SHIELD_KITE]
 [NAME:kite shield:kite shields]

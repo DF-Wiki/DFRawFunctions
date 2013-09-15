@@ -1,11 +1,128 @@
-This repository contains extensions and patches used for the Dwarf
-Fortress Wiki.
+#############
+DFRawFunction
+#############
 
-DFRawFunctions
-==============
+============
+Introduction
+============
 
 DFRawFunctions is a MediaWiki extension designed for parsing Dwarf
 Fortress raws.
+
+.. contents::
+
+df_type
+----
+Usage: ``{{#df_type:data|object|requirement|type|number|description}}``
+
+Finds any object with filled requirement. Take a look at examples for additional info.
+Number could be:
+
+* *(blank)*	
+  - returns whole list of types, numbered and comma separated
+* ``-1``
+  - returns the very last input with fulfilled requirements and type	
+* ``N``
+  - returns reaction number N, no formatting
+* ``N:FORMAT``
+  - returns reaction number N, wiki table formatting and description
+* ``CHECK``
+  - return last type number (number of reaction for workshop etc.)
+* ``N:CHECK``
+  - checks if Nth Type is the last one returns error if it's not, returns nothing if number is correct
+* ``FIRST_ONLY``
+  - returns only first tag after type, if you won't use FIRST_ONLY at example 2, you'll get keybind in par with name
+* ``ORDER``
+  - type will be compared from the beginning, by default - randomly
+* ``DOUBLES``
+  - checks for doubles in reaction, returns nothing if no doubles
+
+	
+Example 1::
+
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
+
+Output 1::
+
+'''1. make bone studs(2) from vermin''' || [[Vermin]] in not useless.
+
+Example 2::
+
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|SKIN_TANNED:REAGENT|BUILDING|CHECK:FIRST_ONLY|}}  
+{{#df_type:Masterwork:reaction_kobold.txt|REACTION|SKIN_TANNED:REAGENT|BUILDING|FIRST_ONLY||}}.
+
+Output 2::
+
+'''There is 11 BUILDINGs in total.''' TANNER, LEATHERTRIMMER, SCALECLEANER, CHITINSCRAPPER, SHELLSCULPTOR, ALTAR_GRIBLIN, TRAPSHOP, BONECHIPPER, LEATHERUPHOLSTERY, BOMBARDIER, BREEDING_WARREN.
+
+
+df_keybind
+----
+Parses a raw keybinding string into a readable result.
+
+Usage: ``{{#df_keybind:string|display_text|separator}}``
+
+Parameters:
+
+* ``string``
+  - The raw keybinding string
+* ``display_text`` (Optional, default: $1)
+  - The text to be displayed for each key. $1 or \1 will be replaced by the key's value.
+* ``seperator`` (Optional, default: -)
+  - The text displayed between each key
+
+Example::
+
+{{#df_keybind:SHIFT_ALT_E|[$1]|+}}
+
+Output::
+
+[Alt]+[E]
+
+df_building
+----
+Provides information about workshops and furnaces. 
+
+Usage: ``{{#df_building:data|duilding|options}}``
+
+* building - should be either workshop or furnace with syntax as follows:  ``BUILDING_FURNACE:MAGMA_GENERATOR`` or ``NAME:Magma Generator (Dwarf)``.
+* options - you have to put ":" between parameters, their position won't matter.
+ * ``LOCATION`` - returnts tiled image, depicting passability and work location (not implemented)
+ * ``TILE`` - returns tiled image of workshop
+ * ``COLOR`` - returns tiled and coloured image of workshop
+ * ``N`` - where N is 0, 1 or 2, specifies building stage (3 by default)
+ * ``BUILD_ITEM`` - returns build items with quantities
+
+Example 1::
+
+{{#df_building:Masterwork:building_kobold.txt|BUILDING_WORKSHOP:GONG|COLOR:3}}
+
+Output 1:: 
+
+Colorful image
+
+Example 2::
+
+{{#df_building:Masterwork:building_furnaces_masterwork.txt|BUILDING_FURNACE:GUNSMITH|BUILD_ITEM}}
+
+Output 2:: 
+
+1 science discovery(gunsmith), <b>BMW</b> 4 blocks, <b>A</b> 1 anvil
+
+df_tile
+----
+Makes HTML and wiki supported tiles from ones used in raws. Only TILE is mandatory. Three other values can be omitted.
+
+**Syntax:** ``{{#df_tile:TILE|COLOR|IMAGE|STEP}}``
+
+* TILE is tiles from raws, &lt;br/> should be placed between lines
+* COLOR is same as TILES, but color
+* IMAGE is a wiki styled image link
+* STEP is size of tile in pixels
+
+**Input:**  ``{{#df_tile:43:222:219<br/>33:214:184|3:5:1:3:5:1:3:5:1<br/>3:5:1:3:5:1:3:5:1|[[File:Phoebus 16x16.png|link=]]|16}}``
+
+**Output:** Coloruful image
 
 df_raw
 ------
@@ -27,7 +144,6 @@ Parameters:
 - The string to be returned if the specified entity could not be located.
 
 Example: {{#df_raw:DF2012:creature_standard.txt|CREATURE|DWARF|Not found!}}
-
 
 df_tag
 ------
@@ -234,3 +350,4 @@ data. Intended for usage with df_foreachtag, df_foreachtoken, and
 df_makelist.
 
 Usage: {{#eval:data}}
+

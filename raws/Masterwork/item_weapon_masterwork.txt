@@ -436,17 +436,7 @@ item_weapon_mood
 [ATTACK:BLUNT:10000:4000:bash:bashes:NO_SUB:1250]
 [ATTACK:BLUNT:100:100:prod:prods:end:1000]
 
-[ITEM_WEAPON:ITEM_WEAPON_BOW_COMPOSITE]
-[NAME:composite bow:composite bows]
-[SIZE:500]
-[SKILL:MACE]
-[RANGED:BOW:ARROW]
-[SHOOT_FORCE:4000]
-[SHOOT_MAXVEL:4000]
-[TWO_HANDED:25000]
-[MINIMUM_SIZE:15000]
-[MATERIAL_SIZE:4]
-[ATTACK:BLUNT:10000:4000:bash:bashes:NO_SUB:1250]
+
 
 [ITEM_WEAPON:ITEM_WEAPON_SWORD_CRESCENT]
 [NAME:crescent bladeed sword:crescent bladed swords]
@@ -637,7 +627,7 @@ item_weapon_mood
 [NAME:repeating crossbow:repeating crossbows] the chu ko nu was a chinese repeating crossbow
 [SIZE:400]
 [SKILL:HAMMER]
-[RANGED:CROSSBOW:BLOWDART]
+[RANGED:CROSSBOW:BOLT]
 [SHOOT_FORCE:1000]
 [SHOOT_MAXVEL:1000]
 [TWO_HANDED:47000]
@@ -668,18 +658,6 @@ item_weapon_mood
 [ATTACK:BLUNT:10000:2000:strike:strikes:shaft:1100]
 [ATTACK:BLUNT:200:2000:strike:strikes:blunt end of the shaft:1000]
 
-[ITEM_WEAPON:ITEM_WEAPON_CLOCKWORK]
-[NAME:mechanized crossbow:mechanized crossbows]
-[SIZE:400]
-[SKILL:HAMMER]
-[RANGED:CROSSBOW:BOLT]
-[SHOOT_FORCE:15000]
-[SHOOT_MAXVEL:15000]
-[TWO_HANDED:47000]
-[MINIMUM_SIZE:45000]
-[MATERIAL_SIZE:3]
-[ATTACK:BLUNT:10000:4000:bash:bashes:NO_SUB:1250]
-[ATTACK:EDGE:1000:4000:impale:impales:bayonet:1100]
 
 [ITEM_WEAPON:ITEM_WEAPON_FELLING_AXE]
 [NAME:felling axe:felling axes]
@@ -1336,7 +1314,7 @@ PREFSTRING:alternative function as a backscratcher
 [TWO_HANDED:27500]
 [MINIMUM_SIZE:22500]
 [MATERIAL_SIZE:3]
-[ATTACK:EDGED:10:10:lash:lashes:NO_SUB:2000]
+[ATTACK:EDGE:10:10:lash:lashes:NO_SUB:2000]
 
 
 [ITEM_WEAPON:ITEM_WEAPON_EVIL1]
@@ -1541,3 +1519,23 @@ PREFSTRING:alternative function as a backscratcher
 [ATTACK:EDGE:50:100000:run through:runs through:tip:4100]
 [ATTACK:EDGE:15000:180000:whirl around and slash:whirls around and slashes:long blade:1500]
 [ATTACK:EDGE:20000:220000:whirl around with outsgtretched arms and slash:whirls around with outstretched arms and slashes:long blade:3000]
+
+
+
+
+
+
+[ITEM_WEAPON:ITEM_WEAPON_BOOBY_TRAP]
+[NAME:booby-trap:booby-traps]
+[SIZE:500]
+[SKILL:CROSSBOW]
+[RANGED:CROSSBOW:TOTEM]
+[SHOOT_FORCE:15000]
+[SHOOT_MAXVEL:15000]
+[TWO_HANDED:9999999]
+[MINIMUM_SIZE:9999999]
+[MATERIAL_SIZE:5]
+[ATTACK:BLUNT:10000:4000:bash:bashes:NO_SUB:1250]
+[ATTACK:EDGE:500:4000:stab:stabs:bayonet:1000]
+[ATTACK:EDGE:800:2000:slash:slashes:bayonet:1000]
+
