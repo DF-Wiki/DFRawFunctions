@@ -713,7 +713,7 @@ class DFRawFunctions
 		// Defining variables and input check
 		$tags = array(); $dim = array(); $block = array(); $color = array(); $tile = array(); $j = 0; $i = 0; $type_check = 0; $single_tag=array(); $single_tag_counter=0; $item_counter=-1; $item=array(); $bMagma=FALSE;
 		$tags = self::getTags(self::loadFile($data));  $building=explode(":",$building); 
-		
+		if ($building[0]!="BUILDING_FURNACE" and $building[0]!="BUILDING_WORKSHOP" and $building[0]!="NAME"){return ('<span style="color:#ff0000">Building should be: BUILDING_WORKSHOP:---, BUILDING_FURNACE:---, NAME:--- !</span>');}
 		// $options input check
 		if ($options!="DIM")
 		{
