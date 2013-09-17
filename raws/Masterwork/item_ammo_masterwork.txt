@@ -2,6 +2,12 @@ item_ammo_masterwork
 
 [OBJECT:ITEM]
 
+[ITEM_AMMO:TOTEM]
+[NAME:totem-bomb:totem-bombs] 
+[CLASS:TOTEM]
+[SIZE:250]
+[ATTACK:EDGE:5:5000:strike:strikes:NO_SUB:7500]
+
 
 [ITEM_AMMO:ITEM_AMMO_BULLET_L]
 [NAME:bullet:bullet] 

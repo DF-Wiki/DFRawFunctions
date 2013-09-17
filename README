@@ -234,3 +234,23 @@ data. Intended for usage with df_foreachtag, df_foreachtoken, and
 df_makelist.
 
 Usage: {{#eval:data}}
+
+df_type
+----
+usage: {{#df_type:data|object|requirement|type|number|description}}
+
+Finds any object with filled requirement. Returns type.
+Number could be:
+	"-1"		returns the very last input with fulfilled requirements and Type
+	""			returns whole list of Types, numbered and comma separated
+	"N"			returns reaction number N, no formatting
+	"N:FORMAT" 	returns reaction number N, wiki table formatting and Description
+	"N:CHECK"	checks if Nth Type is the last one, returns error if it's not.
+	
+Example: {{#df_type:Masterwork:reaction_kobold.txt|REACTION|BUILDING:BONEYARD_KOBOLD|NAME|1:FORMAT|[[Vermin]] in not useless.}}
+
+get_keybind
+----
+Makes "Att+Ctrl+S" from "CUSTOM_SHIFT_ALT_CTRL_S". Intended for inside use.
+
+Usage: {{#get_keybind:data}}

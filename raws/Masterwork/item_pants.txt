@@ -33,10 +33,13 @@ item_pants
 [METAL]
 [BARRED]
 [HARD]
+[SCALED]
+[LEATHER]
+[SHAPED]
 
 
 [ITEM_PANTS:ITEM_PANTS_GREAVES_K]
-[NAME:thight guard:thight guards]
+[NAME:thigh guard:thigh guards]
 [ARMORLEVEL:3]
 [LBSTEP:MAX]
 [SHAPED]
@@ -62,6 +65,8 @@ item_pants
 [MATERIAL_SIZE:9]YES
 [METAL]
 [BARRED]
+
+
 
 [ITEM_PANTS:ITEM_PANTS_LOINCLOTH]
 [NAME:loincloth:loincloths]
@@ -143,3 +148,18 @@ item_pants
 [SOFT]
 [LEATHER]
 [STRUCTURAL_ELASTICITY_WOVEN_THREAD]
+
+
+
+[ITEM_PANTS:ITEM_PANTS_GREAVES_ARMOK]
+[NAME:greaves of armok:greaves of armok]
+[ARMORLEVEL:3]
+[LBSTEP:MAX]
+[SHAPED]
+[LAYER:ARMOR]
+[COVERAGE:150]
+[LAYER_SIZE:12]
+[LAYER_PERMIT:49]
+[MATERIAL_SIZE:9]YES
+[METAL]
+[BARRED]

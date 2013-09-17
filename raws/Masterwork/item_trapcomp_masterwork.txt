@@ -4,7 +4,7 @@ item_trapcomp_masterwork
 
 
 [ITEM_TRAPCOMP:ITEM_BATTERING_RAM_UPGRADE_ONE]
-[NAME:ram:rams]
+[NAME:ram:plated rams]
 [ADJECTIVE:plated]
 [SIZE:2000]
 [HITS:1]
@@ -15,7 +15,7 @@ item_trapcomp_masterwork
 [ATTACK:BLUNT:20:200:hammer:hammers:NO_SUB:2000]
 
 [ITEM_TRAPCOMP:ITEM_BATTERING_STAKE_UPGRADE_ONE]
-[NAME:stake:stake]
+[NAME:stake:plated stake]
 [ADJECTIVE:plated]
 [SIZE:2000]
 [HITS:1]
@@ -37,7 +37,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:30:200:scratch:scratches:NO_SUB:1000]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_GIANTAXEBLADE_UPGRADE_ONE]
-[NAME:axe blade:axe blades]
+[NAME:axe blade:spring-loaded axe blades]
 [ADJECTIVE:spring-loaded]
 [SIZE:500]
 [HITS:2]
@@ -48,7 +48,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:40000:6000:slice:slices:NO_SUB:1250]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_SPIKEDBALL_UPGRADE_ONE]
-[NAME:ball:balls]
+[NAME:ball:flanged balls]
 [ADJECTIVE:flanged]
 [SIZE:750]
 [HITS:1]
@@ -60,7 +60,7 @@ item_trapcomp_masterwork
 [ATTACK:BLUNT:100:2000:strike:strikes:NO_SUB:2000]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_LARGESERRATEDDISC_UPGRADE_ONE]
-[NAME:sawblade:sawblades]
+[NAME:sawblade:serrated sawblades]
 [ADJECTIVE:serrated]
 [SIZE:1000]
 [HITS:1]
@@ -71,7 +71,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:60000:8000:cut:cuts:NO_SUB:1250]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_MENACINGSPIKE_UPGRADE_ONE]
-[NAME:spike:spikes]
+[NAME:spike:sharpened spikes]
 [ADJECTIVE:sharpened]
 [SIZE:600]
 [HITS:1]
@@ -90,7 +90,7 @@ item_trapcomp_masterwork
 
 
 [ITEM_TRAPCOMP:ITEM_BATTERING_RAM_UPGRADE_TWO]
-[NAME:ram:rams]
+[NAME:ram:heavily plated rams]
 [ADJECTIVE:heavily plated]
 [SIZE:2000]
 [HITS:1]
@@ -101,7 +101,7 @@ item_trapcomp_masterwork
 [ATTACK:BLUNT:20:200:hammer:hammers:NO_SUB:4000]
 
 [ITEM_TRAPCOMP:ITEM_BATTERING_STAKE_UPGRADE_TWO]
-[NAME:stake:stake]
+[NAME:stake:heavily plated stake]
 [ADJECTIVE:heavily plated]
 [SIZE:2000]
 [HITS:1]
@@ -123,7 +123,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:40:400:scratch:scratches:NO_SUB:1000]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_GIANTAXEBLADE_UPGRADE_TWO]
-[NAME:axe blade:axe blades]
+[NAME:axe blade:mechanized axe blades]
 [ADJECTIVE:mechanized]
 [SIZE:1500]
 [HITS:3]
@@ -134,7 +134,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:40000:6000:slice:slices:NO_SUB:1650]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_SPIKEDBALL_UPGRADE_TWO]
-[NAME:ball:balls]
+[NAME:ball:spiked balls]
 [ADJECTIVE:spiked]
 [SIZE:700]
 [HITS:1]
@@ -146,7 +146,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:50:400:cut:cuts:NO_SUB:2000]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_LARGESERRATEDDISC_UPGRADE_TWO]
-[NAME:sawblade:sawblades]
+[NAME:sawblade:large, serrated sawblades]
 [ADJECTIVE:large, serrated]
 [SIZE:1500]
 [HITS:2]
@@ -157,7 +157,7 @@ item_trapcomp_masterwork
 [ATTACK:EDGE:80000:8000:slice:slices:NO_SUB:1650]
 
 [ITEM_TRAPCOMP:ITEM_TRAPCOMP_MENACINGSPIKE_UPGRADE_TWO]
-[NAME:spike:spikes]
+[NAME:spike:serrated spikes]
 [ADJECTIVE:serrated]
 [SIZE:600]
 [HITS:2]

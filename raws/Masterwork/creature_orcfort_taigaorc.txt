@@ -3,6 +3,7 @@ creature_orcfort_taigaorc
 [OBJECT:CREATURE]
 
 [CREATURE:ORC_TAIGA]
+[CREATURE_CLASS:ORC]
 	
 	[NAME:taiga orc:taiga orcs:taiga-orcish]
 	[CREATURE_TILE:'O'][COLOR:2:0:0]
