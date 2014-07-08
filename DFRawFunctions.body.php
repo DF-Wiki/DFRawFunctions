@@ -51,6 +51,9 @@ class DFRawFunctions
 			return $data;
 		$filename = str_replace(array('/', '\\'), '', $filename);
 
+		// HACK to handle both DF2012 and v0.34 - once the /raw pages for 0.34 have been fixed, this can go away
+		if ($filename == 'DF2012') $filename = 'v0.34';
+
 		$wantfile = $wgDFRawPath .'/'. $filename[0] .'/'. $filename[1];
 
 		if (!is_file($wantfile))
