@@ -396,7 +396,7 @@ class DFRawFunctions
 			case 'COPY_TAGS_FROM':
 				$base_pad = array();
 				// get the base creature, making sure to apply variations as well
-				$basedata = self::getTags(self::cvariation($parser, self::raw($parser, $base, 'CREATURE', $tag[1]), $base), '', $base_pad);
+				$basedata = self::getTags(call_user_func_array(array('DFRawFunctions', 'cvariation'), array_merge(array($parser, self::raw($parser, $base, 'CREATURE', $tag[1]), $base), $variations)), '', $base_pad);
 				// discard the object definition
 				array_shift($basedata);
 				array_shift($base_pad);
