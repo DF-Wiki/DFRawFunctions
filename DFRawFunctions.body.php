@@ -5,7 +5,8 @@ class DFRawFunctions
 	// Takes some raws and returns a 2-dimensional token array
 	// If 2nd parameter is specified, then only tags of the specified type will be returned
 	// Optional 3rd parameter allows specifying an array which will be filled with indentation for each line
-	private static function getTags ($data, $type = '', &$padding = array())
+	// Optional 4th parameter allows specifying substitution parameters (for APPLY_CREATURE_VARIATION)
+	private static function getTags ($data, $type = '', &$padding = array(), $parms = array())
 	{
 		$raws = array();
 		$off = 0;
@@ -23,11 +24,23 @@ class DFRawFunctions
 				$tmp = explode("\n", trim(substr($data, $off, $start - $off), "\r\n"));
 				$pad = end($tmp);
 			}
-			$tag = explode(':', substr($data, $start + 1, $end - $start - 1));
-			if (($type == '') || ($tag[0] == $type))
+			$tags = explode(':', substr($data, $start + 1, $end - $start - 1));
+			if ($parms)
+			{
+				foreach ($tags as &$tag)
+				{
+					if (substr($tag, 0, 4) == '!ARG')
+					{
+						$idx = substr($tag, 4) - 1;
+						if ($idx >= 0 && $idx < count($parms))
+							$tag = $parms[$idx];
+					}
+				}
+			}
+			if (($type == '') || ($tags[0] == $type))
 			{
 				$padding[] = $pad;
-				$raws[] = $tag;
+				$raws[] = $tags;
 			}
 			$off = $end + 1;
 		}
@@ -382,7 +395,8 @@ class DFRawFunctions
 			{
 			case 'COPY_TAGS_FROM':
 				$base_pad = array();
-				$basedata = self::getTags(self::raw($parser, $base, 'CREATURE', $tag[1]), '', $base_pad);
+				// get the base creature, making sure to apply variations as well
+				$basedata = self::getTags(self::cvariation($parser, self::raw($parser, $base, 'CREATURE', $tag[1]), $base), '', $base_pad);
 				// discard the object definition
 				array_shift($basedata);
 				array_shift($base_pad);
@@ -391,7 +405,7 @@ class DFRawFunctions
 				break;
 			case 'APPLY_CREATURE_VARIATION':
 				// if any CV_* tags were entered already, append this to them
-				$vardata = array_merge($vardata, self::getTags(self::raw_mult($parser, $variations, 'CREATURE_VARIATION', $tag[1]), '', $var_pad));
+				$vardata = array_merge($vardata, self::getTags(self::raw_mult($parser, $variations, 'CREATURE_VARIATION', $tag[1]), '', $var_pad, array_slice($tag, 2)));
 			case 'APPLY_CURRENT_CREATURE_VARIATION':
 				// parse the creature variation and apply it to the output so far
 				foreach ($vardata as $y => $vartag)
