@@ -26,7 +26,7 @@ Parameters:
 * notfound
 - The string to be returned if the specified entity could not be located.
 
-Example: {{#df_raw:DF2012:creature_standard.txt|CREATURE|DWARF|Not found!}}
+Example: {{#df_raw:DF2014:creature_standard.txt|CREATURE|DWARF|Not found!}}
 
 
 df_tag
@@ -207,10 +207,10 @@ Parameters:
   filenames (of the format "namespace:raw_file.txt") or their contents.
 
 Example: {{#df_cvariation:
-           {{#df_raw:DF2012:creature_large_temperate.txt|
+           {{#df_raw:DF2014:creature_large_temperate.txt|
              CREATURE|BADGER, GIANT}}|
-           DF2012:creature_large_temperate.txt|
-           DF2012:cvariation_default.txt}}
+           DF2014:creature_large_temperate.txt|
+           DF2014:cvariation_default.txt}}
 
 
 mreplace
