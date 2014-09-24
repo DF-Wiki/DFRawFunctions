@@ -189,6 +189,7 @@ hardcoded_materials
 	[BOILING_POINT:10180]
 	[SOLID_DENSITY:920]
 	[LIQUID_DENSITY:1000]
+	[EVAPORATES]
 
 [MATERIAL:COAL] - reconstructed from data extracted from memory
 	[STATE_COLOR:ALL:BLACK]
