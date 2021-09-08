@@ -188,7 +188,7 @@ Parameters:
 - The state type whose name should be returned. Valid values are SOLID,
   POWDER, PASTE, PRESSED, LIQUID, and GAS.
 
-Example: {{#df_statedesc:[stone raw]|NAME|SPOLID}}
+Example: {{#df_statedesc:[stone raw]|NAME|SOLID}}
 
 
 df_cvariation
