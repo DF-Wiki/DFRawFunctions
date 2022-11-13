@@ -37,7 +37,8 @@ $wgExtensionCredits['parserhook'][] = array(
 $wgAutoloadClasses['DFRawFunctions'] = dirname(__FILE__) . '/DFRawFunctions.body.php';
 
 $wgHooks['ParserFirstCallInit'][] = 'efDFRawFunctions_Initialize';
-$wgHooks['LanguageGetMagic'][] = 'efDFRawFunctions_RegisterMagicWords';
+
+$wgExtensionMessagesFiles['DFRawFunctions'] = dirname(__FILE__) . '/DFRawFunctions.i18n.magic.php';
 
 function efDFRawFunctions_Initialize (&$parser)
 {
@@ -53,22 +54,5 @@ function efDFRawFunctions_Initialize (&$parser)
 	$parser->setFunctionHook('mreplace',		'DFRawFunctions::mreplace');
 	$parser->setFunctionHook('delay',		'DFRawFunctions::delay');
 	$parser->setFunctionHook('eval',		'DFRawFunctions::evaluate');
-	return true;
-}
-
-function efDFRawFunctions_RegisterMagicWords (&$magicWords, $langCode)
-{
-	$magicWords['df_raw']		= array(0, 'df_raw');
-	$magicWords['df_tag']		= array(0, 'df_tag');
-	$magicWords['df_tagentry']	= array(0, 'df_tagentry');
-	$magicWords['df_tagvalue']	= array(0, 'df_tagvalue');
-	$magicWords['df_foreachtag']	= array(0, 'df_foreachtag');
-	$magicWords['df_foreachtoken']	= array(0, 'df_foreachtoken');
-	$magicWords['df_makelist']	= array(0, 'df_makelist');
-	$magicWords['df_statedesc']	= array(0, 'df_statedesc');
-	$magicWords['df_cvariation']	= array(0, 'df_cvariation');
-	$magicWords['mreplace']		= array(0, 'mreplace');
-	$magicWords['delay']		= array(0, 'delay');
-	$magicWords['eval']		= array(0, 'eval');
 	return true;
 }
