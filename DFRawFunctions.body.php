@@ -1,7 +1,34 @@
 <?php
+/*
+ * DFRawFunctions extension by Quietust
+ * Dwarf Fortress Raw parser functions
+ */
+
+if (!defined('MEDIAWIKI'))
+{
+	echo "This file is an extension of the MediaWiki software and cannot be used standalone\n";
+	die(1);
+}
 
 class DFRawFunctions
 {
+
+  public static function efDFRawFunctions_Initialize (Parser $parser)
+	{
+		$parser->setFunctionHook('df_raw',		[ self::class, 'raw']);
+		$parser->setFunctionHook('df_tag',		[ self::class, 'tag']);
+		$parser->setFunctionHook('df_tagentry',		[ self::class, 'tagentry']);
+		$parser->setFunctionHook('df_tagvalue',		[ self::class, 'tagvalue']);
+		$parser->setFunctionHook('df_foreachtag',	[ self::class, 'foreachtag']);
+		$parser->setFunctionHook('df_foreachtoken',	[ self::class, 'foreachtoken']);
+		$parser->setFunctionHook('df_makelist',		[ self::class, 'makelist']);
+		$parser->setFunctionHook('df_statedesc',	[ self::class, 'statedesc']);
+		$parser->setFunctionHook('df_cvariation',	[ self::class, 'cvariation']);
+		$parser->setFunctionHook('mreplace',		[ self::class, 'mreplace']);
+		$parser->setFunctionHook('delay',		[ self::class, 'delay']);
+		$parser->setFunctionHook('eval',		[ self::class, 'evaluate']);
+		return true;
+	}
 	// Takes some raws and returns a 2-dimensional token array
 	// If 2nd parameter is specified, then only tags of the specified type will be returned
 	// Optional 3rd parameter allows specifying an array which will be filled with indentation for each line
@@ -56,18 +83,28 @@ class DFRawFunctions
 			return $data;
 
 		global $wgDFRawPath;
+		if ($wgDFRawPath == "")
+		  $wgDFRawPath = __DIR__ . '/raws';
 		if (!is_dir($wgDFRawPath))
-			return $data;
+			return __DIR__ . $data;
 
-		$filename = explode(':', $data, 2);
-		if (count($filename) != 2)
-			return $data;
-		$filename = str_replace(array('/', '\\'), '', $filename);
+    global $wgDFRawVersion;
+    $version_name = explode(':', $data, 2);
+		if ( count($version_name) == 2 and $version_name[0] != "") {
+			$version_name = str_replace(array('/', '\\'), '', $version_name);
+			$raw_version = $version_name[0];
+			$file_name = $version_name[1];
 
-		// HACK to handle both DF2012 and v0.34 - once the /raw pages for 0.34 have been fixed, this can go away
-		if ($filename[0] == 'DF2012') $filename[0] = 'v0.34';
+			if ($raw_version == 'DF2012') $raw_version = 'v0.34'; // HACK to handle both DF2012 and v0.34 - once the /raw pages for 0.34 have been fixed, this can go away
+		} else {
+			if ( $wgDFRawVersion == "" )
+				return $data;
 
-		$wantfile = $wgDFRawPath .'/'. $filename[0] .'/'. $filename[1];
+			$raw_version = $wgDFRawVersion;
+			$file_name = str_replace(array('/', '\\', ":"), '', $data);
+		}
+
+		$wantfile = $wgDFRawPath .'/'. $raw_version .'/'. $file_name;
 
 		if (!is_file($wantfile))
 			return $data;
@@ -281,12 +318,12 @@ class DFRawFunctions
 					$val = self::statedesc($parser, substr($data, $start, $end - $start), $getoffset, $checkoffset);
 					$rep_out[$i] = $val;
 					continue;
-				} 
+				}
 				foreach ($tags as $tag)
 				{
 					if (($tag[0] != $gettype) || ($getoffset >= count($tag)))
 						continue;
-					if (($checkoffset < 0) || (($checkoffset < count($tag)) && ($tag[$checkoffset] == $checkval)))  
+					if (($checkoffset < 0) || (($checkoffset < count($tag)) && ($tag[$checkoffset] == $checkval)))
 					{
 						$rep_out[$i] = $tag[$getoffset];
 						break;
