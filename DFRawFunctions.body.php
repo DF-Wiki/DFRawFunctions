@@ -13,7 +13,7 @@ if (!defined('MEDIAWIKI'))
 class DFRawFunctions
 {
 
-  public static function efDFRawFunctions_Initialize (Parser $parser)
+	public static function efDFRawFunctions_Initialize (Parser $parser)
 	{
 		$parser->setFunctionHook('df_raw',		[ self::class, 'raw']);
 		$parser->setFunctionHook('df_tag',		[ self::class, 'tag']);
@@ -84,12 +84,12 @@ class DFRawFunctions
 
 		global $wgDFRawPath;
 		if ($wgDFRawPath == "")
-		  $wgDFRawPath = __DIR__ . '/raws';
+			$wgDFRawPath = __DIR__ . '/raws';
 		if (!is_dir($wgDFRawPath))
-			return __DIR__ . $data;
+			return $data;
 
-    global $wgDFRawVersion;
-    $version_name = explode(':', $data, 2);
+		global $wgDFRawVersion;
+		$version_name = explode(':', $data, 2);
 		if ( count($version_name) == 2 and $version_name[0] != "") {
 			$version_name = str_replace(array('/', '\\'), '', $version_name);
 			$raw_version = $version_name[0];
