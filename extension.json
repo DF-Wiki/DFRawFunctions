@@ -19,13 +19,16 @@
 	},
 	"config": {
 		"DFRawEnableDisk": {
-			"value": false
+			"value": false,
+			"description": "Enables reading files from disk"
 		},
 		"DFRawPath": {
-			"value": ""
+			"value": "",
+			"description": "Absolute path to raws directory, when empty use 'raws' directory in extension catalog"
 		},
 		"DFRawVersion": {
-			"value": ""
+			"value": "",
+			"description": "Version of raw files that will be used when version prefix before filename non defined or empty, for example ':entity_default.txt'"
 		}
 	},
 	"manifest_version": 2
