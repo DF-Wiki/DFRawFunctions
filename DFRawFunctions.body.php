@@ -83,8 +83,6 @@ class DFRawFunctions
 			return $data;
 
 		global $wgDFRawPath;
-		if ($wgDFRawPath == "")
-			$wgDFRawPath = __DIR__ . '/raws';
 		if (!is_dir($wgDFRawPath))
 			return $data;
 
