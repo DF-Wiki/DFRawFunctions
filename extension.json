@@ -23,8 +23,9 @@
 			"description": "Enables reading files from disk"
 		},
 		"DFRawPath": {
-			"value": "",
-			"description": "Absolute path to raws directory, when empty use 'raws' directory in extension catalog"
+			"value": "raws",
+			"path": true,
+			"description": "Relative path to raws directory"
 		},
 		"DFRawVersion": {
 			"value": "",
