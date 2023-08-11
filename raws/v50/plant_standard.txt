@@ -1887,9 +1887,7 @@ Uristocrat did the density values.
 		[GROWTH_HOST_TILE:SAPLING]
 		[GROWTH_TIMING:0:300000]
 		[GROWTH_PRINT:0:'*':2:0:0:0:209999:1]
-		[GROWTH_PRINT:0:'*':6:0:1:210000:239999:1] deciduous conifer, needles probably shouldn't turn red though
-		[GROWTH_PRINT:0:'*':4:0:1:240000:269999:1]
-		[GROWTH_PRINT:0:'*':4:0:0:270000:300000:1]
+		[GROWTH_PRINT:0:'*':6:0:1:210000:300000:1] only turns yellow
 		[GROWTH_DROPS_OFF]
 	[GROWTH:SEED_CONE]
 		[GROWTH_NAME:larch seed cone:STP]

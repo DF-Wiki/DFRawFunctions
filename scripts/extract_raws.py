@@ -46,4 +46,7 @@ os.mkdir(args.output_dir)
 
 for out_filename, in_filepath in raw_files.items():
     with zf.open(in_filepath) as in_file, open(os.path.join(args.output_dir, out_filename), 'wb') as out_file:
-        shutil.copyfileobj(in_file, out_file)
+        contents = in_file.read()
+        # Convert to UTF-8 to fix Moose raws and language files. The parser functions can't handle CP437.
+        contents = contents.decode('cp437').encode('utf8')
+        out_file.write(contents)
