@@ -138,8 +138,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:carambola wood]
 		[STATE_ADJ:ALL_SOLID:carambola wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:550] *** http://eol.org/pages/483574/overview
-		[STATE_COLOR:ALL_SOLID:FLAX] *** surprisingly hard to find pictures
+	 	[SOLID_DENSITY:550] *** http://eol.org/pages/483574/overview
+	 	[STATE_COLOR:ALL_SOLID:FLAX] *** surprisingly hard to find pictures
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen carambola wine]
 		[STATE_NAME_ADJ:LIQUID:carambola wine]
@@ -218,8 +218,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:cashew wood]
 		[STATE_ADJ:ALL_SOLID:cashew wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:450] http://eol.org/pages/582263/data
-		[STATE_COLOR:ALL_SOLID:DARK_CHESTNUT]
+	 	[SOLID_DENSITY:450] http://eol.org/pages/582263/data
+	 	[STATE_COLOR:ALL_SOLID:DARK_CHESTNUT] 
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -287,8 +287,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:coffee wood]
 		[STATE_ADJ:ALL_SOLID:coffee wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:620] http://eol.org/pages/1109554/overview
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:620] http://eol.org/pages/1109554/overview
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -355,8 +355,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:durian wood]
 		[STATE_ADJ:ALL_SOLID:durian wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:520] http://eol.org/pages/483665/overview
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:520] http://eol.org/pages/483665/overview
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen durian wine]
 		[STATE_NAME_ADJ:LIQUID:durian wine]
@@ -436,8 +436,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:guava wood]
 		[STATE_ADJ:ALL_SOLID:guava wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:610] http://eol.org/pages/2508593/overview
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:610] http://eol.org/pages/2508593/overview
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen guava wine]
 		[STATE_NAME_ADJ:LIQUID:guava wine]
@@ -516,8 +516,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:papaya wood]
 		[STATE_ADJ:ALL_SOLID:papaya wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:130] Was looking on http://eol.org/pages/2508593/overview - PAPAYA TREES DONT HAVE WOOD - THEY HAVE A STEM
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE]
+	 	[SOLID_DENSITY:130] Was looking on http://eol.org/pages/2508593/overview - PAPAYA TREES DONT HAVE WOOD - THEY HAVE A STEM
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] 
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen papaya wine]
 		[STATE_NAME_ADJ:LIQUID:papaya wine]
@@ -595,8 +595,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:paradise nut wood]
 		[STATE_ADJ:ALL_SOLID:paradise nut wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:820] http://eol.org/pages/321257/overview
-		[STATE_COLOR:ALL_SOLID:LIGHT_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:820] http://eol.org/pages/321257/overview
+	 	[STATE_COLOR:ALL_SOLID:LIGHT_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -663,8 +663,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:rambutan wood]
 		[STATE_ADJ:ALL_SOLID:rambutan wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:620] http://eol.org/pages/595297/overview
-		[STATE_COLOR:ALL_SOLID:BRONZE] *** not yet searched
+	 	[SOLID_DENSITY:620] http://eol.org/pages/595297/overview
+	 	[STATE_COLOR:ALL_SOLID:BRONZE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen rambutan wine]
 		[STATE_NAME_ADJ:LIQUID:rambutan wine]
@@ -744,8 +744,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:tea wood]
 		[STATE_ADJ:ALL_SOLID:tea wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:560] ESTIMATED - https://www.researchgate.net/figure/291818249_fig2_Fig-2-Parameter-estimates-a-crown-area-wood-density-branch-count-height-and-b
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:560] ESTIMATED - https://www.researchgate.net/figure/291818249_fig2_Fig-2-Parameter-estimates-a-crown-area-wood-density-branch-count-height-and-b
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:SEA_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -809,8 +809,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:avocado wood]
 		[STATE_ADJ:ALL_SOLID:avocado wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:540] riudg.udg.mx/handle/123456789/44762 Summary on Google page
-		[STATE_COLOR:ALL_SOLID:CHESTNUT] *** not yet searched
+	 	[SOLID_DENSITY:540] riudg.udg.mx/handle/123456789/44762 Summary on Google page
+	 	[STATE_COLOR:ALL_SOLID:CHESTNUT] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -877,8 +877,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:lime wood]
 		[STATE_ADJ:ALL_SOLID:lime wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -945,8 +945,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:pomelo wood]
 		[STATE_ADJ:ALL_SOLID:pomelo wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:ASH_GRAY] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:ASH_GRAY] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -1013,8 +1013,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:citron wood]
 		[STATE_ADJ:ALL_SOLID:citron wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:700] http://eol.org/pages/582203/overview
-		[STATE_COLOR:ALL_SOLID:ASH_GRAY] *** not yet searched
+	 	[SOLID_DENSITY:700] http://eol.org/pages/582203/overview
+	 	[STATE_COLOR:ALL_SOLID:ASH_GRAY] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:SEA_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1081,8 +1081,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:orange wood]
 		[STATE_ADJ:ALL_SOLID:orange wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:BURNT_SIENNA] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:BURNT_SIENNA] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1149,8 +1149,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:bitter orange wood]
 		[STATE_ADJ:ALL_SOLID:bitter orange wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:SEA_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1217,8 +1217,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:finger lime wood]
 		[STATE_ADJ:ALL_SOLID:finger lime wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -1285,8 +1285,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:round lime wood]
 		[STATE_ADJ:ALL_SOLID:round lime wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1353,8 +1353,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:desert lime wood]
 		[STATE_ADJ:ALL_SOLID:desert lime wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:SEA_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1421,8 +1421,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:kumquat wood]
 		[STATE_ADJ:ALL_SOLID:kumquat wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:590] http://www.fao.org/docrep/w4095e/w4095e0c.htm Did Citrus grandis wood density - same genus but couldn't find any for Citrus aurantifolia
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1489,8 +1489,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:custard-apple wood]
 		[STATE_ADJ:ALL_SOLID:custard-apple wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:360] http://eol.org/pages/1054863/overview Annona muricata , same genus
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:360] http://eol.org/pages/1054863/overview Annona muricata , same genus
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen custard-apple cider]
 		[STATE_NAME_ADJ:LIQUID:custard-apple cider]
@@ -1571,8 +1571,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:date palm wood]
 		[STATE_ADJ:ALL_SOLID:date palm wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:820] http://www.wood-database.com/red-palm/
-		[STATE_COLOR:ALL_SOLID:BURNT_SIENNA] *** not yet searched
+	 	[SOLID_DENSITY:820] http://www.wood-database.com/red-palm/
+	 	[STATE_COLOR:ALL_SOLID:BURNT_SIENNA] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen date wine]
 		[STATE_NAME_ADJ:LIQUID:date wine]
@@ -1656,8 +1656,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:lychee wood]
 		[STATE_ADJ:ALL_SOLID:lychee wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:880] http://www.fao.org/docrep/w4095e/w4095e0c.htm
-		[STATE_COLOR:ALL_SOLID:TAUPE_SANDY] *** not yet searched
+	 	[SOLID_DENSITY:880] http://www.fao.org/docrep/w4095e/w4095e0c.htm
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_SANDY] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen lychee wine]
 		[STATE_NAME_ADJ:LIQUID:lychee wine]
@@ -1736,8 +1736,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:macadamia wood]
 		[STATE_ADJ:ALL_SOLID:macadamia wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:705] http://www.wood-database.com/macadamia-nut/
-		[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:705] http://www.wood-database.com/macadamia-nut/
+	 	[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -1813,8 +1813,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:olive wood]
 		[STATE_ADJ:ALL_SOLID:olive wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:990] http://www.wood-database.com/olive/
-		[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:990] http://www.wood-database.com/olive/
+	 	[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -1886,8 +1886,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:pomegranate wood]
 		[STATE_ADJ:ALL_SOLID:pomegranate wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:770] http://eol.org/pages/582971/overview
-		[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
+	 	[SOLID_DENSITY:770] http://eol.org/pages/582971/overview
+	 	[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen pomegranate wine]
 		[STATE_NAME_ADJ:LIQUID:pomegranate wine]
@@ -1971,8 +1971,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:almond wood]
 		[STATE_ADJ:ALL_SOLID:almond wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:795] Can't find sources for almond, going for plum which is in same genus http://www.wood-database.com/plum/
-		[STATE_COLOR:ALL_SOLID:COPPER] *** not yet searched
+	 	[SOLID_DENSITY:795] Can't find sources for almond, going for plum which is in same genus http://www.wood-database.com/plum/
+	 	[STATE_COLOR:ALL_SOLID:COPPER] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -2040,8 +2040,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:apple wood]
 		[STATE_ADJ:ALL_SOLID:apple wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:745] *** http://www.csudh.edu/oliver/chemdata/woods.htm
-		[STATE_COLOR:ALL_SOLID:CHOCOLATE] *** http://www.forestryforum.com/board/index.php/topic,61009.0.html
+	 	[SOLID_DENSITY:745] *** http://www.csudh.edu/oliver/chemdata/woods.htm
+	 	[STATE_COLOR:ALL_SOLID:CHOCOLATE] *** http://www.forestryforum.com/board/index.php/topic,61009.0.html
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen apple cider]
 		[STATE_NAME_ADJ:LIQUID:apple cider]
@@ -2125,8 +2125,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:apricot wood]
 		[STATE_ADJ:ALL_SOLID:apricot wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:745] http://www.wood-database.com/apricot/
-		[STATE_COLOR:ALL_SOLID:LIGHT_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:745] http://www.wood-database.com/apricot/
+	 	[STATE_COLOR:ALL_SOLID:LIGHT_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen apricot wine]
 		[STATE_NAME_ADJ:LIQUID:apricot wine]
@@ -2210,8 +2210,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:bayberry wood]
 		[STATE_ADJ:ALL_SOLID:bayberry wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:700] Has bayberry in name, close enough http://eol.org/pages/2872256/overview
-		[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:700] Has bayberry in name, close enough http://eol.org/pages/2872256/overview
+	 	[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen bayberry wine]
 		[STATE_NAME_ADJ:LIQUID:bayberry wine]
@@ -2296,8 +2296,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:cherry wood]
 		[STATE_ADJ:ALL_SOLID:cherry wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:425] *** varies by type -- I couldn't find the data for prunus avium, I'm approximating it to prunus pennsilvanica (wild red cherry) http://www.csudh.edu/oliver/chemdata/woods.htm
-		[STATE_COLOR:ALL_SOLID:GOLD] *** approximated to black american cherry https://www.woodworkerssource.com/shop/category/Cherry.html
+	 	[SOLID_DENSITY:425] *** varies by type -- I couldn't find the data for prunus avium, I'm approximating it to prunus pennsilvanica (wild red cherry) http://www.csudh.edu/oliver/chemdata/woods.htm
+	 	[STATE_COLOR:ALL_SOLID:GOLD] *** approximated to black american cherry https://www.woodworkerssource.com/shop/category/Cherry.html
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen cherry wine]
 		[STATE_NAME_ADJ:LIQUID:cherry wine]
@@ -2383,8 +2383,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:ginkgo wood]
 		[STATE_ADJ:ALL_SOLID:ginkgo wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:450] http://eol.org/pages/1156278/overview
-		[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
+	 	[SOLID_DENSITY:450] http://eol.org/pages/1156278/overview
+	 	[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:YELLOW_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -2448,8 +2448,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:hazel wood]
 		[STATE_ADJ:ALL_SOLID:hazel wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:580] Not reliable but screw it http://paleoplanet69529.yuku.com/topic/62050#.WYnsMdGQzIU
-		[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
+	 	[SOLID_DENSITY:580] Not reliable but screw it http://paleoplanet69529.yuku.com/topic/62050#.WYnsMdGQzIU
+	 	[STATE_COLOR:ALL_SOLID:TAUPE_PALE] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:EMERALD]
 		[DISPLAY_COLOR:2:0:0]
@@ -2514,8 +2514,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:peach wood]
 		[STATE_ADJ:ALL_SOLID:peach wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:795] Same genus http://www.wood-database.com/plum/
-		[STATE_COLOR:ALL_SOLID:DARK_TAN] *** not yet searched
+	 	[SOLID_DENSITY:795] Same genus http://www.wood-database.com/plum/
+	 	[STATE_COLOR:ALL_SOLID:DARK_TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen peach cider]
 		[STATE_NAME_ADJ:LIQUID:peach cider]
@@ -2599,8 +2599,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:pear wood]
 		[STATE_ADJ:ALL_SOLID:pear wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:600] *** not yet searched
-		[STATE_COLOR:ALL_SOLID:BUFF] *** not yet searched
+	 	[SOLID_DENSITY:600] *** not yet searched
+	 	[STATE_COLOR:ALL_SOLID:BUFF] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen perry]
 		[STATE_NAME_ADJ:LIQUID:perry]
@@ -2684,8 +2684,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:pecan wood]
 		[STATE_ADJ:ALL_SOLID:pecan wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:735] http://www.wood-database.com/pecan/
-		[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
+	 	[SOLID_DENSITY:735] http://www.wood-database.com/pecan/
+	 	[STATE_COLOR:ALL_SOLID:PEACH] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:FERN_GREEN]
 		[DISPLAY_COLOR:2:0:0]
@@ -2750,8 +2750,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:persimmon wood]
 		[STATE_ADJ:ALL_SOLID:persimmon wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:835] http://www.wood-database.com/persimmon/
-		[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
+	 	[SOLID_DENSITY:835] http://www.wood-database.com/persimmon/
+	 	[STATE_COLOR:ALL_SOLID:TAN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen persimmon wine]
 		[STATE_NAME_ADJ:LIQUID:persimmon wine]
@@ -2835,8 +2835,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:plum wood]
 		[STATE_ADJ:ALL_SOLID:plum wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:795] http://www.wood-database.com/plum/
-		[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
+	 	[SOLID_DENSITY:795] http://www.wood-database.com/plum/
+	 	[STATE_COLOR:ALL_SOLID:PALE_BROWN] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen plum wine]
 		[STATE_NAME_ADJ:LIQUID:plum wine]
@@ -2920,8 +2920,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:sand pear wood]
 		[STATE_ADJ:ALL_SOLID:sand pear wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:690] http://www.wood-database.com/pear/
-		[STATE_COLOR:ALL_SOLID:BUFF] *** not yet searched
+	 	[SOLID_DENSITY:690] http://www.wood-database.com/pear/
+	 	[STATE_COLOR:ALL_SOLID:BUFF] *** not yet searched
 	[USE_MATERIAL_TEMPLATE:DRINK:PLANT_ALCOHOL_TEMPLATE]
 		[STATE_NAME_ADJ:ALL_SOLID:frozen sand pear cider]
 		[STATE_NAME_ADJ:LIQUID:sand pear cider]
@@ -3005,8 +3005,8 @@ Rose
 		[STATE_NAME:ALL_SOLID:walnut wood]
 		[STATE_ADJ:ALL_SOLID:walnut wood]
 		[PREFIX:NONE]
-		[SOLID_DENSITY:562] *** using data for julans nigra http://www.csudh.edu/oliver/chemdata/woods.htm
-		[STATE_COLOR:ALL_SOLID:DARK_TAN] *** https://www.woodworkerssource.com/shop/category/Walnut.html
+	 	[SOLID_DENSITY:562] *** using data for julans nigra http://www.csudh.edu/oliver/chemdata/woods.htm
+	 	[STATE_COLOR:ALL_SOLID:DARK_TAN] *** https://www.woodworkerssource.com/shop/category/Walnut.html
 	[USE_MATERIAL_TEMPLATE:LEAF:LEAF_TEMPLATE]
 		[STATE_COLOR:ALL:YELLOW_GREEN]
 		[DISPLAY_COLOR:2:0:0]

@@ -21,12 +21,19 @@ args = parser.parse_args()
 zf = zipfile.ZipFile(args.input_file)
 raw_files = {}  # name -> full path in archive
 
+def is_valid_raw_path(path):
+    if entry_path.is_relative_to('data/vanilla'):
+        # v50+
+        return len(entry_path.parts) > 2 and entry_path.parts[2].startswith('vanilla_')
+    elif entry_path.is_relative_to('raw/objects'):
+        # pre-v50
+        return len(entry_path.parts) == 3
+    return False
+
 for entry in zf.namelist():
     entry_path = pathlib.PurePath(entry)
     if (not entry_path.is_absolute()
-        and entry_path.is_relative_to('data/vanilla')
-        and len(entry_path.parts) > 2
-        and entry_path.parts[2].startswith('vanilla_')
+        and is_valid_raw_path(entry_path)
         and entry_path.suffix == '.txt'
         and entry_path.name != 'info.txt'
     ):
@@ -47,6 +54,7 @@ os.mkdir(args.output_dir)
 for out_filename, in_filepath in raw_files.items():
     with zf.open(in_filepath) as in_file, open(os.path.join(args.output_dir, out_filename), 'wb') as out_file:
         contents = in_file.read()
+        contents = contents.replace(b'\r\n', b'\n')
         # Convert to UTF-8 to fix Moose raws and language files. The parser functions can't handle CP437.
         contents = contents.decode('cp437').encode('utf8')
         out_file.write(contents)
