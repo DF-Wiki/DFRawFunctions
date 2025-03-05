@@ -160,7 +160,7 @@ class DFRawFunctions
 			return $notfound;
 		foreach ($tags as $tag)
 		{
-			if ($offset >= count($tag))
+			if ((int)$offset >= count($tag))
 				continue;
 			$match = true;
 			for ($i = 0; $i < $numcaps; $i++)
