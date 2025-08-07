@@ -592,3 +592,94 @@ Most of these are from Wikipedia's color list.  Palettes only support 255 colors
 	[NAME:blue-gray]
 	[WORD:GRAY]
 	[RGB:186:202:226]
+
+[COLOR:APPLE_GREEN]
+	[NAME:apple green]
+	[WORD:GREEN]
+	[RGB:97:178:53]
+
+[COLOR:BRIGHT_GREEN]
+	[NAME:bright green]
+	[WORD:GREEN]
+	[RGB:80:229:0]
+
+[COLOR:LEAF_GREEN]
+	[NAME:leaf green]
+	[WORD:GREEN]
+	[RGB:25:178:17]
+
+[COLOR:ZESTY_GREEN]
+	[NAME:zesty green]
+	[WORD:GREEN]
+	[RGB:55:229:45]
+
+[COLOR:WOODLAND_GREEN]
+	[NAME:woodland green]
+	[WORD:GREEN]
+	[RGB:15:153:49]
+
+[COLOR:GRASS_GREEN]
+	[NAME:grass green]
+	[WORD:GREEN]
+	[RGB:0:204:51]
+
+[COLOR:VIBRANT_GREEN]
+	[NAME:vibrant green]
+	[WORD:GREEN]
+	[RGB:25:255:82]
+
+[COLOR:EUCALYPTUS]
+	[NAME:eucalyptus]
+	[RGB:76:153:141]
+
+[COLOR:SEA_FOAM]
+	[NAME:sea foam]
+	[RGB:25:255:220]
+
+[COLOR:GLACIER_BLUE]
+	[NAME:glacier blue]
+	[WORD:BLUE]
+	[RGB:25:220:255]
+
+[COLOR:RIVER_BLUE]
+	[NAME:river blue]
+	[WORD:BLUE]
+	[RGB:61:139:204]
+
+[COLOR:CORNFLOWER]
+	[NAME:cornflower]
+	[RGB:76:174:255]
+
+[COLOR:DEEP_SEA_BLUE]
+	[NAME:deep sea blue]
+	[WORD:BLUE]
+	[RGB:0:38:153]
+
+[COLOR:DARK_AZURE]
+	[NAME:dark azure]
+	[WORD:AZURE]
+	[RGB:45:91:229]
+
+[COLOR:ULTRAMARINE]
+	[NAME:ultramarine]
+	[RGB:0:63:255]
+
+[COLOR:SAPPHIRE]
+	[NAME:sapphire]
+	[RGB:55:45:229]
+
+[COLOR:CROCUS_PURPLE]
+	[NAME:crocus purple]
+	[RGB:110:45:229]
+
+[COLOR:FOXGLOVE]
+	[NAME:foxglove]
+	[RGB:165:45:229]
+
+[COLOR:ORCHID_PINK]
+	[NAME:orchid pink]
+	[RGB:229:91:195]
+
+[COLOR:RASPBERRY_PINK]
+	[NAME:raspberry pink]
+	[RGB:255:25:128]raspberry pink
