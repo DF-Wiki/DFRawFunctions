@@ -12,7 +12,7 @@ creature_large_tropical
 	[PETVALUE:500]
 	[PET]
 	[STANDARD_GRAZER] don't have browsing trees yet
-	[PACK_ANIMAL]
+	[PACK_ANIMAL][TRADE_CAPACITY:5000]
 	[MOUNT_EXOTIC]
 	[TRAINABLE]
 	[LARGE_ROAMING]
